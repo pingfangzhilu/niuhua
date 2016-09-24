@@ -1,0 +1,33 @@
+//
+//  NPrefixHeader.pch
+//  voices
+//
+//  Created by pc on 16/9/24.
+//  Copyright © 2016年 mac. All rights reserved.
+//
+
+#ifndef NPrefixHeader_pch
+#define NPrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+//#import <Foundation/Foundation.h>
+//#import <UIKit/UIKit.h>
+
+//#import "UIImageView+WebCache.h"
+//#import "AFNetworking.h"
+//
+//#import "SDImageCache.h"
+//#import "MBProgressHUD.h"
+//#import "DisplayUtil.h"
+//#import "Masonry.h"
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
+#endif /* NPrefixHeader_pch */

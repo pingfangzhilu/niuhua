@@ -448,7 +448,6 @@ int initSystem(void networkEvent(int type,char *msg,int size))
 	InitWorkEvent(timeout_cb);
 #endif
     NET_DBG("initSystem success \n");
-    Net->networkEvent(1,"stop",4);
 	updateNetwork();
 	return 0;
 

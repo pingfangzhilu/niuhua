@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #include "demo_tcp.h"
 #include "Interface.h"
+
   ViewController *OCP=nil ;
 @interface ViewController ()
 {
@@ -26,9 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    // 把指针传给他
     OCP = self;
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(tonghi:) name:@"ffff" object:nil];
-    //int sock = create_client("192.168.17.201",20001);
+
     array =   [NSArray arrayWithObjects:
                @"http://fdfs.xmcdn.com/group7/M01/A3/8D/wKgDX1d2Rr6w3CegABHDHZzUiUs448.mp3",
                @"http://fdfs.xmcdn.com/group4/M03/A3/84/wKgDs1d2RZ_RjSxuABV9gmXQeIc233.mp3",
@@ -76,41 +77,25 @@
     
 }
 
-//- (void)tonghi:(NSNotification *)not
-//{
-//    NSString *string =(id)[not object];
-//    
-//    
-//[playBtn setTitle:string forState:UIControlStateNormal];
-//    
-//  
-//
-//
-//}
-//
-//
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//
-//
-//
-//    [[NSNotificationCenter defaultCenter]removeObserver:@"ffff"];
-//}
 
 
 
-    -(void)initUI_play{
+-(void)initUI_play{
         
 }
+
+
     void ocCallBack(int type,char *msg,int size)
     {
         NSString * strMsg = [NSString stringWithUTF8String:msg];
         
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"ffff" object:strMsg];
+
        [OCP HHHHHHP:strMsg];
         
         NSLog(@"ocInterface onclick %@\n",strMsg);
     }
+
+
 
 - (void)HHHHHHP:(NSString *)mstring
 {
