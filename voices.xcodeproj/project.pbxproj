@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04D9953E1D94D7EB00BD9E55 /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953C1D94D7EB00BD9E55 /* Interface.c */; };
-		04D995441D9510F000BD9E55 /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953F1D9510F000BD9E55 /* event.c */; };
-		04D995451D9510F000BD9E55 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D995431D9510F000BD9E55 /* network.c */; };
+		04D9953E1D94D7EB00BD9E55 /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953C1D94D7EB00BD9E55 /* Interface.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		04D995441D9510F000BD9E55 /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953F1D9510F000BD9E55 /* event.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		04D995451D9510F000BD9E55 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D995431D9510F000BD9E55 /* network.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		04E0DE0D1D942A7900EE92F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE0C1D942A7900EE92F8 /* main.m */; };
 		04E0DE101D942A7900EE92F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE0F1D942A7900EE92F8 /* AppDelegate.m */; };
 		04E0DE131D942A7900EE92F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE121D942A7900EE92F8 /* ViewController.m */; };
@@ -18,7 +18,8 @@
 		04E0DE1B1D942A7900EE92F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E0DE191D942A7900EE92F8 /* LaunchScreen.storyboard */; };
 		04E0DE261D942A7900EE92F8 /* voicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE251D942A7900EE92F8 /* voicesTests.m */; };
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
-		04E0DE481D942EB100EE92F8 /* libiosbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E0DE471D942EB100EE92F8 /* libiosbase.a */; };
+		4F3053141D967DCD00FBF809 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3053131D967DCD00FBF809 /* libz.1.tbd */; };
+		4F30531A1D96AA9D00FBF809 /* libiosbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3053191D96AA9D00FBF809 /* libiosbase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +73,8 @@
 		04E0DE441D942D6C00EE92F8 /* queWorkCond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queWorkCond.h; sourceTree = "<group>"; };
 		04E0DE451D942D6C00EE92F8 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tools.h; sourceTree = "<group>"; };
 		04E0DE461D942D6C00EE92F8 /* udp_sock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = udp_sock.h; sourceTree = "<group>"; };
-		04E0DE471D942EB100EE92F8 /* libiosbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbase.a; sourceTree = "<group>"; };
+		4F3053131D967DCD00FBF809 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
+		4F3053191D96AA9D00FBF809 /* libiosbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbase.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04E0DE481D942EB100EE92F8 /* libiosbase.a in Frameworks */,
+				4F30531A1D96AA9D00FBF809 /* libiosbase.a in Frameworks */,
+				4F3053141D967DCD00FBF809 /* libz.1.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +107,8 @@
 		04E0DDFF1D942A7900EE92F8 = {
 			isa = PBXGroup;
 			children = (
-				04E0DE471D942EB100EE92F8 /* libiosbase.a */,
+				4F3053191D96AA9D00FBF809 /* libiosbase.a */,
+				4F3053131D967DCD00FBF809 /* libz.1.tbd */,
 				04E0DE0A1D942A7900EE92F8 /* voices */,
 				04E0DE241D942A7900EE92F8 /* voicesTests */,
 				04E0DE2F1D942A7900EE92F8 /* voicesUITests */,
@@ -256,6 +260,7 @@
 				TargetAttributes = {
 					04E0DE071D942A7900EE92F8 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 8C6WUFQE7Q;
 					};
 					04E0DE201D942A7900EE92F8 = {
 						CreatedOnToolsVersion = 7.2;
@@ -463,14 +468,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = voices/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.voices";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -478,14 +489,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = voices/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.voices";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
