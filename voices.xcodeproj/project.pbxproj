@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0404E9321D96B17F00E486A6 /* libiosbaseDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0404E9311D96B17F00E486A6 /* libiosbaseDemo.a */; };
 		04D9953E1D94D7EB00BD9E55 /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953C1D94D7EB00BD9E55 /* Interface.c */; };
 		04D995441D9510F000BD9E55 /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953F1D9510F000BD9E55 /* event.c */; };
 		04D995451D9510F000BD9E55 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D995431D9510F000BD9E55 /* network.c */; };
@@ -18,7 +19,6 @@
 		04E0DE1B1D942A7900EE92F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E0DE191D942A7900EE92F8 /* LaunchScreen.storyboard */; };
 		04E0DE261D942A7900EE92F8 /* voicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE251D942A7900EE92F8 /* voicesTests.m */; };
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
-		04E0DE481D942EB100EE92F8 /* libiosbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E0DE471D942EB100EE92F8 /* libiosbase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0404E9311D96B17F00E486A6 /* libiosbaseDemo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbaseDemo.a; sourceTree = "<group>"; };
 		04D9953C1D94D7EB00BD9E55 /* Interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Interface.c; sourceTree = "<group>"; };
 		04D9953D1D94D7EB00BD9E55 /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
 		04D9953F1D9510F000BD9E55 /* event.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = event.c; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		04E0DE441D942D6C00EE92F8 /* queWorkCond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queWorkCond.h; sourceTree = "<group>"; };
 		04E0DE451D942D6C00EE92F8 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tools.h; sourceTree = "<group>"; };
 		04E0DE461D942D6C00EE92F8 /* udp_sock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = udp_sock.h; sourceTree = "<group>"; };
-		04E0DE471D942EB100EE92F8 /* libiosbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbase.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04E0DE481D942EB100EE92F8 /* libiosbase.a in Frameworks */,
+				0404E9321D96B17F00E486A6 /* libiosbaseDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 		04E0DDFF1D942A7900EE92F8 = {
 			isa = PBXGroup;
 			children = (
-				04E0DE471D942EB100EE92F8 /* libiosbase.a */,
+				0404E9311D96B17F00E486A6 /* libiosbaseDemo.a */,
 				04E0DE0A1D942A7900EE92F8 /* voices */,
 				04E0DE241D942A7900EE92F8 /* voicesTests */,
 				04E0DE2F1D942A7900EE92F8 /* voicesUITests */,
@@ -464,6 +464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = voices/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -479,6 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = voices/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
