@@ -13,8 +13,6 @@
 		04E0DE1B1D942A7900EE92F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E0DE191D942A7900EE92F8 /* LaunchScreen.storyboard */; };
 		04E0DE261D942A7900EE92F8 /* voicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE251D942A7900EE92F8 /* voicesTests.m */; };
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
-		4F3053141D967DCD00FBF809 /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3053131D967DCD00FBF809 /* libz.1.tbd */; };
-		4F30531F1D96B5DB00FBF809 /* libiosbaseDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F30531E1D96B5DB00FBF809 /* libiosbaseDemo.a */; };
 		4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */; };
 		4F3053E01D96B70E00FBF809 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053261D96B70E00FBF809 /* AFHTTPRequestOperationManager.m */; };
 		4F3053E11D96B70E00FBF809 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053281D96B70E00FBF809 /* AFHTTPSessionManager.m */; };
@@ -101,6 +99,7 @@
 		4F3054571D96C26E00FBF809 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3054561D96C26E00FBF809 /* AppDelegate.m */; };
 		4F30545A1D96C27E00FBF809 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3054591D96C27E00FBF809 /* ViewController.m */; };
 		4F3054661D96C5EC00FBF809 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F3054651D96C5EC00FBF809 /* Info.plist */; };
+		4F3054681D96D56A00FBF809 /* libiosbaseDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +132,6 @@
 		04E0DE301D942A7900EE92F8 /* voicesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = voicesUITests.m; sourceTree = "<group>"; };
 		04E0DE321D942A7900EE92F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F3053131D967DCD00FBF809 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
-		4F30531E1D96B5DB00FBF809 /* libiosbaseDemo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbaseDemo.a; sourceTree = "<group>"; };
 		4F3053231D96B70E00FBF809 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		4F3053251D96B70E00FBF809 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -322,6 +320,7 @@
 		4F3054581D96C27E00FBF809 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4F3054591D96C27E00FBF809 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4F3054651D96C5EC00FBF809 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = voices/Info.plist; sourceTree = "<group>"; };
+		4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbaseDemo.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,8 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3053141D967DCD00FBF809 /* libz.1.tbd in Frameworks */,
-				4F30531F1D96B5DB00FBF809 /* libiosbaseDemo.a in Frameworks */,
+				4F3054681D96D56A00FBF809 /* libiosbaseDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,8 +352,7 @@
 		04E0DDFF1D942A7900EE92F8 = {
 			isa = PBXGroup;
 			children = (
-				4F3054651D96C5EC00FBF809 /* Info.plist */,
-				4F30531E1D96B5DB00FBF809 /* libiosbaseDemo.a */,
+				4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */,
 				4F3053131D967DCD00FBF809 /* libz.1.tbd */,
 				04E0DE0A1D942A7900EE92F8 /* voices */,
 				04E0DE241D942A7900EE92F8 /* voicesTests */,

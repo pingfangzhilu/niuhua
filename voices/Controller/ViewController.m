@@ -10,6 +10,7 @@
 #include "demo_tcp.h"
 #include "Interface.h"
 
+#include "cJSON.h"
   ViewController *OCP=nil ;
 @interface ViewController ()
 {
@@ -87,12 +88,60 @@
 
     void ocCallBack(int type,char *msg,int size)
     {
+        int lockState;  // globe vaule
+        
         NSString * strMsg = [NSString stringWithUTF8String:msg];
         
 
        [OCP HHHHHHP:strMsg];
         
         NSLog(@"ocInterface onclick %@\n",strMsg);
+        cJSON * pJson = cJSON_Parse(msg);
+        if(NULL == pJson){
+            return ;
+        }
+        cJSON * pSub = cJSON_GetObjectItem(pJson, "handler");
+        if(NULL == pSub){
+            printf("get json data  failed\n");
+            goto exit ;
+        }
+        if(!strcmp(pSub->valuestring,"host")){
+            pSub= cJSON_GetObjectItem(pJson, "type ");
+            if(!strcmp(pSub->valuestring,"open")){
+                char *openTime =cJSON_GetObjectItem(pJson, "time ")->valuestring;
+            }else if(!strcmp(pSub->valuestring,"close")){
+                 char *closeTime =cJSON_GetObjectItem(pJson, "time ")->valuestring;
+            }
+        }else if(!strcmp(pSub->valuestring,"vol")){
+            pSub= cJSON_GetObjectItem(pJson, "data ");
+            int voldata =pSub->valueint;
+
+        }else if(!strcmp(pSub->valuestring,"lock")){
+            int state= cJSON_GetObjectItem(pJson, "state")->valueint;
+            if(state==0){
+                lockState=0;
+            }else if(state==1){
+                lockState=1;
+            }
+        }else if(!strcmp(pSub->valuestring,"mplayer")){
+            pSub= cJSON_GetObjectItem(pJson, "state");
+            if(!strcmp(pSub->valuestring,"pause")){
+            }else if(!strcmp(pSub->valuestring,"play")){
+            }else if(!strcmp(pSub->valuestring,"stop")){
+            }else if(!strcmp(pSub->valuestring,"switch")){
+            }
+        }else if(!strcmp(pSub->valuestring,"sys")){
+            
+        }else if(!strcmp(pSub->valuestring,"battery")){
+            
+        }else if(!strcmp(pSub->valuestring,"newImage")){
+            
+        }else if(!strcmp(pSub->valuestring,"TestNet")){
+            
+        }
+    exit:
+        cJSON_Delete(pJson);
+        return ;
     }
 
 
