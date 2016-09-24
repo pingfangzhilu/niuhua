@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04D9953E1D94D7EB00BD9E55 /* Interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953C1D94D7EB00BD9E55 /* Interface.c */; };
+		04D995441D9510F000BD9E55 /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D9953F1D9510F000BD9E55 /* event.c */; };
+		04D995451D9510F000BD9E55 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = 04D995431D9510F000BD9E55 /* network.c */; };
 		04E0DE0D1D942A7900EE92F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE0C1D942A7900EE92F8 /* main.m */; };
 		04E0DE101D942A7900EE92F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE0F1D942A7900EE92F8 /* AppDelegate.m */; };
 		04E0DE131D942A7900EE92F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE121D942A7900EE92F8 /* ViewController.m */; };
@@ -15,6 +18,7 @@
 		04E0DE1B1D942A7900EE92F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E0DE191D942A7900EE92F8 /* LaunchScreen.storyboard */; };
 		04E0DE261D942A7900EE92F8 /* voicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE251D942A7900EE92F8 /* voicesTests.m */; };
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
+		04E0DE481D942EB100EE92F8 /* libiosbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E0DE471D942EB100EE92F8 /* libiosbase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04D9953C1D94D7EB00BD9E55 /* Interface.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Interface.c; sourceTree = "<group>"; };
+		04D9953D1D94D7EB00BD9E55 /* Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interface.h; sourceTree = "<group>"; };
+		04D9953F1D9510F000BD9E55 /* event.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = event.c; sourceTree = "<group>"; };
+		04D995401D9510F000BD9E55 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		04D995411D9510F000BD9E55 /* kernel_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kernel_list.h; sourceTree = "<group>"; };
+		04D995421D9510F000BD9E55 /* netInter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = netInter.h; sourceTree = "<group>"; };
+		04D995431D9510F000BD9E55 /* network.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = network.c; sourceTree = "<group>"; };
+		04D995461D95116D00BD9E55 /* cJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cJSON.h; sourceTree = "<group>"; };
+		04D995471D9511AB00BD9E55 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		04E0DE081D942A7900EE92F8 /* voices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = voices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E0DE0C1D942A7900EE92F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04E0DE0E1D942A7900EE92F8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +64,15 @@
 		04E0DE2C1D942A7900EE92F8 /* voicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = voicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E0DE301D942A7900EE92F8 /* voicesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = voicesUITests.m; sourceTree = "<group>"; };
 		04E0DE321D942A7900EE92F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04E0DE3F1D942D6C00EE92F8 /* aes_demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_demo.h; sourceTree = "<group>"; };
+		04E0DE401D942D6C00EE92F8 /* demo_tcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demo_tcp.h; sourceTree = "<group>"; };
+		04E0DE411D942D6C00EE92F8 /* fileMes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileMes.h; sourceTree = "<group>"; };
+		04E0DE421D942D6C00EE92F8 /* head_mp3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = head_mp3.h; sourceTree = "<group>"; };
+		04E0DE431D942D6C00EE92F8 /* pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pool.h; sourceTree = "<group>"; };
+		04E0DE441D942D6C00EE92F8 /* queWorkCond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queWorkCond.h; sourceTree = "<group>"; };
+		04E0DE451D942D6C00EE92F8 /* tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tools.h; sourceTree = "<group>"; };
+		04E0DE461D942D6C00EE92F8 /* udp_sock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = udp_sock.h; sourceTree = "<group>"; };
+		04E0DE471D942EB100EE92F8 /* libiosbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbase.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E0DE481D942EB100EE92F8 /* libiosbase.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +104,7 @@
 		04E0DDFF1D942A7900EE92F8 = {
 			isa = PBXGroup;
 			children = (
+				04E0DE471D942EB100EE92F8 /* libiosbase.a */,
 				04E0DE0A1D942A7900EE92F8 /* voices */,
 				04E0DE241D942A7900EE92F8 /* voicesTests */,
 				04E0DE2F1D942A7900EE92F8 /* voicesUITests */,
@@ -117,7 +141,16 @@
 		04E0DE0B1D942A7900EE92F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04D9953F1D9510F000BD9E55 /* event.c */,
+				04D995401D9510F000BD9E55 /* event.h */,
+				04D995411D9510F000BD9E55 /* kernel_list.h */,
+				04D995421D9510F000BD9E55 /* netInter.h */,
+				04D995431D9510F000BD9E55 /* network.c */,
+				04D995471D9511AB00BD9E55 /* debug.h */,
+				04E0DE3E1D942D3B00EE92F8 /* base */,
 				04E0DE0C1D942A7900EE92F8 /* main.m */,
+				04D9953C1D94D7EB00BD9E55 /* Interface.c */,
+				04D9953D1D94D7EB00BD9E55 /* Interface.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -138,6 +171,22 @@
 				04E0DE321D942A7900EE92F8 /* Info.plist */,
 			);
 			path = voicesUITests;
+			sourceTree = "<group>";
+		};
+		04E0DE3E1D942D3B00EE92F8 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				04D995461D95116D00BD9E55 /* cJSON.h */,
+				04E0DE3F1D942D6C00EE92F8 /* aes_demo.h */,
+				04E0DE401D942D6C00EE92F8 /* demo_tcp.h */,
+				04E0DE411D942D6C00EE92F8 /* fileMes.h */,
+				04E0DE421D942D6C00EE92F8 /* head_mp3.h */,
+				04E0DE431D942D6C00EE92F8 /* pool.h */,
+				04E0DE441D942D6C00EE92F8 /* queWorkCond.h */,
+				04E0DE451D942D6C00EE92F8 /* tools.h */,
+				04E0DE461D942D6C00EE92F8 /* udp_sock.h */,
+			);
+			name = base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +319,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D995451D9510F000BD9E55 /* network.c in Sources */,
 				04E0DE131D942A7900EE92F8 /* ViewController.m in Sources */,
+				04D9953E1D94D7EB00BD9E55 /* Interface.c in Sources */,
 				04E0DE101D942A7900EE92F8 /* AppDelegate.m in Sources */,
 				04E0DE0D1D942A7900EE92F8 /* main.m in Sources */,
+				04D995441D9510F000BD9E55 /* event.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +465,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = voices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.voices";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -424,6 +480,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = voices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "-23.voices";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -496,6 +556,7 @@
 				04E0DE371D942A7900EE92F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04E0DE381D942A7900EE92F8 /* Build configuration list for PBXNativeTarget "voicesTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +565,7 @@
 				04E0DE3A1D942A7900EE92F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		04E0DE3B1D942A7900EE92F8 /* Build configuration list for PBXNativeTarget "voicesUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +574,7 @@
 				04E0DE3D1D942A7900EE92F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
