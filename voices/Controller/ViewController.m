@@ -207,11 +207,11 @@ void ocCallBack(int type,char *msg,int size)
         }
     }
     
-//    GerneralTableViewController *vc = [[GerneralTableViewController alloc] init];
-//    vc.array = models;
-//    vc.titleWillShow = title;
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
+    GerneralTableViewController *vc = [[GerneralTableViewController alloc] init];
+    vc.array = models;
+    vc.titleWillShow = title;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
