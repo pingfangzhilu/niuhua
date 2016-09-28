@@ -305,9 +305,7 @@ static void *Client(void *arg)
 	struct sockaddr_in peer;
 	int  len=sizeof(struct sockaddr),size;
 	memset(&tv, 0, sizeof(struct timeval));
-    Net->port =20000;
-    snprintf(Net->serverip, 16, "%s","192.168.17.107");
-    Net->sockfd = create_client(Net->serverip,Net->port);
+
     NET_DBG("Client Net->sockfd =%d Net->broSock =%d\n",Net->sockfd,Net->broSock);
 	tv.tv_sec = 2;
 	tv.tv_usec = 0;
@@ -323,15 +321,18 @@ static void *Client(void *arg)
 			Net->maxsock = Net->sockfd;
 		}
 		ret = select(Net->maxsock + 1, &fdsr, NULL, NULL, &tv);
+        
 		if (ret < 0){
 			perror("select error ");
 			break;
 		}
 		else if (ret == 0){
 			usleep(100000);
-			NET_DBG("Net->sockfd =%d Net->broSock =%d\n",Net->sockfd,Net->broSock);
-			if(++timeout>10)
+            if(++timeout>10){
+                NET_DBG("timeout Net->sockfd =%d Net->broSock =%d\n",Net->sockfd,Net->broSock);
 				autoConnectStart();
+                timeout=0;
+            }
 			continue;
 		}
 		memset(rbuf,0,1500);
@@ -343,8 +344,8 @@ static void *Client(void *arg)
 			}
 			AddNetMsg(Net->broSock,rbuf, size);
 		}
-
-		if (FD_ISSET(Net->sockfd, &fdsr)){
+        
+		if (Net->sockfd>0&&FD_ISSET(Net->sockfd, &fdsr)){
 			while(1){
 				size = recv(Net->sockfd, rbuf, 1500, 0);
 				if(size==-1){
@@ -397,6 +398,7 @@ static void *CmdRecvFrom(void *arg)
 		{
 			NET_DBG ("recvfrom udp failed");
 			usleep(100);
+            continue;
 		}
 		AddNetMsg(Net->cmdSock,rbuf, size);
 		memset(rbuf,0,size);
@@ -448,6 +450,7 @@ int initSystem(void networkEvent(int type,char *msg,int size))
 	InitWorkEvent(timeout_cb);
 #endif
     NET_DBG("initSystem success \n");
+    usleep(1000);
 	updateNetwork();
 	return 0;
 
@@ -535,7 +538,7 @@ int updateNetwork(void)
 	if(Net->sockfd>0)
 		return 0;
 	Net->menusync=0;
-	//getServerIp();
+	getServerIp();
 	getServerIp();
 	return 0;
 }

@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "XMSDK.h"
 
+
+@interface ViewController : UITableViewController<XMReqDelegate>
+
+@property (nonatomic, strong) NSMutableArray *titleArray;
+@property (nonatomic, strong) NSArray *urlStringArray;
 
 @end
 

@@ -11,6 +11,30 @@
 
 #include <stdio.h>
 
+typedef struct{
+    char playUrl[128];  //当前播放url
+    int voldata;        //音量大小
+    int playState;      //当前播放状态 0 暂停 1 播放
+    int progress;       //播放的进度值
+}Player_t;
+
+typedef struct{
+    char opentime[64];  //定时开机时间
+    char closetime[64]; //定时关机时间
+    int lockState;      //设备上锁情况
+    int powerData;      //电量值
+    int power;          //充电状态
+}Sysdata_t;;
+
+typedef struct {
+    void (*networkEvent)(int type,char *msg,int size);
+    Player_t player;
+    Sysdata_t sysdata;
+}SysCall_t;
+
+
+Player_t *GetPlayer(void);
+
 extern int nativeInitSystem(void networkEvent(int type,char *msg,int size));		//初始化网络
 extern void nativeCleanSystem();		//退出清理后台网络线程
 extern int nativeUpdateNet();			//刷新网络

@@ -7,19 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "GerneralTableViewController.h"
 #include "demo_tcp.h"
 #include "Interface.h"
 
 #include "cJSON.h"
-  ViewController *OCP=nil ;
+ViewController *OCP=nil ;
+
 @interface ViewController ()
 {
-    UISlider *proView;
-    UIButton *playBtn;
     NSArray *array;
-    int playCount;
-  
-    
+    int playCount;//globe vaule
 }
 @end
 
@@ -28,151 +26,194 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    // 把指针传给他
-    OCP = self;
-
-    array =   [NSArray arrayWithObjects:
-               @"http://fdfs.xmcdn.com/group7/M01/A3/8D/wKgDX1d2Rr6w3CegABHDHZzUiUs448.mp3",
-               @"http://fdfs.xmcdn.com/group4/M03/A3/84/wKgDs1d2RZ_RjSxuABV9gmXQeIc233.mp3",
-               @"http://fdfs.xmcdn.com/group14/M01/A2/06/wKgDZFdzNujBdVzmABboXqMK5U0551.mp3",
-               @"http://fdfs.xmcdn.com/group9/M08/A1/4A/wKgDZldzNWzRoXyzACZofeFKKKc093.mp3",
-               @"http://fdfs.xmcdn.com/group14/M09/9F/EA/wKgDZFdwhHSyCmBsABE4V3MaLHU408.mp3",
-               @"http://fdfs.xmcdn.com/group15/M05/99/61/wKgDaFdqbLaQq4oRABBQgZsXAcA203.mp3",
-                 nil];
+    OCP = self;// 把指针传给他
     playCount =0;
-    UILabel *playurl = [[UILabel alloc] initWithFrame:CGRectMake(90,100, 60,40)];
-    playurl.userInteractionEnabled=YES;
-    playurl.text = @"播放url";
-    UITapGestureRecognizer *labelTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(labelTouchUpInside:)];
-    [playurl addGestureRecognizer:labelTapGestureRecognizer];
-    [self.view addSubview:playurl];
-    
-    
-    UILabel *processLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,200, 44,20)];
-    processLabel.text = @"播放";
-    [self.view addSubview:processLabel];
-    proView = [[UISlider alloc] initWithFrame:CGRectMake(60, 200, 240, 20)];
-    //[proView setProgressViewStyle:UIProgressViewStyleDefault]; //设置进度条类型
-    proView.backgroundColor = [UIColor clearColor];
-    proView.thumbTintColor = [UIColor redColor];
-    proView.continuous = NO;
-    [self.view addSubview:proView];
-    
-    playBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    playBtn.frame = CGRectMake(60, 300, 60, 30);
-    playBtn.backgroundColor = [UIColor clearColor];
-    [playBtn setTitle:@"play" forState:UIControlStateNormal];
-    [playBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];//设置标题颜色
-    [playBtn setTitleShadowColor:[UIColor grayColor] forState:UIControlStateNormal ];//阴影
-    [playBtn addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
-    [playBtn.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
-    [playBtn.layer setBorderWidth:1.0]; //边框宽度
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 1, 0, 0, 1 });
-    [playBtn.layer setBorderColor:colorref];//边框颜色
-    CFRelease(colorref);
-    [self.view addSubview:playBtn];
+//    array =   [NSArray arrayWithObjects:
+//               @"http://fdfs.xmcdn.com/group7/M01/A3/8D/wKgDX1d2Rr6w3CegABHDHZzUiUs448.mp3",
+//               @"http://fdfs.xmcdn.com/group4/M03/A3/84/wKgDs1d2RZ_RjSxuABV9gmXQeIc233.mp3",
+//               @"http://fdfs.xmcdn.com/group14/M01/A2/06/wKgDZFdzNujBdVzmABboXqMK5U0551.mp3",
+//               @"http://fdfs.xmcdn.com/group9/M08/A1/4A/wKgDZldzNWzRoXyzACZofeFKKKc093.mp3",
+//               @"http://fdfs.xmcdn.com/group14/M09/9F/EA/wKgDZFdwhHSyCmBsABE4V3MaLHU408.mp3",
+//               @"http://fdfs.xmcdn.com/group15/M05/99/61/wKgDaFdqbLaQq4oRABBQgZsXAcA203.mp3",
+//               nil];
 
+    [[XMReqMgr sharedInstance] registerXMReqInfoWithKey:@"b617866c20482d133d5de66fceb37da3" appSecret:@"4d8e605fa7ed546c4bcb33dee1381179"] ;
+    
+    [XMReqMgr sharedInstance].delegate = self;
+    
+    self.titleArray = [NSMutableArray arrayWithObjects:
+                       @"儿童分类",
+                       @"儿童相关信息",                  //儿童相关信息
+                       @"儿童推荐列表",                  //儿童推荐列表
+                       @"胎教故事",                     //胎教故事
+                       nil
+                       ];
+    self.view.frame = CGRectMake(0, 59, self.view.frame.size.width, self.view.frame.size.height);
+    [[UIApplication sharedApplication] setApplicationSupportsShakeToEdit:YES];
+    [self becomeFirstResponder];
     
     nativeInitSystem(ocCallBack);
     
 }
 
-
-
-
--(void)initUI_play{
-        
-}
-
-
-    void ocCallBack(int type,char *msg,int size)
-    {
-        int lockState;  // globe vaule
-        
-        NSString * strMsg = [NSString stringWithUTF8String:msg];
-        
-
-       [OCP HHHHHHP:strMsg];
-        
-        NSLog(@"ocInterface onclick %@\n",strMsg);
-        cJSON * pJson = cJSON_Parse(msg);
-        if(NULL == pJson){
-            return ;
-        }
-        cJSON * pSub = cJSON_GetObjectItem(pJson, "handler");
-        if(NULL == pSub){
-            printf("get json data  failed\n");
-            goto exit ;
-        }
-        if(!strcmp(pSub->valuestring,"host")){
-            pSub= cJSON_GetObjectItem(pJson, "type ");
-            if(!strcmp(pSub->valuestring,"open")){
-                char *openTime =cJSON_GetObjectItem(pJson, "time ")->valuestring;
-            }else if(!strcmp(pSub->valuestring,"close")){
-                 char *closeTime =cJSON_GetObjectItem(pJson, "time ")->valuestring;
-            }
-        }else if(!strcmp(pSub->valuestring,"vol")){
-            pSub= cJSON_GetObjectItem(pJson, "data ");
-            int voldata =pSub->valueint;
-
-        }else if(!strcmp(pSub->valuestring,"lock")){
-            int state= cJSON_GetObjectItem(pJson, "state")->valueint;
-            if(state==0){
-                lockState=0;
-            }else if(state==1){
-                lockState=1;
-            }
-        }else if(!strcmp(pSub->valuestring,"mplayer")){
-            pSub= cJSON_GetObjectItem(pJson, "state");
-            if(!strcmp(pSub->valuestring,"pause")){
-            }else if(!strcmp(pSub->valuestring,"play")){
-            }else if(!strcmp(pSub->valuestring,"stop")){
-            }else if(!strcmp(pSub->valuestring,"switch")){
-            }
-        }else if(!strcmp(pSub->valuestring,"sys")){
-            
-        }else if(!strcmp(pSub->valuestring,"battery")){
-            
-        }else if(!strcmp(pSub->valuestring,"newImage")){
-            
-        }else if(!strcmp(pSub->valuestring,"TestNet")){
-            
-        }
-    exit:
-        cJSON_Delete(pJson);
-        return ;
-    }
-
-
-
-- (void)HHHHHHP:(NSString *)mstring
+void ocCallBack(int type,char *msg,int size)
 {
+//    printf("msg = %s\n",msg);
 
-[playBtn setTitle:mstring forState:UIControlStateNormal];
-
+    [OCP ocCallMsg:msg];
 }
 
-- (void)play
+- (void)ocCallMsg:(char *)msg
 {
-    NSLog(@"play onclick");
+    Player_t * play = GetPlayer();
+    printf("play->playState = %d\n",play->playState);
 }
 
--(void) labelTouchUpInside:(UITapGestureRecognizer *)recognizer{
-    
-    UILabel *label=(UILabel*)recognizer.view;
-   if(++playCount>=array.count)
-       playCount=0;
-    id obj = [array objectAtIndex:playCount];
-    NSLog(@"%@被点击了  url:%@\n",label.text,obj);
-    if ( [obj isKindOfClass:[NSString class]] ){
-        const char * geturl = [obj UTF8String];
-        NSLog(@"play url =%s",geturl);
-        nativeMplayer((char *)geturl);
+#pragma mark tableview
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.titleArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:SimpleTableIdentifier];
+    }
+    cell.textLabel.text = self.titleArray[indexPath.row];
+    //添加网络上获取到列表菜单
+    //    NSLog(@"indexPath.row[%d]= %@\n",indexPath.row,self.titleArray[indexPath.row]);
+    cell.backgroundColor = [UIColor whiteColor];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    __weak typeof(self) sself = self;
+    NSLog(@"[%d]%@\n",indexPath.row,self.titleArray[indexPath.row]);
+    switch (indexPath.row) {
+        case 0:     //儿童分类
+        {
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            [params setObject:@6 forKey:@"category_id"];
+            [params setObject:@0 forKey:@"type"];
+            [[XMReqMgr sharedInstance] requestXMData:XMReqType_TagsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
+                if (!error)
+                    [sself showReceivedData:result className:@"XMTag" valuePath:nil titleNeedShow:@"tagName"];
+                else
+                    NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
+            }];
+            break;
+        }
+        case 1:            //儿童相关信息
+        {
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            [params setObject:@6 forKey:@"category_id"];
+            [params setObject:@1 forKey:@"type"];
+            [[XMReqMgr sharedInstance] requestXMData:XMReqType_TagsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
+                if (!error)
+                    [sself showReceivedData:result className:@"XMTag" valuePath:nil titleNeedShow:@"tagName"];
+                else
+                    NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
+            }];
+            break;
+        }
+        case 2:     //@儿童推荐列表
+        {
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            [params setObject:@6 forKey:@"category_id"];
+            [params setObject:@20 forKey:@"count"];  //提前一次，加载的内容数目
+            [params setObject:@1 forKey:@"page"];   //按页获取内容 1：表示去第1页内容，2：表示取第2页内容 3：表示取第三页内容
+            [params setObject:@1 forKey:@"calc_dimension"];
+            //            [params setObject:@3 forKey:@"calc_dimension"];
+            [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
+                if (!error)
+                    [sself showReceivedData:result className:@"XMAlbum" valuePath:@"albums" titleNeedShow:@"albumTitle"];
+                else
+                    NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
+            }];
+            break;
+        }
+        case 3:// @"胎教故事",
+        {
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            //            [params setObject:@2996987 forKey:@"album_id"];
+            [params setObject:[NSNumber numberWithInt:2996987] forKey:@"album_id"];
+            [params setObject:@"asc" forKey:@"sort"];
+            [params setObject:@20 forKey:@"count"];
+            [params setObject:@1 forKey:@"page"];
+            //            [params setObject:@"ascc" forKey:@"sort"];
+            [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsBrowse params:params withCompletionHander:^(id result, XMErrorModel *error) {
+                if (!error)
+                    [sself showReceivedData:result className:@"XMTrack" valuePath:@"tracks" titleNeedShow:@"trackTitle"];
+                //                NSLog(@"result --- %@ --- end", result);
+                else
+                    NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
+            }];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)showReceivedData:(id)result className:(NSString*)className valuePath:(NSString *)path titleNeedShow:(NSString*)title
+{
+    NSMutableArray *models = [NSMutableArray array];
+    Class dataClass = NSClassFromString(className);
+    if([result isKindOfClass:[NSArray class]]){
+        for (NSDictionary *dic in result) {
+            id model = [[dataClass alloc] initWithDictionary:dic];
+            [models addObject:model];
+        }
+    }
+    else if([result isKindOfClass:[NSDictionary class]]){
+        if(path.length == 0)
+        {
+            id model = [[dataClass alloc] initWithDictionary:result];
+            [models addObject:model];
+        }
+        else
+        {
+            NSArray *paths = [path componentsSeparatedByString:@"."];
+            NSDictionary *dic = result;
+            for (int i=0;i<paths.count-1;i++)
+            {
+                NSString *subPath = paths[i];
+                dic = dic[subPath];
+            }
+            for (NSDictionary *dict in dic[paths.lastObject])
+            {
+                id model = [[dataClass alloc] initWithDictionary:dict];
+                [models addObject:model];
+//                self.array[indexPath.row]
+            }
+        }
+    }
+    int count=0;
+    for (NSMutableArray *object in models) {
+//        NSLog(@"数组对象:%@", object);
+        if([object isKindOfClass:[XMTrack class]])
+        {
+            XMTrack *xmt=object;
+            NSLog(@"里面的标签内容:%@",xmt.trackTitle);
+        }else if ([object isKindOfClass:[XMAlbum class]]){
+            XMAlbum *album=object;
+            NSLog(@"[%d]:%@",count++,album.albumTitle);
+        }
     }
     
-    
+//    GerneralTableViewController *vc = [[GerneralTableViewController alloc] init];
+//    vc.array = models;
+//    vc.titleWillShow = title;
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
