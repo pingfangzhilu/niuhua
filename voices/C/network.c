@@ -63,20 +63,6 @@ static int __sendto(char *msg,int size,struct sockaddr_in *dest)
     return 0;
 }
 
-
-int test_Sendbro(char *buf,int size)
-{
-#if 0
-    if(sendto(Net->broSock, buf,size , 0,(struct sockaddr*)&Net->broaddr, sizeof(struct sockaddr))<0)
-    {
-        NET_DBG("__sendto msg failed \n");
-        return -1;
-    }
-#endif
-    NET_DBG("....sendto msg ok\n");
-    return 0;
-}
-
 int BrocastMsg(char *msg,int size)
 {
 #if 1
@@ -151,14 +137,14 @@ static void autoConnectStart(void)
 		if(Net->port!=0){
 			if(Net->sockfd<=0){
 				Net->sockfd = create_client(Net->serverip,Net->port);
-				setnoblock(Net->sockfd,0);
-				SetTcpNoDelay(Net->sockfd);
 				if(Net->sockfd<=0){
-					//Net->port=0;
-					//memset(Net->serverip,0,sizeof(Net->serverip));
+					Net->port=0;
+					memset(Net->serverip,0,sizeof(Net->serverip));
 					NET_DBG("connect server failed \n");
 					return ;
 				}
+                setnoblock(Net->sockfd,0);
+                SetTcpNoDelay(Net->sockfd);
 				pool_add_task(requestSyncState, NULL) ;
 			}
 		}
@@ -225,9 +211,7 @@ void pasredata(int sockfd,char *data,int size)
 	int cacheSize=strlen(cacheBuf);
 	int pos=0;
 	char *recvdata;
-	if(strstr(data,"head")==NULL){
-		return;
-	}
+
 	if(cacheSize>0){
 		recvdata = (char *)calloc(1,size+cacheSize+1);
 		if(recvdata==NULL){
@@ -242,6 +226,9 @@ void pasredata(int sockfd,char *data,int size)
 		}
 	}
 	memcpy(recvdata+cacheSize,data,size);
+    if(strstr(data,"head")==NULL){
+        return;
+    }
 	size+=cacheSize;
 //	NET_DBG("handler_CtrlMsg head =%s data=%s size=%d\n",data,data+16,size);
 	while(1)
@@ -405,6 +392,19 @@ static void *CmdRecvFrom(void *arg)
 	}
     return NULL;
 }
+static int GetsockOpt(int sock,int optname, int *size)
+{
+    /*
+     * 获得原始接收缓冲区大小
+     */
+    socklen_t optlen = sizeof(int);
+    int err = getsockopt(sock, SOL_SOCKET, optname, size, &optlen);
+    if(err<0){
+        printf("getsockopt failed \n");
+        return -1;
+    }
+    return 0;
+}
 int initSystem(void networkEvent(int type,char *msg,int size))
 {
 	if(Net)
@@ -423,6 +423,13 @@ int initSystem(void networkEvent(int type,char *msg,int size))
 	}
 #if 1
 	Net->cmdSock= create_listen_udp(NULL,20001);
+    int getsize=0;
+    int nRecvBuf=32*1024;//设置为32K
+    GetsockOpt(Net->cmdSock,SO_RCVBUF,&getsize);
+    printf("getsize = %d\n",getsize);
+    setsockopt(Net->cmdSock,SOL_SOCKET,SO_RCVBUF,(const char*)&nRecvBuf,sizeof(int));
+    GetsockOpt(Net->cmdSock,SO_RCVBUF,&getsize);
+    printf("setsockopt agin getsize = %d\n",getsize);
 	if(Net->cmdSock==-1){
 		NET_DBG("create listen sock  failed \n");
 		goto exit0;
@@ -507,7 +514,6 @@ static void getServerIp(void)
 	szJSON = cJSON_Print(pItem);
 	wsize = strlen(szJSON);
 	printf("%s \nwsize =%d\n",szJSON,wsize);
-    //test_Sendbro(szJSON,wsize);
     BrocastMsg(szJSON,wsize);
 	cJSON_Delete(pItem);
 #endif

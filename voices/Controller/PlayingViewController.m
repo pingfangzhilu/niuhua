@@ -23,6 +23,8 @@
     UIButton *preBtn;
     UIButton *nextBtn;
     
+    UIButton *devplayBtn;
+    
     double proValue;
     double cacheValeue;
     
@@ -125,6 +127,18 @@
     [nextBtn.layer setBorderColor:colorref];//边框颜色
     [self.view addSubview:nextBtn];
     
+    devplayBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    devplayBtn.frame = CGRectMake(280, 380, 60, 30);
+    devplayBtn.backgroundColor = [UIColor clearColor];
+    [devplayBtn setTitle:@"设备播放" forState:UIControlStateNormal];
+    [devplayBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];//设置标题颜色
+    [devplayBtn setTitleShadowColor:[UIColor grayColor] forState:UIControlStateNormal ];//阴影
+    [devplayBtn addTarget:self action:@selector(devplayTrack) forControlEvents:UIControlEventTouchUpInside];
+    [devplayBtn.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
+    [devplayBtn.layer setBorderWidth:1.0]; //边框宽度
+    [devplayBtn.layer setBorderColor:colorref];//边框颜色
+    [self.view addSubview:devplayBtn];
+    
     XMSDKPlayer *player = [XMSDKPlayer sharedPlayer];
     
     [player setAutoNexTrack:YES];
@@ -183,11 +197,6 @@
 
 - (void)play
 {
-    //NSString转char * /const char *
-    const char * playurl = [self.track.playUrl32 UTF8String];
-    int ret =nativeMplayer((char *)playurl);
-    printf("ret = %d playurl = %s\n ",ret,playurl);
-    return ;
 //    NSLog(@"self.track.playUrl32 =%@ coverUrlSmall =%@\n",self.track.playUrl32,self.track.coverUrlSmall);
     if(self.trackList.count){
         
@@ -266,7 +275,14 @@
         [[XMSDKPlayer sharedPlayer] playNextProgram];
     }
 }
-
+- (void)devplayTrack
+{
+    //NSString转char * /const char *
+    const char * playurl = [self.track.playUrl32 UTF8String];
+    int ret =nativeMplayer((char *)playurl);
+    printf("ret = %d playurl = %s\n ",ret,playurl);
+    return ;
+}
 - (void)XMTrackPlayNotifyProcess:(CGFloat)percent currentSecond:(NSUInteger)currentSecond
 {
     //        LOGCA(@"percent: %f, second: %d", percent, currentSecond);

@@ -6,6 +6,7 @@
 //  Copyright © 2016年 mac. All rights reserved.
 //
 
+#import <SystemConfiguration/CaptiveNetwork.h>
 #import "ViewController.h"
 #import "GerneralTableViewController.h"
 #include "demo_tcp.h"
