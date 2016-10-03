@@ -104,6 +104,7 @@
 		4F30545A1D96C27E00FBF809 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3054591D96C27E00FBF809 /* ViewController.m */; };
 		4F3054661D96C5EC00FBF809 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F3054651D96C5EC00FBF809 /* Info.plist */; };
 		4F3054681D96D56A00FBF809 /* libiosbaseDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */; };
+		4F33556A1DA2807300480AD6 /* ZYMyTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355691DA2807300480AD6 /* ZYMyTableViewHeader.m */; };
 		4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB933D1DA0E6020070B55C /* MainViewController.m */; };
 		4FFB93411DA0E7040070B55C /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93401DA0E7040070B55C /* RecommendViewController.m */; };
 		4FFB93441DA0E7140070B55C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93431DA0E7140070B55C /* ClassifyViewController.m */; };
@@ -379,6 +380,8 @@
 		4F3054591D96C27E00FBF809 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4F3054651D96C5EC00FBF809 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = voices/Info.plist; sourceTree = "<group>"; };
 		4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbaseDemo.a; sourceTree = "<group>"; };
+		4F3355681DA2807300480AD6 /* ZYMyTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyTableViewHeader.h; sourceTree = "<group>"; };
+		4F3355691DA2807300480AD6 /* ZYMyTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyTableViewHeader.m; sourceTree = "<group>"; };
 		4FFB933C1DA0E6020070B55C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		4FFB933D1DA0E6020070B55C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4FFB933F1DA0E7040070B55C /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
@@ -1029,6 +1032,8 @@
 			children = (
 				4FFB93611DA0F58A0070B55C /* RecommeTableViewCell.h */,
 				4FFB93621DA0F58A0070B55C /* RecommeTableViewCell.m */,
+				4F3355681DA2807300480AD6 /* ZYMyTableViewHeader.h */,
+				4F3355691DA2807300480AD6 /* ZYMyTableViewHeader.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1267,6 +1272,7 @@
 				4F30540E1D96B70E00FBF809 /* MJRefreshHeader.m in Sources */,
 				4F30541B1D96B70E00FBF809 /* UIScrollView+MJRefresh.m in Sources */,
 				4F3054131D96B70E00FBF809 /* MJRefreshBackNormalFooter.m in Sources */,
+				4F33556A1DA2807300480AD6 /* ZYMyTableViewHeader.m in Sources */,
 				4F3053E51D96B70E00FBF809 /* AFURLRequestSerialization.m in Sources */,
 				4FFB93591DA0E85A0070B55C /* SCPopView.m in Sources */,
 				4F3054571D96C26E00FBF809 /* AppDelegate.m in Sources */,

@@ -116,7 +116,7 @@
         make.left.equalTo(self.PassImav.mas_right).with.offset(5);
         make.centerY.equalTo(self.PassImav.mas_centerY);
         make.height.equalTo(@20);
-        make.width.equalTo(@80);
+        make.width.equalTo(@90);
         
     }];
     
@@ -127,7 +127,7 @@
     [self.NewImagv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@10);
         make.height.equalTo(@10);
-        make.left.equalTo(self.PassLabel.mas_right).with.offset(10);
+        make.left.equalTo(self.PassLabel.mas_right).with.offset(5);
         make.centerY.equalTo(self.PassImav.mas_centerY);
         
         
