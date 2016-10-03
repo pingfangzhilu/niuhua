@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "XMReqMgr.h"
-
+#import "MainViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -21,7 +21,7 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
     
-    ViewController *sdkDemoViewController = [[ViewController alloc]init];
+    MainViewController *sdkDemoViewController = [[MainViewController alloc]init];
     UINavigationController *navConttroller = [[UINavigationController alloc] initWithRootViewController:sdkDemoViewController];
     
     self.window.rootViewController = navConttroller;

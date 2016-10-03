@@ -8,9 +8,11 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 #include "Interface.h"
 #include "netInter.h"
 #include "cJSON.h"
+#include "elian.h"
 /*
  char * /const char *和NSString之间的转化
  
@@ -43,7 +45,7 @@ static void parseNetworkdData(int type,char *msg,int size)
         printf("get json data  failed\n");
         goto exit ;
     }
-    if(!strcmp(pSub->valuestring,"host")){
+    if(!strcmp((const char *)pSub->valuestring,(const char *)"host")){
         pSub= cJSON_GetObjectItem(pJson, "type");
         if(!strcmp(pSub->valuestring,"open")){
             pSub=cJSON_GetObjectItem(pJson, "time ");
@@ -119,6 +121,10 @@ exit:
 //初始化网络
 int nativeInitSystem(void networkEvent(int type,char *msg,int size))
 {
+    int protoVersion;
+    int libVersion;
+    elianGetVersion(&protoVersion,&libVersion);
+    printf("%d %d\n",protoVersion,libVersion);
     sys = (SysCall_t *)calloc(1, sizeof(SysCall_t));
     if(sys==NULL){
         perror("calloc sys failed \n");
