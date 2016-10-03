@@ -7,7 +7,16 @@
 //
 
 #import "WSBaseViewController.h"
+#import "XMSDK.h"
+#import "ClassMainTableViewCell.h"
+#include "demo_tcp.h"
+#include "Interface.h"
+#import "ClassListViewController.h"
+#include "cJSON.h"
+@interface ClassifyViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource,XMReqDelegate>
+@property (nonatomic,strong) NSArray *array;
+@property (nonatomic,strong) NSString *titleWillShow;
 
-@interface ClassifyViewController : WSBaseViewController
+@property (nonatomic,strong) UITableView *MianTableView;
 
 @end

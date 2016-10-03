@@ -20,7 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    [[XMReqMgr sharedInstance] registerXMReqInfoWithKey:@"b617866c20482d133d5de66fceb37da3" appSecret:@"4d8e605fa7ed546c4bcb33dee1381179"] ;
     
+   
     MainViewController *sdkDemoViewController = [[MainViewController alloc]init];
     UINavigationController *navConttroller = [[UINavigationController alloc] initWithRootViewController:sdkDemoViewController];
     

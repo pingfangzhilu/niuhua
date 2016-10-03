@@ -27,17 +27,17 @@
 
     self.firstIMavg =[[UIImageView alloc]init];
     
-//    self.firstIMavg.image =[UIImage imageNamed:@""];
+   self.firstIMavg.image =[UIImage imageNamed:@"drag-vertical"];
     
     [self.contentView addSubview:self.firstIMavg];
     
     [self.firstIMavg mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.width.equalTo(@10);
-        make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-15);
-        make.top.equalTo(self.contentView.mas_top).with.offset(15);
-        make.left.equalTo(self.contentView.mas_left).with.offset(15);
-        
+        make.height.equalTo(@24);
+        make.width.equalTo(@24);
+//        make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-15);
+//        make.top.equalTo(self.contentView.mas_top).with.offset(15);
+        make.left.equalTo(self.contentView.mas_left).with.offset(10);
+        make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     
     
@@ -49,7 +49,7 @@
        
         make.height.equalTo(@50);
         make.width.equalTo(@50);
-        make.left.equalTo(self.firstIMavg.mas_right).with.offset(15);
+        make.left.equalTo(self.firstIMavg.mas_right).with.offset(10);
         make.centerY.equalTo(self.firstIMavg.mas_centerY);
     }];
     
@@ -58,18 +58,27 @@
 //    self.IMavg.image =[UIImage imageNamed:@""];
     [self.contentView addSubview:self.IMavg];
     [self.IMavg mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.right.equalTo(self.contentView.mas_right).with.offset(-10);
-        make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-15);
-        make.top.equalTo(self.contentView.mas_top).with.offset(15);
-        make.width.equalTo(@10);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+       make.right.equalTo(self.contentView.mas_right).with.offset(-10);
+//        make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-15);
+//        make.top.equalTo(self.contentView.mas_top).with.offset(15);
+        make.width.equalTo(@24);
+        make.height.equalTo(@24);
     }];
     
     
     
     
     self.CentLabel =[[UILabel alloc]init];
-    self.CentLabel.font =[UIFont systemFontOfSize:16];
+    if (SWIDTH>340) {
+        self.CentLabel.font =[UIFont systemFontOfSize:18];
+    }else
+  {
+      
+      
+        self.CentLabel.font =[UIFont systemFontOfSize:16];
+    }
+    
     [self.contentView addSubview:self.CentLabel];
     
     [self.CentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,27 +93,27 @@
     
     
     
-    UIView *topline =[[UIView alloc]init];
-    topline.backgroundColor =[UIColor grayColor];
-    [self.contentView addSubview:topline];
-    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(@1);
-        make.top.equalTo(self.contentView.mas_top);
-        
-    }];
+//    UIView *topline =[[UIView alloc]init];
+//    topline.backgroundColor =[UIColor grayColor];
+//    [self.contentView addSubview:topline];
+//    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
+//        
+//        make.left.equalTo(self.contentView.mas_left);
+//        make.right.equalTo(self.contentView.mas_right);
+//        make.height.equalTo(@1);
+//        make.top.equalTo(self.contentView.mas_top);
+//        
+//    }];
     
     
     UIView *BottomLine =[[UIView alloc]init];
-    BottomLine.backgroundColor =[UIColor grayColor];
+    BottomLine.backgroundColor =[DisplayUtil hexStringToColor:@"e6e6e6"];
     [self.contentView addSubview:BottomLine];
     [BottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(@1);
+        make.height.equalTo(@0.5);
         make.bottom.equalTo(self.contentView.mas_bottom);
         
     }];

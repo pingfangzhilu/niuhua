@@ -99,9 +99,10 @@ void ocCallBack(int type,char *msg,int size)
     switch (indexPath.row) {
         case 0:     //儿童分类
         {
-            NSMutableDictionary *params = [NSMutableDictionary dictionary];
-            [params setObject:@6 forKey:@"category_id"];
-            [params setObject:@0 forKey:@"type"];
+            NSDictionary *params = @{@"category_id":@(6),@"type":@(0)};
+//            [params setObject:@6 forKey:@"category_id"];
+//            [params setObject:@0 forKey:@"type"];
+            
             [[XMReqMgr sharedInstance] requestXMData:XMReqType_TagsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
                 if (!error)
                     [sself showReceivedData:result className:@"XMTag" valuePath:nil titleNeedShow:@"tagName"];

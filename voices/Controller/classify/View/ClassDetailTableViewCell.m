@@ -38,27 +38,27 @@
         
     }];
     
-    UIView *topline =[[UIView alloc]init];
-    topline.backgroundColor =[UIColor grayColor];
-    [self.contentView addSubview:topline];
-    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(@1);
-        make.top.equalTo(self.contentView.mas_top);
-        
-    }];
+//    UIView *topline =[[UIView alloc]init];
+//    topline.backgroundColor =[UIColor grayColor];
+//    [self.contentView addSubview:topline];
+//    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
+//       
+//        make.left.equalTo(self.contentView.mas_left);
+//        make.right.equalTo(self.contentView.mas_right);
+//        make.height.equalTo(@1);
+//        make.top.equalTo(self.contentView.mas_top);
+//        
+//    }];
     
     
     UIView *BottomLine =[[UIView alloc]init];
-    BottomLine.backgroundColor =[UIColor grayColor];
+    BottomLine.backgroundColor =[DisplayUtil hexStringToColor:@"e6e6e6"];
     [self.contentView addSubview:BottomLine];
     [BottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
        
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
-        make.height.equalTo(@1);
+        make.height.equalTo(@0.5);
         make.bottom.equalTo(self.contentView.mas_bottom);
         
     }];
@@ -181,7 +181,7 @@
 
         self.CentLabel =[[WSMyLable alloc]init];
     
-        self.CentLabel.font =[UIFont systemFontOfSize:16];
+        self.CentLabel.font =[UIFont systemFontOfSize:18];
     
           [self.CentLabel setVerticalAlignment:VerticalAlignmentTop];
     

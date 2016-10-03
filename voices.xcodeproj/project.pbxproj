@@ -118,6 +118,7 @@
 		4FFB936C1DA13E6F0070B55C /* libelian.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FFB936B1DA13E6F0070B55C /* libelian.a */; };
 		4FFB93701DA140D40070B55C /* ClassMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB936F1DA140D40070B55C /* ClassMainTableViewCell.m */; };
 		4FFB93731DA14C160070B55C /* ClassDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93721DA14C160070B55C /* ClassDetailTableViewCell.m */; };
+		4FFB93761DA234D70070B55C /* ClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93751DA234D70070B55C /* ClassListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -406,6 +407,8 @@
 		4FFB936F1DA140D40070B55C /* ClassMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassMainTableViewCell.m; sourceTree = "<group>"; };
 		4FFB93711DA14C160070B55C /* ClassDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailTableViewCell.h; sourceTree = "<group>"; };
 		4FFB93721DA14C160070B55C /* ClassDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailTableViewCell.m; sourceTree = "<group>"; };
+		4FFB93741DA234D70070B55C /* ClassListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListViewController.h; sourceTree = "<group>"; };
+		4FFB93751DA234D70070B55C /* ClassListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -964,6 +967,8 @@
 				4FFB935D1DA0F2D20070B55C /* View */,
 				4FFB93421DA0E7140070B55C /* ClassifyViewController.h */,
 				4FFB93431DA0E7140070B55C /* ClassifyViewController.m */,
+				4FFB93741DA234D70070B55C /* ClassListViewController.h */,
+				4FFB93751DA234D70070B55C /* ClassListViewController.m */,
 			);
 			path = classify;
 			sourceTree = "<group>";
@@ -1248,6 +1253,7 @@
 				4F3053EA1D96B70E00FBF809 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4F3053FA1D96B70E00FBF809 /* JSONKeyMapper.m in Sources */,
 				4F3053F91D96B70E00FBF809 /* JSONModel+networking.m in Sources */,
+				4FFB93761DA234D70070B55C /* ClassListViewController.m in Sources */,
 				4FFB93731DA14C160070B55C /* ClassDetailTableViewCell.m in Sources */,
 				4F3054021D96B70E00FBF809 /* MASLayoutConstraint.m in Sources */,
 				4FFB93631DA0F58A0070B55C /* RecommeTableViewCell.m in Sources */,
