@@ -105,6 +105,14 @@
 		4F3054661D96C5EC00FBF809 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F3054651D96C5EC00FBF809 /* Info.plist */; };
 		4F3054681D96D56A00FBF809 /* libiosbaseDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */; };
 		4F33556A1DA2807300480AD6 /* ZYMyTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355691DA2807300480AD6 /* ZYMyTableViewHeader.m */; };
+		4F33556D1DA2A5F300480AD6 /* MEviewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33556C1DA2A5F300480AD6 /* MEviewTableViewCell.m */; };
+		4F3355701DA2AD7C00480AD6 /* MeSecondTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33556F1DA2AD7C00480AD6 /* MeSecondTableViewCell.m */; };
+		4F3355731DA35AA200480AD6 /* DetailsRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355721DA35AA200480AD6 /* DetailsRecommendViewController.m */; };
+		4F3355761DA381FB00480AD6 /* IntervalSinceNow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355751DA381FB00480AD6 /* IntervalSinceNow.m */; };
+		4F3355791DA38E3600480AD6 /* RemarksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355781DA38E3600480AD6 /* RemarksTableViewCell.m */; };
+		4F33557C1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33557B1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m */; };
+		4F33557F1DA3934A00480AD6 /* RecommJieSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33557E1DA3934A00480AD6 /* RecommJieSTableViewCell.m */; };
+		4F3355821DA39B5A00480AD6 /* RemarksCellHeightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355811DA39B5A00480AD6 /* RemarksCellHeightModel.m */; };
 		4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB933D1DA0E6020070B55C /* MainViewController.m */; };
 		4FFB93411DA0E7040070B55C /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93401DA0E7040070B55C /* RecommendViewController.m */; };
 		4FFB93441DA0E7140070B55C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93431DA0E7140070B55C /* ClassifyViewController.m */; };
@@ -382,6 +390,22 @@
 		4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libiosbaseDemo.a; sourceTree = "<group>"; };
 		4F3355681DA2807300480AD6 /* ZYMyTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYMyTableViewHeader.h; sourceTree = "<group>"; };
 		4F3355691DA2807300480AD6 /* ZYMyTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYMyTableViewHeader.m; sourceTree = "<group>"; };
+		4F33556B1DA2A5F300480AD6 /* MEviewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEviewTableViewCell.h; sourceTree = "<group>"; };
+		4F33556C1DA2A5F300480AD6 /* MEviewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEviewTableViewCell.m; sourceTree = "<group>"; };
+		4F33556E1DA2AD7C00480AD6 /* MeSecondTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeSecondTableViewCell.h; sourceTree = "<group>"; };
+		4F33556F1DA2AD7C00480AD6 /* MeSecondTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeSecondTableViewCell.m; sourceTree = "<group>"; };
+		4F3355711DA35AA200480AD6 /* DetailsRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsRecommendViewController.h; sourceTree = "<group>"; };
+		4F3355721DA35AA200480AD6 /* DetailsRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsRecommendViewController.m; sourceTree = "<group>"; };
+		4F3355741DA381FB00480AD6 /* IntervalSinceNow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntervalSinceNow.h; sourceTree = "<group>"; };
+		4F3355751DA381FB00480AD6 /* IntervalSinceNow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntervalSinceNow.m; sourceTree = "<group>"; };
+		4F3355771DA38E3600480AD6 /* RemarksTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarksTableViewCell.h; sourceTree = "<group>"; };
+		4F3355781DA38E3600480AD6 /* RemarksTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarksTableViewCell.m; sourceTree = "<group>"; };
+		4F33557A1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommHeadImageVTableViewCell.h; sourceTree = "<group>"; };
+		4F33557B1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommHeadImageVTableViewCell.m; sourceTree = "<group>"; };
+		4F33557D1DA3934A00480AD6 /* RecommJieSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommJieSTableViewCell.h; sourceTree = "<group>"; };
+		4F33557E1DA3934A00480AD6 /* RecommJieSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommJieSTableViewCell.m; sourceTree = "<group>"; };
+		4F3355801DA39B5A00480AD6 /* RemarksCellHeightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarksCellHeightModel.h; sourceTree = "<group>"; };
+		4F3355811DA39B5A00480AD6 /* RemarksCellHeightModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarksCellHeightModel.m; sourceTree = "<group>"; };
 		4FFB933C1DA0E6020070B55C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		4FFB933D1DA0E6020070B55C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4FFB933F1DA0E7040070B55C /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
@@ -600,6 +624,8 @@
 				4F3053821D96B70E00FBF809 /* MBProgressHUD */,
 				4F3053851D96B70E00FBF809 /* MJRefresh */,
 				4F3053BD1D96B70E00FBF809 /* SDWebImage */,
+				4F3355741DA381FB00480AD6 /* IntervalSinceNow.h */,
+				4F3355751DA381FB00480AD6 /* IntervalSinceNow.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -983,6 +1009,8 @@
 				4FFB935B1DA0F2BD0070B55C /* View */,
 				4FFB933F1DA0E7040070B55C /* RecommendViewController.h */,
 				4FFB93401DA0E7040070B55C /* RecommendViewController.m */,
+				4F3355711DA35AA200480AD6 /* DetailsRecommendViewController.h */,
+				4F3355721DA35AA200480AD6 /* DetailsRecommendViewController.m */,
 			);
 			path = recommend;
 			sourceTree = "<group>";
@@ -1030,10 +1058,16 @@
 		4FFB935B1DA0F2BD0070B55C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F3355771DA38E3600480AD6 /* RemarksTableViewCell.h */,
+				4F3355781DA38E3600480AD6 /* RemarksTableViewCell.m */,
 				4FFB93611DA0F58A0070B55C /* RecommeTableViewCell.h */,
 				4FFB93621DA0F58A0070B55C /* RecommeTableViewCell.m */,
 				4F3355681DA2807300480AD6 /* ZYMyTableViewHeader.h */,
 				4F3355691DA2807300480AD6 /* ZYMyTableViewHeader.m */,
+				4F33557A1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.h */,
+				4F33557B1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m */,
+				4F33557D1DA3934A00480AD6 /* RecommJieSTableViewCell.h */,
+				4F33557E1DA3934A00480AD6 /* RecommJieSTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1066,6 +1100,10 @@
 		4FFB935F1DA0F2EB0070B55C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F33556B1DA2A5F300480AD6 /* MEviewTableViewCell.h */,
+				4F33556C1DA2A5F300480AD6 /* MEviewTableViewCell.m */,
+				4F33556E1DA2AD7C00480AD6 /* MeSecondTableViewCell.h */,
+				4F33556F1DA2AD7C00480AD6 /* MeSecondTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1073,6 +1111,8 @@
 		4FFB93601DA0F2FE0070B55C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4F3355801DA39B5A00480AD6 /* RemarksCellHeightModel.h */,
+				4F3355811DA39B5A00480AD6 /* RemarksCellHeightModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1239,6 +1279,7 @@
 				4F3054031D96B70E00FBF809 /* MASViewAttribute.m in Sources */,
 				4F3053EC1D96B70E00FBF809 /* UIAlertView+AFNetworking.m in Sources */,
 				4FFB93571DA0E85A0070B55C /* SCNavTabBarController.m in Sources */,
+				4F33557F1DA3934A00480AD6 /* RecommJieSTableViewCell.m in Sources */,
 				4FFB93691DA13D940070B55C /* TTTAttributedLabel.m in Sources */,
 				4F3054191D96B70E00FBF809 /* MJRefreshConst.m in Sources */,
 				4F30543E1D96BF3200FBF809 /* WSBaseViewController.m in Sources */,
@@ -1261,6 +1302,7 @@
 				4FFB93761DA234D70070B55C /* ClassListViewController.m in Sources */,
 				4FFB93731DA14C160070B55C /* ClassDetailTableViewCell.m in Sources */,
 				4F3054021D96B70E00FBF809 /* MASLayoutConstraint.m in Sources */,
+				4F3355791DA38E3600480AD6 /* RemarksTableViewCell.m in Sources */,
 				4FFB93631DA0F58A0070B55C /* RecommeTableViewCell.m in Sources */,
 				4F3054171D96B70E00FBF809 /* MJRefreshStateHeader.m in Sources */,
 				4F30542C1D96B70E00FBF809 /* UIImage+MultiFormat.m in Sources */,
@@ -1280,8 +1322,10 @@
 				4F3054291D96B70E00FBF809 /* SDWebImagePrefetcher.m in Sources */,
 				4F3054071D96B70E00FBF809 /* View+MASAdditions.m in Sources */,
 				4F3054281D96B70E00FBF809 /* SDWebImageManager.m in Sources */,
+				4F3355701DA2AD7C00480AD6 /* MeSecondTableViewCell.m in Sources */,
 				4F3053F81D96B70E00FBF809 /* JSONHTTPClient.m in Sources */,
 				04E0DE0D1D942A7900EE92F8 /* main.m in Sources */,
+				4F3355761DA381FB00480AD6 /* IntervalSinceNow.m in Sources */,
 				4F30541C1D96B70E00FBF809 /* UIView+MJExtension.m in Sources */,
 				4F3054531D96C25A00FBF809 /* Interface.c in Sources */,
 				0402E4B61D9AA0F1001CF8CE /* PlayingViewController.m in Sources */,
@@ -1296,6 +1340,7 @@
 				4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */,
 				4F3054251D96B70E00FBF809 /* SDWebImageDecoder.m in Sources */,
 				4F3054161D96B70E00FBF809 /* MJRefreshNormalHeader.m in Sources */,
+				4F33556D1DA2A5F300480AD6 /* MEviewTableViewCell.m in Sources */,
 				4F3053F11D96B70E00FBF809 /* UIWebView+AFNetworking.m in Sources */,
 				4F3054541D96C25A00FBF809 /* network.c in Sources */,
 				4F3054011D96B70E00FBF809 /* MASConstraintMaker.m in Sources */,
@@ -1312,9 +1357,12 @@
 				4F30540A1D96B70E00FBF809 /* MJRefreshAutoFooter.m in Sources */,
 				4F30542E1D96B70E00FBF809 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4F3054101D96B70E00FBF809 /* MJRefreshAutoNormalFooter.m in Sources */,
+				4F3355821DA39B5A00480AD6 /* RemarksCellHeightModel.m in Sources */,
+				4F33557C1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m in Sources */,
 				4F30540C1D96B70E00FBF809 /* MJRefreshComponent.m in Sources */,
 				4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */,
 				4F3054521D96C25A00FBF809 /* event.c in Sources */,
+				4F3355731DA35AA200480AD6 /* DetailsRecommendViewController.m in Sources */,
 				4FFB93441DA0E7140070B55C /* ClassifyViewController.m in Sources */,
 				4F3053F31D96B70E00FBF809 /* JSONModelArray.m in Sources */,
 				4FFB936A1DA13D940070B55C /* WSMyLable.m in Sources */,

@@ -38,17 +38,17 @@
         
     }];
     
-//    UIView *topline =[[UIView alloc]init];
-//    topline.backgroundColor =[UIColor grayColor];
-//    [self.contentView addSubview:topline];
-//    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
-//       
-//        make.left.equalTo(self.contentView.mas_left);
-//        make.right.equalTo(self.contentView.mas_right);
-//        make.height.equalTo(@1);
-//        make.top.equalTo(self.contentView.mas_top);
-//        
-//    }];
+    UIView *topline =[[UIView alloc]init];
+    topline.backgroundColor  =[DisplayUtil hexStringToColor:@"e6e6e6"];
+    [self.contentView addSubview:topline];
+    [topline mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
+        make.height.equalTo(@0.5);
+        make.top.equalTo(self.contentView.mas_top);
+        
+    }];
     
     
     UIView *BottomLine =[[UIView alloc]init];
@@ -68,15 +68,15 @@
    
     
     self.ArrowImgv =[[UIImageView alloc]init];
-//    self.ArrowImgv.image =[UIImage imageNamed:@""];
+    self.ArrowImgv.image =[UIImage imageNamed:@"abc_ic_menu_moreoverflow_mtrl_alpha"];
     
     [self.contentView addSubview:self.ArrowImgv];
     
     [self.ArrowImgv mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.right.equalTo(self.contentView.mas_right).with.offset(-15);
-        make.width.equalTo(@5);
-        make.height.equalTo(@20);
+        make.right.equalTo(self.contentView.mas_right).with.offset(-5);
+        make.width.equalTo(@24);
+        make.height.equalTo(@24);
         make.centerY.equalTo(self.contentView.mas_centerY);
         
         
@@ -85,12 +85,12 @@
     
     
     self.PassImagv =[[UIImageView alloc]init];
-    
+self.PassImagv.image = [UIImage imageNamed:@"album_play_count"];
 //    self.PassImagv.image =[UIImage imageNamed:@""];
     [self.contentView addSubview:self.PassImagv];
     
     [self.PassImagv mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(@10);
+        make.width.equalTo(@8);
         make.height.equalTo(@10);
         make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-15);
         make.left.equalTo(self.HeaadImagv.mas_right).with.offset(10);
@@ -125,7 +125,7 @@
     
     
     self.LookImagv =[[UIImageView alloc]init];
-//    self.LookImagv.image =[UIImage imageNamed:@""];
+    self.LookImagv.image =[UIImage imageNamed:@"ic_update_time"];
     [self.contentView addSubview:self.LookImagv];
     
     [self.LookImagv mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,7 +153,7 @@
     }];
     
     self.TimeImagv =[[UIImageView alloc]init];
-//    self.TimeImagv.image =[UIImage imageNamed:@""];
+    self.TimeImagv.image =[UIImage imageNamed:@"bg_myitem_alltime_new"];
     [self.contentView addSubview:self.TimeImagv];
     
     [self.TimeImagv mas_makeConstraints:^(MASConstraintMaker *make) {

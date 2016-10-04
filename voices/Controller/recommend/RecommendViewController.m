@@ -45,7 +45,7 @@
 
 - (void)LoadData
 {
-    
+    [self showHUB];
     for (int XXX=0; XXX<self.ALLArray.count; XXX++) {
         NSDictionary *params=@{@"category_id":@(6),@"tag_name":self.ALLArray[XXX],@"calc_dimension":@(1),@"count":@(6),@"page":@(1)};
         [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
@@ -55,8 +55,8 @@
                 NSLog(@"%@   %@",error.description,result);
         }];
     }
-    
-//    [self.MainTableView reloadData];
+    [self hideHUB];
+    //    [self.MainTableView reloadData];
 
 
 }
@@ -251,8 +251,84 @@ static NSString *head =@"headd";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    XMAlbum *XMbum =[[XMAlbum alloc]init];
+    
+    switch (indexPath.section) {
+        case 0:
+            XMbum =self.TuijianArray[indexPath.row];
+            break;
+        case 1:
+            XMbum =self.xinMamaArray[indexPath.row];
+            
+            break;
+        case 2:
+            XMbum =self.GushiArray[indexPath.row];
+            
+            break;
+        case 3:
+            XMbum =self.YwenArray[indexPath.row];
+            
+            break;
+        case 4:
+            XMbum =self.ErgeArray[indexPath.row];
+            
+            break;
+        case 5:
+            XMbum =self.KepuArray[indexPath.row];
+            
+            break;
+        case 6:
+            XMbum =self.GuoxueArray[indexPath.row];
+            
+            break;
+        case 7:
+            XMbum =self.QinziArray[indexPath.row];
+            
+            break;
+        case 8:
+            XMbum =self.KedaiArray[indexPath.row];
+            
+            break;
+        case 9:
+            XMbum =self.ShowArray[indexPath.row];
+            
+            break;
+        case 10:
+            XMbum =self.KatongArray[indexPath.row];
+            
+            break;
+        case 11:
+            XMbum =self.ZhongxiaoArray[indexPath.row];
+            
+            break;
+            
+            
+            
+            
+            
+        default:
+            break;
+    }
 
-    NSIndexPath *indexPathXXXX=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    
+    
+    
+    DetailsRecommendViewController *recomm =[[DetailsRecommendViewController alloc]init];
+    
+    recomm.tagName =[NSString stringWithFormat:@"%ld",(long)XMbum.albumId];
+    recomm.BigHeadURL =[NSString stringWithFormat:@"%@",XMbum.coverUrlLarge];
+    recomm.ZhuantiName =[NSString stringWithFormat:@"%@",XMbum.albumTitle];
+    recomm.nameStr =[NSString stringWithFormat:@"%@",XMbum.announcer.nickname];
+    recomm.headImageVUrl =[NSString stringWithFormat:@"%@",XMbum.announcer.avatarUrl];
+    recomm.palyCount =[NSString stringWithFormat:@"%ld",(long)XMbum.playCount];
+    recomm.genxinCount =[NSString stringWithFormat:@"%ld",(long)XMbum.includeTrackCount];
+    recomm.ContString =[NSString stringWithFormat:@"%@",XMbum.albumIntro];
+    
+    [self.navigationController pushViewController:recomm animated:YES];
+    
+    
+    NSIndexPath *indexPathXXXX=[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathXXXX,nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 

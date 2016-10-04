@@ -7,7 +7,12 @@
 //
 
 #import "WSBaseViewController.h"
+#import "MEviewTableViewCell.h"
+#import "MeSecondTableViewCell.h"
+@interface MeViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource>
 
-@interface MeViewController : WSBaseViewController
+@property (nonatomic,strong)UITableView *MainTableView;
+@property (nonatomic,strong)NSArray *ImagevArray;
 
+@property (nonatomic,strong)NSArray *WenziArray;
 @end

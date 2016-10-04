@@ -10,6 +10,7 @@
 #import "XMSDK.h"
 #import "MJRefresh.h"
 #import "RecommeTableViewCell.h"
+#import "DetailsRecommendViewController.h"
 @interface ClassListViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource>
 {
 

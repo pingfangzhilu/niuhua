@@ -10,7 +10,7 @@
 #import "DisplayUtil.h"
 #import "Masonry.h"
 #import "WSMyLable.h"
-
+#import "DetailsRecommendViewController.h"
 @interface ClassDetailTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)UIImageView *HeaadImagv;

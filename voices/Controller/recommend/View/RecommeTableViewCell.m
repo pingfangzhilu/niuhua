@@ -113,10 +113,10 @@
     
     [self.PassLabel mas_makeConstraints:^(MASConstraintMaker *make) {
     
-        make.left.equalTo(self.PassImav.mas_right).with.offset(5);
+        make.left.equalTo(self.PassImav.mas_right).with.offset(2);
         make.centerY.equalTo(self.PassImav.mas_centerY);
         make.height.equalTo(@20);
-        make.width.equalTo(@90);
+        make.width.equalTo(@95);
         
     }];
     
@@ -141,7 +141,7 @@
     [self.contentView addSubview:self.NewLabe];
     
     [self.NewLabe mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.NewImagv.mas_right).with.offset(5);
+        make.left.equalTo(self.NewImagv.mas_right).with.offset(2);
         make.centerY.equalTo(self.PassImav.mas_centerY);
         make.height.equalTo(@20);
         

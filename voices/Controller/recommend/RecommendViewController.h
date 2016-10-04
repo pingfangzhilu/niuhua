@@ -11,6 +11,7 @@
 #import "ZYMyTableViewHeader.h"
 #import "XMSDK.h"
 #import "ClassListViewController.h"
+#import "DetailsRecommendViewController.h"
 @interface RecommendViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 {

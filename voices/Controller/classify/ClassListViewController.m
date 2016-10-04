@@ -26,7 +26,7 @@
 
 - (void)LoadData:(NSInteger)tag
 {
-
+    [self showHUB];
     NSDictionary *params=@{@"category_id":@(6),@"tag_name":self.tagName,@"calc_dimension":@(1),@"count":@(20),@"page":@(pagenum)};
     
     
@@ -41,6 +41,7 @@
             [self showReceivedData:result className:@"XMAlbum" valuePath:@"albums" titleNeedShow:@"albumTitle":tag];
         else
             NSLog(@"%@   %@",error.description,result);
+        [self hideHUB];
     }];
 
 
@@ -99,7 +100,7 @@
     
     
     
-    
+    [self hideHUB];
 //    self.array = models;
     //    vc.titleWillShow = title;
     [self.MainTableView reloadData];
@@ -197,7 +198,15 @@ static NSString *iden =@"iden";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+ XMAlbum *XMbum =self.DataArray[indexPath.row];
+    
+    DetailsRecommendViewController *detail =[[DetailsRecommendViewController alloc]init];
+    detail.tagName =[NSString stringWithFormat:@"%ld",(long)XMbum.albumId];
+//  NSString *restricfff =  XMbum.announcer.nickname ;
+    [self.navigationController pushViewController:detail animated:YES];
+    
+    NSIndexPath *indexPathXXXX=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    [self.MainTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathXXXX,nil] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
