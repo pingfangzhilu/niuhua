@@ -7,7 +7,10 @@
 //
 
 #import "WSBaseViewController.h"
+
+#import "Interface.h"
 //#import "Reachability.h"
+WSBaseViewController *OCP=nil ;
 @interface WSBaseViewController ()
 {
    MBProgressHUD* HUD;
@@ -30,6 +33,13 @@
     
     return self;
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    NSLog(@"完蛋了");
+
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
@@ -37,14 +47,197 @@
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
 //    [self.navigationController setToolbarHidden:YES animated:YES];
     //[[self navigationController] setNavigationBarHidden:YES animated:NO];
+    
+    NSLog(@"BottomArray%lu",(unsigned long)self.BottomArray.count);
+    
 }
+
+- (void)BottomViewUI
+{
+    XMSDKPlayer *player = [XMSDKPlayer sharedPlayer];
+    
+    [player setAutoNexTrack:YES];
+    player.trackPlayDelegate = self;
+    player.livePlayDelegate = self;
+    [[XMSDKPlayer sharedPlayer] setVolume:0.5];
+    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+    self.BottomView =[[UIView alloc]init];
+    self.BottomView.backgroundColor =[UIColor grayColor];
+    [currentWindow addSubview:self.BottomView];
+    
+    [self.BottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(currentWindow.mas_left);
+        make.right.equalTo(currentWindow.mas_right);
+        make.bottom.equalTo(currentWindow.mas_bottom);
+        make.height.equalTo(@50);
+        
+        
+        
+    }];
+
+    self.BottomHeadImageV =[[UIImageView alloc]init];
+    
+    self.BottomHeadImageV.image =[UIImage imageNamed:@"placeholder_disk"];
+    
+    [self.BottomView addSubview:self.BottomHeadImageV];
+    
+    [self.BottomHeadImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.BottomView.mas_left);
+//        make.height.equalTo(@50);
+        make.top.equalTo(self.BottomView.mas_top);
+        make.bottom.equalTo(self.BottomView.mas_bottom);
+        make.width.equalTo(@70);
+        
+        
+        
+    }];
+    
+    
+    self.BottomNextBtn =[[UIButton alloc]init];
+    
+    [self.BottomNextBtn setImage:[UIImage imageNamed:@"playbar_btn_next"] forState:UIControlStateNormal];
+     [self.BottomNextBtn addTarget:self action:@selector(playNextTrack) forControlEvents:UIControlEventTouchUpInside];
+    [self.BottomView addSubview:self.BottomNextBtn];
+    
+    [self.BottomNextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@50);
+        make.top.equalTo(self.BottomView.mas_top);
+        make.bottom.equalTo(self.BottomView.mas_bottom);
+        make.right.equalTo(self.BottomView.mas_right);
+        
+        
+    }];
+    
+    
+    
+    
+    self.BottomIsTureBtn =[[UIButton alloc]init];
+    
+    [self.BottomIsTureBtn setImage:[UIImage imageNamed:@"play_btn"] forState:UIControlStateNormal];
+     [self.BottomIsTureBtn addTarget:self action:@selector(playxxx) forControlEvents:UIControlEventTouchUpInside];
+    [self.BottomView addSubview:self.BottomIsTureBtn];
+    
+    [self.BottomIsTureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.width.equalTo(@40);
+        make.top.equalTo(self.BottomView.mas_top);
+        make.bottom.equalTo(self.BottomView.mas_bottom);
+        make.right.equalTo(self.BottomNextBtn.mas_left);
+    }];
+    
+    
+    
+}
+
+
+
+- (void)playxxx
+{
+ if(self.BottomArray.count>0){
+
+     if (!self.BottomIsTureBtn.selected) {
+        
+         [self.BottomIsTureBtn setImage:[UIImage imageNamed:@"pause_btn"] forState:UIControlStateNormal];
+         [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
+         [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeList];
+         [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.BottomArray];
+         
+     }
+     else
+     {
+      [self.BottomIsTureBtn setImage:[UIImage imageNamed:@"play_btn"] forState:UIControlStateNormal];
+     [[XMSDKPlayer sharedPlayer] pauseTrackPlay];
+     
+     
+     }
+     
+     self.BottomIsTureBtn.selected =!self.BottomIsTureBtn.selected;
+     
+ }
+    else
+    {
+        NSLog(@"323333");
+    
+    }
+    
+}
+- (void)palyISPaly
+{
+
+    [self PalyXXXXpALY];
+}
+
+- (void)PalyXXXXpALY
+{
+ [self.BottomIsTureBtn setImage:[UIImage imageNamed:@"pause_btn"] forState:UIControlStateNormal];
+    self.BottomIsTureBtn.selected =YES;
+    [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
+    [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeList];
+    [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.BottomArray];
+
+}
+
+
+
+
+- (void)playNextTrack
+{
+    if(self.BottomArray.count>0){
+        
+        [[XMSDKPlayer sharedPlayer] playNextTrack];
+        
+    }
+else
+{
+NSLog(@"323333kkkkkk");
+}
+ 
+
+}
+
+- (BOOL)XMTrackPlayerShouldContinueNextTrackWhenFailed:(XMTrack *)track
+{
+    return NO;
+}
+
+void ocCallBack(int type,char *msg,int size)
+{
+    //    printf("msg = %s\n",msg);
+    
+   [OCP ocCallMsg:msg];
+}
+
+- (void)ocCallMsg:(char *)msg
+{
+    Player_t * play = GetPlayer();
+    printf("play->playState = %d\n",play->playState);
+    Sysdata_t * sdata = GetSysdata();
+    NSLog(@"%d",sdata->lockState);
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 //    self.navigationController.navigationBarHidden = YES;
+    
+    
+    OCP =self;
      self.navigationController.navigationBarHidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
+   
+    
+    
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+         nativeInitSystem(ocCallBack);
+    });
+
+    [self BottomViewUI];
+    
+    
     
 //    Reachability *CurReach = [Reachability reachabilityForInternetConnection];
 //    

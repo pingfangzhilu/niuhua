@@ -11,7 +11,13 @@
 
 
 @interface MainViewController ()
+{
 
+//    SlewedViewController *Slewed;
+    
+    BOOL isOpen;
+
+}
 @end
 
 @implementation MainViewController
@@ -27,9 +33,13 @@
 
 - (void)CreteUI
 {
+    
+        
+    
+    
     MeViewController *me =[[MeViewController alloc]init];
 
-me.title =@"我的";
+     me.title =@"我的";
     
     
     RecommendViewController *Recommend =[[RecommendViewController alloc]init];
@@ -45,9 +55,23 @@ me.title =@"我的";
     scnav.subViewControllers = @[me,Recommend,Class];
     scnav.scrollAnimation = YES;
     [scnav addParentController:self];
-    
+     isOpen = NO;
 
+//    [self.view addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(huadong:)]];
+//    
+//       UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+//
+//    Slewed = [[SlewedViewController alloc]init];
+//    Slewed.view.frame = CGRectMake(0, 0, 10, self.view.frame.size.height-49);
+//     Slewed.view.backgroundColor = [UIColor redColor];
+//    [self addChildViewController:Slewed];
+//    [self.view addSubview:Slewed.view];
+//    
+    
+    
 }
+
+
 
 
 - (void)didReceiveMemoryWarning {

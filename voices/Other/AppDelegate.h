@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ExSlideMenuController.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (strong ,nonatomic)NSArray *AllBottomArray;
 
 @end
 

@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.view.backgroundColor =[UIColor whiteColor];
     self.navigationItem.title = self.track.trackTitle;
     
     UILabel *cacheLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,150, 45,20)];
@@ -70,7 +70,7 @@
     [playBtn setTitle:@"play" forState:UIControlStateNormal];
     [playBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];//设置标题颜色
     [playBtn setTitleShadowColor:[UIColor grayColor] forState:UIControlStateNormal ];//阴影
-    [playBtn addTarget:self action:@selector(play) forControlEvents:UIControlEventTouchUpInside];
+    [playBtn addTarget:self action:@selector(playlllll) forControlEvents:UIControlEventTouchUpInside];
     [playBtn.layer setCornerRadius:5.0]; //设置矩形四个圆角半径
     [playBtn.layer setBorderWidth:1.0]; //边框宽度
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
@@ -195,7 +195,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)play
+- (void)playlllll
 {
 //    NSLog(@"self.track.playUrl32 =%@ coverUrlSmall =%@\n",self.track.playUrl32,self.track.coverUrlSmall);
     if(self.trackList.count){

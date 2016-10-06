@@ -67,8 +67,9 @@
 
    
     
-    self.ArrowImgv =[[UIImageView alloc]init];
-    self.ArrowImgv.image =[UIImage imageNamed:@"abc_ic_menu_moreoverflow_mtrl_alpha"];
+    self.ArrowImgv =[[UIButton alloc]init];
+//    self.ArrowImgv.image =[UIImage imageNamed:@"abc_ic_menu_moreoverflow_mtrl_alpha"];
+    [self.ArrowImgv setImage:[UIImage imageNamed:@"abc_ic_menu_moreoverflow_mtrl_alpha"] forState:UIControlStateNormal];
     
     [self.contentView addSubview:self.ArrowImgv];
     

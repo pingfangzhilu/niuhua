@@ -53,6 +53,7 @@
     
     self.ZhuantiLabel.font =[UIFont systemFontOfSize:20];
     
+//    self.ZhuantiLabel.textAlignment =NSTextAlignmentCenter;
     
     self.ZhuantiLabel.layer.masksToBounds =YES;
     

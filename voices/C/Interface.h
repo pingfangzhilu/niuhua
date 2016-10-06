@@ -34,7 +34,7 @@ typedef struct {
 
 
 Player_t *GetPlayer(void);
-
+Sysdata_t *GetSysdata(void);
 extern int nativeInitSystem(void networkEvent(int type,char *msg,int size));		//初始化网络
 extern void nativeCleanSystem();		//退出清理后台网络线程
 extern int nativeUpdateNet();			//刷新网络

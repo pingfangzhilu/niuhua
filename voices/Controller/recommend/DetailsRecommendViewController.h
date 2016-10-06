@@ -17,6 +17,14 @@
 #import "RecommHeadImageVTableViewCell.h"
 #import "RemarksTableViewCell.h"
 #import "RemarksCellHeightModel.h"
+#import "PlayingViewController.h"
+
+#import "RecommSecondTableViewCell.h"
+#import "RecommOneLabelTableViewCell.h"
+
+
+#include "Interface.h"
+
 @interface DetailsRecommendViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource,RemarksCellDelegate>
 {
 
@@ -26,8 +34,13 @@
     MJRefreshAutoNormalFooter *footer;
 }
 
+@property (nonatomic,strong)NSArray *ArrayDataBottom;
+
+@property (nonatomic,strong)NSArray *ArrAyImagVBottom;
+
 @property (nonatomic,strong)UITableView *MainTableView;
 
+@property (nonatomic,strong)UITableView *SecondTableView;
 
 @property (nonatomic,strong)NSString *tagName;
 
@@ -48,6 +61,10 @@
 /**描述*/
 @property (nonatomic,strong)NSString *ContString;
 
+@property (nonatomic,strong)UIView *BackView;
 
+@property (nonatomic,strong)NSString *RowNameSting;
+
+@property (nonatomic,strong)NSString *DeataiString;
 
 @end

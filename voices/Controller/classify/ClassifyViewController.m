@@ -22,8 +22,16 @@
      [XMReqMgr sharedInstance].delegate = self;
   
     [self CreateUI];
-    [self LoadData];
     
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self LoadData];
+
 }
 
 
@@ -140,7 +148,7 @@ static NSString *iden =@"iden";
 - (void)LoadData
 {
 
-
+    [self showHUB];
     
     NSDictionary *params = @{@"category_id":@(6),@"type":@(0)};
     //            [params setObject:@6 forKey:@"category_id"];
@@ -148,9 +156,15 @@ static NSString *iden =@"iden";
     
     [[XMReqMgr sharedInstance] requestXMData:XMReqType_TagsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
         if (!error)
+        {
             [self showReceivedData:result className:@"XMTag" valuePath:nil titleNeedShow:@"tagName"];
+        }
         else
+        {
             NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
+        [self hideHUB];
+        [self LoadData];
+        }
     }];
 
 
@@ -158,6 +172,7 @@ static NSString *iden =@"iden";
 }
 - (void)showReceivedData:(id)result className:(NSString*)className valuePath:(NSString *)path titleNeedShow:(NSString*)title
 {
+    [self hideHUB];
     NSMutableArray *models = [NSMutableArray array];
     Class dataClass = NSClassFromString(className);
     if([result isKindOfClass:[NSArray class]]){

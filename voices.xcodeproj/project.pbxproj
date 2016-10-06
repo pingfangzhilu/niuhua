@@ -113,6 +113,18 @@
 		4F33557C1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33557B1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m */; };
 		4F33557F1DA3934A00480AD6 /* RecommJieSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33557E1DA3934A00480AD6 /* RecommJieSTableViewCell.m */; };
 		4F3355821DA39B5A00480AD6 /* RemarksCellHeightModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3355811DA39B5A00480AD6 /* RemarksCellHeightModel.m */; };
+		4F677B671DA4D7970086582D /* RecommSecondTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B661DA4D7970086582D /* RecommSecondTableViewCell.m */; };
+		4F677B6A1DA4DB0B0086582D /* RecommOneLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B691DA4DB0B0086582D /* RecommOneLabelTableViewCell.m */; };
+		4F677B761DA623EB0086582D /* SlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B751DA623EB0086582D /* SlideMenuController.m */; };
+		4F677B791DA623F80086582D /* ExSlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B781DA623F80086582D /* ExSlideMenuController.m */; };
+		4F677B7C1DA62A490086582D /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B7B1DA62A490086582D /* LeftViewController.m */; };
+		4F677B8C1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B7E1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.m */; };
+		4F677B8D1DA62E1C0086582D /* UITableView+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B801DA62E1C0086582D /* UITableView+SlideMenuControllerOC.m */; };
+		4F677B8E1DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B821DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.m */; };
+		4F677B8F1DA62E1C0086582D /* UIImage+SlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B841DA62E1C0086582D /* UIImage+SlideMenuController.m */; };
+		4F677B901DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B861DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m */; };
+		4F677B911DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B881DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m */; };
+		4F677B921DA62E1C0086582D /* UIView+SlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B8A1DA62E1C0086582D /* UIView+SlideMenuController.m */; };
 		4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB933D1DA0E6020070B55C /* MainViewController.m */; };
 		4FFB93411DA0E7040070B55C /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93401DA0E7040070B55C /* RecommendViewController.m */; };
 		4FFB93441DA0E7140070B55C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93431DA0E7140070B55C /* ClassifyViewController.m */; };
@@ -406,6 +418,30 @@
 		4F33557E1DA3934A00480AD6 /* RecommJieSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommJieSTableViewCell.m; sourceTree = "<group>"; };
 		4F3355801DA39B5A00480AD6 /* RemarksCellHeightModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemarksCellHeightModel.h; sourceTree = "<group>"; };
 		4F3355811DA39B5A00480AD6 /* RemarksCellHeightModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemarksCellHeightModel.m; sourceTree = "<group>"; };
+		4F677B651DA4D7970086582D /* RecommSecondTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommSecondTableViewCell.h; sourceTree = "<group>"; };
+		4F677B661DA4D7970086582D /* RecommSecondTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommSecondTableViewCell.m; sourceTree = "<group>"; };
+		4F677B681DA4DB0B0086582D /* RecommOneLabelTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommOneLabelTableViewCell.h; sourceTree = "<group>"; };
+		4F677B691DA4DB0B0086582D /* RecommOneLabelTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommOneLabelTableViewCell.m; sourceTree = "<group>"; };
+		4F677B741DA623EB0086582D /* SlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideMenuController.h; sourceTree = "<group>"; };
+		4F677B751DA623EB0086582D /* SlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideMenuController.m; sourceTree = "<group>"; };
+		4F677B771DA623F80086582D /* ExSlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExSlideMenuController.h; sourceTree = "<group>"; };
+		4F677B781DA623F80086582D /* ExSlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExSlideMenuController.m; sourceTree = "<group>"; };
+		4F677B7A1DA62A490086582D /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		4F677B7B1DA62A490086582D /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		4F677B7D1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+SlideMenuControllerOC.h"; sourceTree = "<group>"; };
+		4F677B7E1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
+		4F677B7F1DA62E1C0086582D /* UITableView+SlideMenuControllerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SlideMenuControllerOC.h"; sourceTree = "<group>"; };
+		4F677B801DA62E1C0086582D /* UITableView+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
+		4F677B811DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SlideMenuControllerOC.h"; sourceTree = "<group>"; };
+		4F677B821DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
+		4F677B831DA62E1C0086582D /* UIImage+SlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SlideMenuController.h"; sourceTree = "<group>"; };
+		4F677B841DA62E1C0086582D /* UIImage+SlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SlideMenuController.m"; sourceTree = "<group>"; };
+		4F677B851DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+SlideMenuControllerOC.h"; sourceTree = "<group>"; };
+		4F677B861DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
+		4F677B871DA62E1C0086582D /* UIColor+SlideMenuControllerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SlideMenuControllerOC.h"; sourceTree = "<group>"; };
+		4F677B881DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
+		4F677B891DA62E1C0086582D /* UIView+SlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SlideMenuController.h"; sourceTree = "<group>"; };
+		4F677B8A1DA62E1C0086582D /* UIView+SlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SlideMenuController.m"; sourceTree = "<group>"; };
 		4FFB933C1DA0E6020070B55C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		4FFB933D1DA0E6020070B55C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4FFB933F1DA0E7040070B55C /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
@@ -613,6 +649,11 @@
 		4F30531D1D96AF2000FBF809 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				4F677B8B1DA62E1C0086582D /* Category */,
+				4F677B771DA623F80086582D /* ExSlideMenuController.h */,
+				4F677B781DA623F80086582D /* ExSlideMenuController.m */,
+				4F677B741DA623EB0086582D /* SlideMenuController.h */,
+				4F677B751DA623EB0086582D /* SlideMenuController.m */,
 				4FFB93641DA13D940070B55C /* WSMyLab */,
 				4FFB934B1DA0E85A0070B55C /* SCNavTabBar */,
 				4F30543F1D96C05F00FBF809 /* BMDefine.h */,
@@ -978,6 +1019,28 @@
 			path = C;
 			sourceTree = "<group>";
 		};
+		4F677B8B1DA62E1C0086582D /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4F677B7D1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.h */,
+				4F677B7E1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.m */,
+				4F677B7F1DA62E1C0086582D /* UITableView+SlideMenuControllerOC.h */,
+				4F677B801DA62E1C0086582D /* UITableView+SlideMenuControllerOC.m */,
+				4F677B811DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.h */,
+				4F677B821DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.m */,
+				4F677B831DA62E1C0086582D /* UIImage+SlideMenuController.h */,
+				4F677B841DA62E1C0086582D /* UIImage+SlideMenuController.m */,
+				4F677B851DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.h */,
+				4F677B861DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m */,
+				4F677B871DA62E1C0086582D /* UIColor+SlideMenuControllerOC.h */,
+				4F677B881DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m */,
+				4F677B891DA62E1C0086582D /* UIView+SlideMenuController.h */,
+				4F677B8A1DA62E1C0086582D /* UIView+SlideMenuController.m */,
+			);
+			name = Category;
+			path = "../../../../../Downloads/SlideMenuControllerOC-master/SlideMenuControllerOC/Category";
+			sourceTree = "<group>";
+		};
 		4FFB93381DA0E5AD0070B55C /* Me */ = {
 			isa = PBXGroup;
 			children = (
@@ -1018,6 +1081,8 @@
 		4FFB933B1DA0E5DE0070B55C /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				4F677B7A1DA62A490086582D /* LeftViewController.h */,
+				4F677B7B1DA62A490086582D /* LeftViewController.m */,
 				4FFB933C1DA0E6020070B55C /* MainViewController.h */,
 				4FFB933D1DA0E6020070B55C /* MainViewController.m */,
 			);
@@ -1068,6 +1133,10 @@
 				4F33557B1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m */,
 				4F33557D1DA3934A00480AD6 /* RecommJieSTableViewCell.h */,
 				4F33557E1DA3934A00480AD6 /* RecommJieSTableViewCell.m */,
+				4F677B651DA4D7970086582D /* RecommSecondTableViewCell.h */,
+				4F677B661DA4D7970086582D /* RecommSecondTableViewCell.m */,
+				4F677B681DA4DB0B0086582D /* RecommOneLabelTableViewCell.h */,
+				4F677B691DA4DB0B0086582D /* RecommOneLabelTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1274,13 +1343,18 @@
 				4F3054271D96B70E00FBF809 /* SDWebImageDownloaderOperation.m in Sources */,
 				4F3053EF1D96B70E00FBF809 /* UIProgressView+AFNetworking.m in Sources */,
 				4FFB93411DA0E7040070B55C /* RecommendViewController.m in Sources */,
+				4F677B8E1DA62E1C0086582D /* UIViewController+SlideMenuControllerOC.m in Sources */,
 				4F3053FF1D96B70E00FBF809 /* MASCompositeConstraint.m in Sources */,
 				4F30540B1D96B70E00FBF809 /* MJRefreshBackFooter.m in Sources */,
 				4F3054031D96B70E00FBF809 /* MASViewAttribute.m in Sources */,
+				4F677B7C1DA62A490086582D /* LeftViewController.m in Sources */,
 				4F3053EC1D96B70E00FBF809 /* UIAlertView+AFNetworking.m in Sources */,
 				4FFB93571DA0E85A0070B55C /* SCNavTabBarController.m in Sources */,
 				4F33557F1DA3934A00480AD6 /* RecommJieSTableViewCell.m in Sources */,
 				4FFB93691DA13D940070B55C /* TTTAttributedLabel.m in Sources */,
+				4F677B791DA623F80086582D /* ExSlideMenuController.m in Sources */,
+				4F677B921DA62E1C0086582D /* UIView+SlideMenuController.m in Sources */,
+				4F677B761DA623EB0086582D /* SlideMenuController.m in Sources */,
 				4F3054191D96B70E00FBF809 /* MJRefreshConst.m in Sources */,
 				4F30543E1D96BF3200FBF809 /* WSBaseViewController.m in Sources */,
 				4F3053E21D96B70E00FBF809 /* AFNetworkReachabilityManager.m in Sources */,
@@ -1327,6 +1401,7 @@
 				04E0DE0D1D942A7900EE92F8 /* main.m in Sources */,
 				4F3355761DA381FB00480AD6 /* IntervalSinceNow.m in Sources */,
 				4F30541C1D96B70E00FBF809 /* UIView+MJExtension.m in Sources */,
+				4F677B8F1DA62E1C0086582D /* UIImage+SlideMenuController.m in Sources */,
 				4F3054531D96C25A00FBF809 /* Interface.c in Sources */,
 				0402E4B61D9AA0F1001CF8CE /* PlayingViewController.m in Sources */,
 				4F3053F61D96B70E00FBF809 /* NSArray+JSONModel.m in Sources */,
@@ -1335,11 +1410,15 @@
 				4F3054261D96B70E00FBF809 /* SDWebImageDownloader.m in Sources */,
 				4F3054121D96B70E00FBF809 /* MJRefreshBackGifFooter.m in Sources */,
 				4F3053F41D96B70E00FBF809 /* JSONModelClassProperty.m in Sources */,
+				4F677B911DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m in Sources */,
+				4F677B8C1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.m in Sources */,
+				4F677B671DA4D7970086582D /* RecommSecondTableViewCell.m in Sources */,
 				4F3054041D96B70E00FBF809 /* MASViewConstraint.m in Sources */,
 				4F3053E31D96B70E00FBF809 /* AFSecurityPolicy.m in Sources */,
 				4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */,
 				4F3054251D96B70E00FBF809 /* SDWebImageDecoder.m in Sources */,
 				4F3054161D96B70E00FBF809 /* MJRefreshNormalHeader.m in Sources */,
+				4F677B6A1DA4DB0B0086582D /* RecommOneLabelTableViewCell.m in Sources */,
 				4F33556D1DA2A5F300480AD6 /* MEviewTableViewCell.m in Sources */,
 				4F3053F11D96B70E00FBF809 /* UIWebView+AFNetworking.m in Sources */,
 				4F3054541D96C25A00FBF809 /* network.c in Sources */,
@@ -1353,10 +1432,12 @@
 				4F30542D1D96B70E00FBF809 /* UIImage+WebP.m in Sources */,
 				4F3054151D96B70E00FBF809 /* MJRefreshGifHeader.m in Sources */,
 				4F30542F1D96B70E00FBF809 /* UIImageView+WebCache.m in Sources */,
+				4F677B8D1DA62E1C0086582D /* UITableView+SlideMenuControllerOC.m in Sources */,
 				4F3053EE1D96B70E00FBF809 /* UIImageView+AFNetworking.m in Sources */,
 				4F30540A1D96B70E00FBF809 /* MJRefreshAutoFooter.m in Sources */,
 				4F30542E1D96B70E00FBF809 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4F3054101D96B70E00FBF809 /* MJRefreshAutoNormalFooter.m in Sources */,
+				4F677B901DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m in Sources */,
 				4F3355821DA39B5A00480AD6 /* RemarksCellHeightModel.m in Sources */,
 				4F33557C1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m in Sources */,
 				4F30540C1D96B70E00FBF809 /* MJRefreshComponent.m in Sources */,

@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "XMReqMgr.h"
 #import "MainViewController.h"
+#import "Masonry.h"
+#import "LeftViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,14 +27,33 @@
    
     MainViewController *sdkDemoViewController = [[MainViewController alloc]init];
     UINavigationController *navConttroller = [[UINavigationController alloc] initWithRootViewController:sdkDemoViewController];
+   
     
-    self.window.rootViewController = navConttroller;
+   LeftViewController  *leftViewController =[[LeftViewController alloc]init];
     
-    self.window.backgroundColor = [UIColor whiteColor];
+ leftViewController.mainViewControler = navConttroller;
+    ExSlideMenuController *slideMenuController = [[ExSlideMenuController alloc] initWithMainViewController:navConttroller leftMenuViewController:leftViewController rightMenuViewController:nil];
+    slideMenuController.automaticallyAdjustsScrollViewInsets = YES;
+    slideMenuController.delegate = sdkDemoViewController;
+    self.window.backgroundColor = [UIColor colorWithRed:236.0 green:238.0 blue:241.0 alpha:1.0];
+    self.window.rootViewController = slideMenuController;
+    
+//   self.window.rootViewController = navConttroller;
+    
+  
+    
+//    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;
 }
+
+
+
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -19,23 +19,44 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor =[UIColor redColor];
     
-    self.ALLArray =@[@"新妈听听看",@"爱听故事",@"英文磨耳朵",@"儿歌大全",@"科普涨知识",@"国学启蒙",@"亲子学堂",@"口袋故事集",@"宝贝SHOW",@"卡通动画片",@"中小学必备"];
+ 
     
     [self CreateUI];
-    [self tuijianLaod];
-    [self LoadData];
-
+   
     
 }
 
+ - (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+   self.ALLArray =@[@"新妈听听看",@"爱听故事",@"英文磨耳朵",@"儿歌大全",@"科普涨知识",@"国学启蒙",@"亲子学堂",@"口袋故事集",@"宝贝SHOW",@"卡通动画片",@"中小学必备"];
+
+    [self tuijianLaod];
+    [self LoadData];
+}
+
+
+
+
+
+
+
 - (void)tuijianLaod
 {
+    [self showHUB];
     NSDictionary *params=@{@"category_id":@(6),@"calc_dimension":@(1),@"count":@(6),@"page":@(1)};
     [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
         if(!error)
+        {
             [self showReceivedData:result className:@"XMAlbum" valuePath:@"albums" titleNeedShow:@"albumTitle":0];
+        }
         else
+        {
             NSLog(@"%@   %@",error.description,result);
+        [self hideHUB];
+        [self tuijianLaod];
+        }
     }];
 
 
@@ -50,12 +71,19 @@
         NSDictionary *params=@{@"category_id":@(6),@"tag_name":self.ALLArray[XXX],@"calc_dimension":@(1),@"count":@(6),@"page":@(1)};
         [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
             if(!error)
+            {
                 [self showReceivedData:result className:@"XMAlbum" valuePath:@"albums" titleNeedShow:@"albumTitle":XXX+1];
+            }
             else
+            {
                 NSLog(@"%@   %@",error.description,result);
+            
+            [self hideHUB];
+            [self LoadData];
+            }
         }];
     }
-    [self hideHUB];
+    
     //    [self.MainTableView reloadData];
 
 
@@ -63,7 +91,7 @@
 - (void)showReceivedData:(id)result className:(NSString*)className valuePath:(NSString *)path titleNeedShow:(NSString *)title:(NSInteger)tag
 {
     
-    
+    [self hideHUB];
        NSMutableArray *models = [NSMutableArray array];
     Class dataClass = NSClassFromString(className);
     if([result isKindOfClass:[NSArray class]]){

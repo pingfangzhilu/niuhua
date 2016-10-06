@@ -13,7 +13,7 @@
 #include "Interface.h"
 
 #include "cJSON.h"
-ViewController *OCP=nil ;
+
 
 @interface ViewController ()
 {
@@ -27,7 +27,7 @@ ViewController *OCP=nil ;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    OCP = self;// 把指针传给他
+   // 把指针传给他
     playCount =0;
 //    array =   [NSArray arrayWithObjects:
 //               @"http://fdfs.xmcdn.com/group7/M01/A3/8D/wKgDX1d2Rr6w3CegABHDHZzUiUs448.mp3",
@@ -53,22 +53,22 @@ ViewController *OCP=nil ;
     [[UIApplication sharedApplication] setApplicationSupportsShakeToEdit:YES];
     [self becomeFirstResponder];
     
-    nativeInitSystem(ocCallBack);
+//    nativeInitSystem(ocCallBack);
     
 }
 
-void ocCallBack(int type,char *msg,int size)
-{
-//    printf("msg = %s\n",msg);
-
-    [OCP ocCallMsg:msg];
-}
-
-- (void)ocCallMsg:(char *)msg
-{
-    Player_t * play = GetPlayer();
-    printf("play->playState = %d\n",play->playState);
-}
+//void ocCallBack(int type,char *msg,int size)
+//{
+////    printf("msg = %s\n",msg);
+//
+//    [OCP ocCallMsg:msg];
+//}
+//
+//- (void)ocCallMsg:(char *)msg
+//{
+//    Player_t * play = GetPlayer();
+//    printf("play->playState = %d\n",play->playState);
+//}
 
 #pragma mark tableview
 

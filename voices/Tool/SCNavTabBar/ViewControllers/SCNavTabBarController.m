@@ -171,6 +171,7 @@
 #pragma mark -
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
     _currentIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
     _navTabBar.currentItemIndex = _currentIndex;
     NSString *page =[NSString stringWithFormat:@"%ld",(long)_currentIndex];

@@ -21,9 +21,15 @@
     self.DataArray =[[NSMutableArray alloc]init];
     pagenum =1;
     // Do any additional setup after loading the view.
+    
+    self.ArrayDataBottom = @[@"设备播放",@"设备下一首播放",@"加入设备播放列表",@"收藏",@"下载",self.ContString];
+    self.ArrAyImagVBottom =@[@"bottom_menu_dev_playlist",@"bottom_menu_dev_next",@"menu_add2dev_playlist",@"bottom_menu_collect",@"bottom_menu_download",@"bottom_menu_info"];
+    
     [self CreateUI];
     [self LoadData:3];
 }
+
+
 
 - (void)LoadData:(NSInteger)tag
 {
@@ -136,6 +142,8 @@
     self.MainTableView.separatorStyle =UITableViewCellSeparatorStyleNone;
      self.MainTableView.mj_footer =footer;
     self.MainTableView.delegate=self;
+    self.MainTableView.tag =1000;
+    
     self.MainTableView.dataSource =self;
     
     [self.view addSubview:self.MainTableView];
@@ -172,96 +180,239 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView.tag==10000) {
+        
+        switch (indexPath.section) {
+            case 3:
+            {
+                XMTrack *XMbum =self.DataArray[indexPath.row];
+                
+                self.BottomArray = self.DataArray;
+                
+                self.track = self.DataArray[indexPath.row];
+                //            [self.navigationController pushViewController:playingViewController animated:YES];
+                [self.BottomHeadImageV  sd_setImageWithURL:[NSURL URLWithString:XMbum.coverUrlLarge] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
+                
+                
+                
+                
+                
+                //         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                //            [userDefaults setObject:self.DataArray forKey:@"AllDataArray"];
+                
+                
+                
+                [self palyISPaly];
+                
+                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
+                [self.MainTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+            }
+                break;
+                
+            default:
+                break;
+        }
 
-
+        
+        
+    }
+    else
+    {
+    
+        if (indexPath.section==1) {
+            
+            switch (indexPath.row) {
+                case 0:
+                {
+                
+                    [self devplayTrack];
+                    
+                    
+                
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            [self.SecondTableView removeFromSuperview];
+            [self.BackView removeFromSuperview];
+           
+            
+            
+        }
+        else
+        {
+        
+        }
+        
+        
+    
+    
+    
+    }
+    
+    
+    
+    
+    
+    
 
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-
-    switch (indexPath.section) {
-        case 0:
-        {
-        static NSString *jjjj =@"2222";
-            RecommHeadImageVTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:jjjj];
-            if (cell ==nil) {
-                cell =[[RecommHeadImageVTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:jjjj];
+    if (tableView.tag==1000) {
+        switch (indexPath.section) {
+            case 0:
+            {
+                static NSString *jjjj =@"2222";
+                RecommHeadImageVTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:jjjj];
+                if (cell ==nil) {
+                    cell =[[RecommHeadImageVTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:jjjj];
+                    
+                }
+                cell.selectionStyle =UITableViewCellSelectionStyleNone;
+                [cell.BigHeadImagv sd_setImageWithURL:[NSURL URLWithString:self.BigHeadURL] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
+                
+                //            cell
+                [cell contString:self.ZhuantiName];
+                return cell;
+                
                 
             }
-            cell.selectionStyle =UITableViewCellSelectionStyleNone;
-            [cell.BigHeadImagv sd_setImageWithURL:[NSURL URLWithString:self.BigHeadURL] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
-            
-//            cell
-            [cell contString:self.ZhuantiName];
-            return cell;
-            
-        
-        }
-            break;
-        case 1:
-        {
-            static NSString *LLLLL=@"esvea";
-            RecommJieSTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:LLLLL];
-            if (cell==nil) {
-                cell =[[RecommJieSTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LLLLL];
-            }
-            [cell.headImageV sd_setImageWithURL:[NSURL URLWithString:self.headImageVUrl] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
-            cell.NameLabel.text =self.nameStr;
-            cell.genxinLAbel.text =[NSString stringWithFormat:@"更新至%@集",self.genxinCount];
-            cell.PassLabel.text =[NSString stringWithFormat:@"专辑总播放%.1f万次",([self.palyCount intValue]/10000.0)];
-           
-            return cell;
-        }
-            break;
-        case 2:
-        {
-            static NSString *cellName = @"meTableViewCell";
-            RemarksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
-            if (!cell) {
-                cell = [[RemarksTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellName];
-                cell.delegate = self;
+                break;
+            case 1:
+            {
+                static NSString *LLLLL=@"esvea";
+                RecommJieSTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:LLLLL];
+                if (cell==nil) {
+                    cell =[[RecommJieSTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LLLLL];
+                }
+                [cell.headImageV sd_setImageWithURL:[NSURL URLWithString:self.headImageVUrl] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
+                cell.NameLabel.text =self.nameStr;
+                cell.genxinLAbel.text =[NSString stringWithFormat:@"更新至%@集",self.genxinCount];
+                cell.PassLabel.text =[NSString stringWithFormat:@"专辑总播放%.1f万次",([self.palyCount intValue]/10000.0)];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
             }
-            [cell setCellContent:self.ContString andIsShow:_isShow  andCellIndexPath:indexPath];
-            
-            return cell;
-            
-        }
-            break;
-        case 3:
-        {
-            static NSString *iden =@"iden";
-            
-            ClassDetailTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:iden];
-            if (cell==nil) {
+                break;
+            case 2:
+            {
+                static NSString *cellName = @"meTableViewCell";
+                RemarksTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+                if (!cell) {
+                    cell = [[RemarksTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellName];
+                    cell.delegate = self;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                }
+                [cell setCellContent:self.ContString andIsShow:_isShow  andCellIndexPath:indexPath];
                 
-                cell =[[ClassDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+                return cell;
+                
             }
-            XMTrack *XMbum =self.DataArray[indexPath.row];
-            
-            cell.CentLabel.text = [NSString stringWithFormat:@"%@",XMbum.trackTitle];
-            
-            IntervalSinceNow *inter =[[IntervalSinceNow alloc]init];
-            
-            cell.LookLabel.text= [inter intervalSinceNow:[NSString stringWithFormat:@"%f",XMbum.updatedAt/1000]];
-            
-            
-            
-            
-            cell.PassLabel.text =[NSString stringWithFormat:@"播放%ld次",XMbum.playCount ];
-            [cell.HeaadImagv sd_setImageWithURL:[NSURL URLWithString:XMbum.coverUrlLarge] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
-            
-            return cell;
-
-            
+                break;
+            case 3:
+            {
+                static NSString *iden =@"iden";
+                
+                ClassDetailTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:iden];
+                if (cell==nil) {
+                    
+                    cell =[[ClassDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+                }
+                XMTrack *XMbum =self.DataArray[indexPath.row];
+                
+                cell.CentLabel.text = [NSString stringWithFormat:@"%@",XMbum.trackTitle];
+                
+                IntervalSinceNow *inter =[[IntervalSinceNow alloc]init];
+                
+                cell.LookLabel.text= [inter intervalSinceNow:[NSString stringWithFormat:@"%f",XMbum.updatedAt/1000]];
+                
+                
+                
+                
+                cell.PassLabel.text =[NSString stringWithFormat:@"播放%ld次",XMbum.playCount ];
+                [cell.HeaadImagv sd_setImageWithURL:[NSURL URLWithString:XMbum.coverUrlLarge] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
+                
+                [cell.ArrowImgv addTarget:self  action:@selector(cellbutton:) forControlEvents:UIControlEventTouchUpInside];
+                cell.ArrowImgv.tag = indexPath.row;
+                for (id obj in cell.subviews)
+                {
+                    if ([NSStringFromClass([obj class])isEqualToString:@"ClassDetailTableViewCell"])
+                    {
+                        UIScrollView *scroll = (UIScrollView *) obj;
+                        scroll.delaysContentTouches =NO;
+                        break;
+                    }
+                }
+                
+                
+                return cell;
+                
+                
+            }
+                break;
+            default:
+                break;
         }
-            break;
-        default:
-            break;
+
+        
     }
+    else
+    {
     
+        
+        
+        switch (indexPath.section) {
+            case 0:
+            {
+             static   NSString *lll =@"fffffffff";
+                RecommOneLabelTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:lll];
+                if (cell ==nil) {
+                    cell =[[RecommOneLabelTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:lll];
+                    
+                    
+                }
+                cell.selectionStyle =UITableViewCellSelectionStyleNone;
+                cell.CnetLabel.text = self.RowNameSting;
+            
+                return cell;
+                
+            }
+                break;
+            case 1:
+            {
+                
+                static NSString *kskskk =@"hgdwwwq";
+                RecommSecondTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:kskskk];
+                if (cell ==nil) {
+                    cell =[[RecommSecondTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kskskk];
+                    
+                }
+                
+                cell.CentLabel.text =self.ArrayDataBottom[indexPath.row];
+                
+                cell.headImageV.image =[UIImage imageNamed:self.ArrAyImagVBottom[indexPath.row]];
+                
+                
+                return cell;
+            }
+                break;
+            default:
+                break;
+        }
+        
+        
+        
+        
+        
+    
+    
+    }
     
     
     
@@ -271,63 +422,188 @@
   
 }
 
+- (void)TAppp:(UITapGestureRecognizer *)tap
+{
+    [self.BackView removeFromSuperview];
+    [self.SecondTableView removeFromSuperview];
+    
+
+}
+
+
+- (void)cellbutton:(UIButton *)Btn
+{
+
+    
+       XMTrack *XMbum =self.DataArray[Btn.tag];
+    self.RowNameSting =[NSString stringWithFormat:@"%@",XMbum.trackTitle];
+    
+     UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+    
+    self.BackView =[[UIView alloc]init];
+    self.BackView.backgroundColor =[UIColor blackColor];
+    self.BackView.alpha=0.6;
+    [currentWindow addSubview:self.BackView];
+    
+    self.track = self.DataArray[Btn.tag];
+    
+    
+    
+    [self.BackView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        
+         make.edges.equalTo(currentWindow).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+    }];
+    
+    UITapGestureRecognizer *tapp =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(TAppp:)];
+    
+    [self.BackView addGestureRecognizer:tapp];
+    
+    
+    self.SecondTableView =[[UITableView alloc]init];
+    self.SecondTableView.delegate=self;
+    self.SecondTableView.tag=2000;
+    self.SecondTableView.dataSource =self;
+    self.SecondTableView.separatorStyle =UITableViewCellSeparatorStyleNone;
+    [currentWindow addSubview:self.SecondTableView];
+    
+    
+    [self.SecondTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.height.equalTo(@290);
+        make.left.equalTo(currentWindow.mas_left);
+        make.right.equalTo(currentWindow.mas_right);
+        make.bottom.equalTo(currentWindow.mas_bottom);
+        
+        
+    }];
+    
+    
+    
+    
+    
+    
+    
+
+    NSLog(@"%ld",(long)Btn.tag);
+
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
-        case 0:
-        {
-            return 230;
+    
+    if (tableView.tag==1000) {
+        switch (indexPath.section) {
+            case 0:
+            {
+                return 250;
+            }
+                break;
+            case 1:
+            {
+                return 65;
+            }
+                break;
+            case 2:
+            {
+                if ([self.ContString isEqualToString:@""]) {
+                    return 0;
+                }
+                else
+                {
+                    
+                    return [RemarksCellHeightModel cellHeightWith:self.ContString andIsShow:_isShow andLableWidth:BOUNDS.size.width-30 andFont:13 andDefaultHeight:35 andFixedHeight:20 andIsShowBtn:8];
+                    
+                }
+                
+                
+            }
+                break;
+            case 3:
+            {
+                return 110;
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-        case 1:
+
+    }
+    else
+    {
+    
+    
+        if (indexPath.section==0) {
+            
+            return 50;
+        }else
         {
-            return 65;
+        
+            return 40;
         }
-            break;
-        case 2:
+    
+    
+    
+    }
+   
+    return 0;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    switch (tableView.tag) {
+        case 1000:
         {
-            if ([self.ContString isEqualToString:@""]) {
-                return 0;
+        
+            if (section==3) {
+                
+                return self.DataArray.count;
             }
             else
             {
+                return 1;
+            }
+        }
+            break;
             
-             return [RemarksCellHeightModel cellHeightWith:self.ContString andIsShow:_isShow andLableWidth:BOUNDS.size.width-30 andFont:13 andDefaultHeight:35 andFixedHeight:20 andIsShowBtn:8];
+            case 2000:
+        {
+            if (section==0) {
+                return 1;
+            }
+            else
+            {
+                return 6;
             
             }
             
-            
+        
         }
-            break;
-        case 3:
-        {
-              return 110;
-        }
-            break;
-            
+         break;
         default:
             break;
     }
 
     return 0;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-
-    if (section==3) {
-        
-       return self.DataArray.count;
-    }
-    else
-    {
-        return 1;
-    }
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
-    return 4;
+    switch (tableView.tag) {
+        case 1000:
+        {
+        return 4;
+        }
+            break;
+        case 2000:
+        {
+            return 2;
+        }
+            break;
+        default:
+            break;
+    }
+    return 0;
 }
 
 #pragma mark -- Dalegate
@@ -338,7 +614,14 @@
     [self.MainTableView reloadData];
 }
 
-
+- (void)devplayTrack
+{
+    //NSString转char * /const char *
+    const char * playurl = [self.track.playUrl32 UTF8String];
+    int ret =nativeMplayer((char *)playurl);
+    printf("ret = %d playurl = %s\n ",ret,playurl);
+    return;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

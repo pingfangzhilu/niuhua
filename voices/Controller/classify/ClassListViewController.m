@@ -201,8 +201,23 @@ static NSString *iden =@"iden";
  XMAlbum *XMbum =self.DataArray[indexPath.row];
     
     DetailsRecommendViewController *detail =[[DetailsRecommendViewController alloc]init];
-    detail.tagName =[NSString stringWithFormat:@"%ld",(long)XMbum.albumId];
+//    detail.tagName =[NSString stringWithFormat:@"%ld",(long)XMbum.albumId];
 //  NSString *restricfff =  XMbum.announcer.nickname ;
+    
+    
+    detail.tagName =[NSString stringWithFormat:@"%ld",(long)XMbum.albumId];
+    detail.BigHeadURL =[NSString stringWithFormat:@"%@",XMbum.coverUrlLarge];
+    detail.ZhuantiName =[NSString stringWithFormat:@"%@",XMbum.albumTitle];
+    detail.nameStr =[NSString stringWithFormat:@"%@",XMbum.announcer.nickname];
+    detail.headImageVUrl =[NSString stringWithFormat:@"%@",XMbum.announcer.avatarUrl];
+    detail.palyCount =[NSString stringWithFormat:@"%ld",(long)XMbum.playCount];
+    detail.genxinCount =[NSString stringWithFormat:@"%ld",(long)XMbum.includeTrackCount];
+    detail.ContString =[NSString stringWithFormat:@"%@",XMbum.albumIntro];
+
+    
+    
+    
+    
     [self.navigationController pushViewController:detail animated:YES];
     
     NSIndexPath *indexPathXXXX=[NSIndexPath indexPathForRow:indexPath.row inSection:0];

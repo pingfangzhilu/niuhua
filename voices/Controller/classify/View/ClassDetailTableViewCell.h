@@ -17,7 +17,7 @@
 
 @property (nonatomic,strong)WSMyLable *CentLabel;
 
-@property (nonatomic,strong)UIImageView *ArrowImgv;
+@property (nonatomic,strong)UIButton *ArrowImgv;
 
 @property (nonatomic,strong)UIImageView *PassImagv;
 

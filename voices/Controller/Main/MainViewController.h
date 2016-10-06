@@ -11,8 +11,10 @@
 #import "RecommendViewController.h"
 #import "ClassifyViewController.h"
 
+#import "SlideMenuController.h"
+
 #import "SCNavTabBarController.h"
 
-@interface MainViewController : WSBaseViewController
+@interface MainViewController : WSBaseViewController<SlideMenuControllerDelegate>
 
 @end
