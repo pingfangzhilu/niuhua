@@ -12,7 +12,7 @@
 #include "Interface.h"
 #include "netInter.h"
 #include "cJSON.h"
-#include "elian.h"
+
 /*
  char * /const char *和NSString之间的转化
  
@@ -121,10 +121,10 @@ exit:
 //初始化网络
 int nativeInitSystem(void networkEvent(int type,char *msg,int size))
 {
-    int protoVersion;
-    int libVersion;
-    elianGetVersion(&protoVersion,&libVersion);
-    printf("%d %d\n",protoVersion,libVersion);
+//    int protoVersion;
+//    int libVersion;
+//    elianGetVersion(&protoVersion,&libVersion);
+//    printf("%d %d\n",protoVersion,libVersion);
     sys = (SysCall_t *)calloc(1, sizeof(SysCall_t));
     if(sys==NULL){
         perror("calloc sys failed \n");
@@ -232,4 +232,5 @@ void initNet(void call(int type,char *msg,int size))
     net->call =call;
     pthread_create(&tid,NULL,runSystem,NULL);
 }
+
 

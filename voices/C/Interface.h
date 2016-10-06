@@ -59,5 +59,4 @@ extern int nativeTestHostQtts(char* text);
 
 extern void initNet(void call(int type,char *msg,int size));
 
-
 #endif /* Interface_h */

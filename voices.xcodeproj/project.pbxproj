@@ -17,6 +17,7 @@
 		04E0DE1B1D942A7900EE92F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E0DE191D942A7900EE92F8 /* LaunchScreen.storyboard */; };
 		04E0DE261D942A7900EE92F8 /* voicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE251D942A7900EE92F8 /* voicesTests.m */; };
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
+		4F1B6E8E1DA6AD810050C016 /* smartconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B6E8C1DA6AD810050C016 /* smartconfig.cpp */; };
 		4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */; };
 		4F3053E01D96B70E00FBF809 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053261D96B70E00FBF809 /* AFHTTPRequestOperationManager.m */; };
 		4F3053E11D96B70E00FBF809 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053281D96B70E00FBF809 /* AFHTTPSessionManager.m */; };
@@ -210,6 +211,8 @@
 		04E0DE2C1D942A7900EE92F8 /* voicesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = voicesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E0DE301D942A7900EE92F8 /* voicesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = voicesUITests.m; sourceTree = "<group>"; };
 		04E0DE321D942A7900EE92F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F1B6E8C1DA6AD810050C016 /* smartconfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = smartconfig.cpp; sourceTree = "<group>"; };
+		4F1B6E8D1DA6AD810050C016 /* smartconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = smartconfig.hpp; sourceTree = "<group>"; };
 		4F3053131D967DCD00FBF809 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		4F3053231D96B70E00FBF809 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -1015,6 +1018,8 @@
 				4F30544F1D96C25A00FBF809 /* queWorkCond.h */,
 				4F3054501D96C25A00FBF809 /* tools.h */,
 				4F3054511D96C25A00FBF809 /* udp_sock.h */,
+				4F1B6E8C1DA6AD810050C016 /* smartconfig.cpp */,
+				4F1B6E8D1DA6AD810050C016 /* smartconfig.hpp */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1444,6 +1449,7 @@
 				4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */,
 				4F3054521D96C25A00FBF809 /* event.c in Sources */,
 				4F3355731DA35AA200480AD6 /* DetailsRecommendViewController.m in Sources */,
+				4F1B6E8E1DA6AD810050C016 /* smartconfig.cpp in Sources */,
 				4FFB93441DA0E7140070B55C /* ClassifyViewController.m in Sources */,
 				4F3053F31D96B70E00FBF809 /* JSONModelArray.m in Sources */,
 				4FFB936A1DA13D940070B55C /* WSMyLable.m in Sources */,
@@ -1592,6 +1598,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -1616,6 +1623,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
