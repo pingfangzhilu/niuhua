@@ -11,7 +11,8 @@
 #import "ExSlideMenuController.h"
 #import "Masonry.h"
 #import "DisplayUtil.h"
-@interface WSTabBarController : UITabBarController
+#import "MainListTabBarViewcell.h"
+@interface WSTabBarController : UITabBarController<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong)UIView *myView ;
 @property (nonatomic,strong)UIImageView *HeadImageView;
@@ -31,5 +32,11 @@
 
 @property (nonatomic,strong)UILabel *zhuanjiLabel;
 
+@property (nonatomic,strong)NSMutableArray *AllDataArray;
+
+
+@property (nonatomic,strong)UIView *BackView;
+
+@property (nonatomic,strong)UITableView *MianTableView;
 
 @end

@@ -175,12 +175,20 @@
 
 }
 
+- (void)Playing
+{
 
+    
+    [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
+    [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeList];
+    [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.DataArray];
+
+}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView.tag==10000) {
+    if (tableView.tag==1000) {
         
         switch (indexPath.section) {
             case 3:
@@ -201,8 +209,9 @@
                 //            [userDefaults setObject:self.DataArray forKey:@"AllDataArray"];
                 
                 
+                [self Playing];
                 
-                [self palyISPaly];
+//                [self palyISPaly];
                 
                 NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
                 [self.MainTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -150,6 +150,7 @@
 }
 
 
+#define currentWindow  [UIApplication sharedApplication].keyWindow
 - (void)NextBtn:(UIButton *)Btn
 {
 
@@ -171,8 +172,139 @@
 {
 
     NSLog(@"列表");
+    [self CreteTableview];
+}
+
+
+- (void)CreteTableview
+{
+
+    
+    self.BackView =[[UIView alloc]init];
+    
+    self.BackView.backgroundColor =[UIColor blackColor];
+    
+    self.BackView.alpha =0.6;
+    
+    [currentWindow addSubview:self.BackView];
+    [self.BackView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        
+        make.edges.equalTo(currentWindow).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        
+        
+    }];
+    
+    
+    
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(TapTure:)];
+    
+    [self.BackView addGestureRecognizer:tap];
+    
+    self.MianTableView =[[UITableView alloc]init];
+    self.MianTableView.delegate=self;
+    self.MianTableView.dataSource=self;
+    self.MianTableView.separatorStyle =UITableViewCellSeparatorStyleNone;
+    [currentWindow addSubview:self.MianTableView];
+    
+    [self.MianTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.bottom.equalTo(currentWindow.mas_bottom);
+        make.left.equalTo(currentWindow.mas_left);
+        make.right.equalTo(currentWindow.mas_right);
+        make.height.equalTo(@300);
+        
+        
+    }];
+
+
+
 
 }
+
+
+- (void)TapTure:(UITapGestureRecognizer *)tap
+{
+
+    [self.BackView removeFromSuperview];
+    
+    [self.MianTableView removeFromSuperview];
+
+
+}
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+static NSString *iden =@"hefiuq";
+    MainListTabBarViewcell *cell =[tableView dequeueReusableCellWithIdentifier:iden];
+    if (cell ==nil) {
+        
+        cell =[[MainListTabBarViewcell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:iden];
+    }
+    
+
+    cell.CentLabel.text =[NSString stringWithFormat:@"%ld",(long)indexPath.row];
+    
+    [cell.DeleteBtn addTarget:self action:@selector(DeleteBtn:) forControlEvents:UIControlEventTouchUpInside];
+    cell.DeleteBtn.tag = indexPath.row;
+    
+    for (id obj in cell.subviews)
+            {
+                if ([NSStringFromClass([obj class])isEqualToString:@"MainListTabBarViewcell"])
+                {
+                    UIScrollView *scroll = (UIScrollView *) obj;
+                    scroll.delaysContentTouches =NO;
+                    break;
+                }
+            }
+        //
+    
+    
+    return cell;
+
+
+}
+
+- (void)DeleteBtn:(UIButton *)Btn
+{
+
+
+    NSLog(@"删除%ld",Btn.tag);
+
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+
+    return 40;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+
+
+    return 10;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+
+
+    NSIndexPath *indexPathAAA=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
+    [self.MianTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathAAA,nil] withRowAnimation:UITableViewRowAnimationNone];
+
+
+
+
+}
+
 
 
 @end

@@ -25,6 +25,8 @@
 
 #include "Interface.h"
 
+#import "WSTabBarController.h"
+
 @interface DetailsRecommendViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource,RemarksCellDelegate>
 {
 
@@ -43,6 +45,8 @@
 @property (nonatomic,strong)UITableView *SecondTableView;
 
 @property (nonatomic,strong)NSString *tagName;
+
+
 
 @property (nonatomic,strong)NSMutableArray *DataArray;
 /**大图*/

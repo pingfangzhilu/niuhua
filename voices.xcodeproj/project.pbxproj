@@ -18,6 +18,7 @@
 		04E0DE261D942A7900EE92F8 /* voicesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE251D942A7900EE92F8 /* voicesTests.m */; };
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
 		4F1B6E8E1DA6AD810050C016 /* smartconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B6E8C1DA6AD810050C016 /* smartconfig.cpp */; };
+		4F2D95C31DB658A300698526 /* MainListTabBarViewcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D95C21DB658A300698526 /* MainListTabBarViewcell.m */; };
 		4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */; };
 		4F3053E01D96B70E00FBF809 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053261D96B70E00FBF809 /* AFHTTPRequestOperationManager.m */; };
 		4F3053E11D96B70E00FBF809 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053281D96B70E00FBF809 /* AFHTTPSessionManager.m */; };
@@ -216,6 +217,8 @@
 		04E0DE321D942A7900EE92F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F1B6E8C1DA6AD810050C016 /* smartconfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = smartconfig.cpp; sourceTree = "<group>"; };
 		4F1B6E8D1DA6AD810050C016 /* smartconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = smartconfig.hpp; sourceTree = "<group>"; };
+		4F2D95C11DB658A300698526 /* MainListTabBarViewcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainListTabBarViewcell.h; sourceTree = "<group>"; };
+		4F2D95C21DB658A300698526 /* MainListTabBarViewcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainListTabBarViewcell.m; sourceTree = "<group>"; };
 		4F3053131D967DCD00FBF809 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		4F3053231D96B70E00FBF809 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -659,6 +662,8 @@
 				4F30543D1D96BF3200FBF809 /* WSBaseViewController.m */,
 				4FCA041C1DA89B8800E7BB74 /* WSTabBarController.h */,
 				4FCA041D1DA89B8800E7BB74 /* WSTabBarController.m */,
+				4F2D95C11DB658A300698526 /* MainListTabBarViewcell.h */,
+				4F2D95C21DB658A300698526 /* MainListTabBarViewcell.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1414,6 +1419,7 @@
 				4F3053E51D96B70E00FBF809 /* AFURLRequestSerialization.m in Sources */,
 				4FFB93591DA0E85A0070B55C /* SCPopView.m in Sources */,
 				4F3054571D96C26E00FBF809 /* AppDelegate.m in Sources */,
+				4F2D95C31DB658A300698526 /* MainListTabBarViewcell.m in Sources */,
 				4F3054241D96B70E00FBF809 /* SDWebImageCompat.m in Sources */,
 				4F3054291D96B70E00FBF809 /* SDWebImagePrefetcher.m in Sources */,
 				4F3054071D96B70E00FBF809 /* View+MASAdditions.m in Sources */,
