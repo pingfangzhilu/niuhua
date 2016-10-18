@@ -10,7 +10,7 @@
 
 #import "Interface.h"
 //#import "Reachability.h"
-WSBaseViewController *OCP=nil ;
+//WSBaseViewController *OCP=nil ;
 @interface WSBaseViewController ()
 {
    MBProgressHUD* HUD;
@@ -200,21 +200,21 @@ NSLog(@"323333kkkkkk");
     return NO;
 }
 
-void ocCallBack(int type,char *msg,int size)
-{
-    //    printf("msg = %s\n",msg);
-    
-   [OCP ocCallMsg:msg];
-}
-
-- (void)ocCallMsg:(char *)msg
-{
-    Player_t * play = GetPlayer();
-    printf("play->playState = %d\n",play->playState);
-    Sysdata_t * sdata = GetSysdata();
-    NSLog(@"%d",sdata->lockState);
-    
-}
+//void ocCallBack(int type,char *msg,int size)
+//{
+//    //    printf("msg = %s\n",msg);
+//    
+//   [OCP ocCallMsg:msg];
+//}
+//
+//- (void)ocCallMsg:(char *)msg
+//{
+//    Player_t * play = GetPlayer();
+//    printf("play->playState = %d\n",play->playState);
+//    Sysdata_t * sdata = GetSysdata();
+//    NSLog(@"%d",sdata->lockState);
+//    
+//}
 
 
 - (void)viewDidLoad {
@@ -223,19 +223,19 @@ void ocCallBack(int type,char *msg,int size)
 //    self.navigationController.navigationBarHidden = YES;
     
     
-    OCP =self;
+//    OCP =self;
      self.navigationController.navigationBarHidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
    
     
     
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-         nativeInitSystem(ocCallBack);
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//         nativeInitSystem(ocCallBack);
+//    });
 
-    [self BottomViewUI];
+//    [self BottomViewUI];
     
     
     

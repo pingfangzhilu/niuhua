@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor =[UIColor grayColor];
+    self.view.backgroundColor =[UIColor clearColor];
     
      [XMReqMgr sharedInstance].delegate = self;
   
@@ -50,7 +50,7 @@
         make.top.equalTo(self.MianTableView.superview.mas_top);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(-49);
         
         
         

@@ -12,6 +12,9 @@
 #define SHEIGHT [UIScreen mainScreen].bounds.size.height
 #define CLColor(r,g,b) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:1.0f]
 #define BOUNDS   [[UIScreen mainScreen] bounds]
+
+
+//#define currentWindow  [UIApplication sharedApplication].keyWindow
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 //#import <Foundation/Foundation.h>
@@ -24,6 +27,10 @@
 //#import "MBProgressHUD.h"
 //#import "DisplayUtil.h"
 //#import "Masonry.h"
+
+
+
+
 
 #ifdef DEBUG
 #define NSLog(...) NSLog(__VA_ARGS__)

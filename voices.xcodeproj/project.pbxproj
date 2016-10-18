@@ -126,6 +126,9 @@
 		4F677B901DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B861DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m */; };
 		4F677B911DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B881DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m */; };
 		4F677B921DA62E1C0086582D /* UIView+SlideMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F677B8A1DA62E1C0086582D /* UIView+SlideMenuController.m */; };
+		4F6789011DB5143200094582 /* MianLeftViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6789001DB5143200094582 /* MianLeftViewCell.m */; };
+		4FCA041E1DA89B8800E7BB74 /* WSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA041D1DA89B8800E7BB74 /* WSTabBarController.m */; };
+		4FEC515D1DACF37D003E3074 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FEC515C1DACF37D003E3074 /* SystemConfiguration.framework */; };
 		4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB933D1DA0E6020070B55C /* MainViewController.m */; };
 		4FFB93411DA0E7040070B55C /* RecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93401DA0E7040070B55C /* RecommendViewController.m */; };
 		4FFB93441DA0E7140070B55C /* ClassifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFB93431DA0E7140070B55C /* ClassifyViewController.m */; };
@@ -445,6 +448,12 @@
 		4F677B881DA62E1C0086582D /* UIColor+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
 		4F677B891DA62E1C0086582D /* UIView+SlideMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SlideMenuController.h"; sourceTree = "<group>"; };
 		4F677B8A1DA62E1C0086582D /* UIView+SlideMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SlideMenuController.m"; sourceTree = "<group>"; };
+		4F6788FF1DB5143200094582 /* MianLeftViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MianLeftViewCell.h; sourceTree = "<group>"; };
+		4F6789001DB5143200094582 /* MianLeftViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MianLeftViewCell.m; sourceTree = "<group>"; };
+		4FCA041C1DA89B8800E7BB74 /* WSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSTabBarController.h; sourceTree = "<group>"; };
+		4FCA041D1DA89B8800E7BB74 /* WSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSTabBarController.m; sourceTree = "<group>"; };
+		4FEC515A1DACF167003E3074 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		4FEC515C1DACF37D003E3074 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4FFB933C1DA0E6020070B55C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		4FFB933D1DA0E6020070B55C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4FFB933F1DA0E7040070B55C /* RecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendViewController.h; sourceTree = "<group>"; };
@@ -482,6 +491,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FEC515D1DACF37D003E3074 /* SystemConfiguration.framework in Frameworks */,
 				0402E4B71D9AAB00001CF8CE /* libz.1.tbd in Frameworks */,
 				4FFB936C1DA13E6F0070B55C /* libelian.a in Frameworks */,
 				4F3054681D96D56A00FBF809 /* libiosbaseDemo.a in Frameworks */,
@@ -566,6 +576,8 @@
 		04E0DDFF1D942A7900EE92F8 = {
 			isa = PBXGroup;
 			children = (
+				4FEC515C1DACF37D003E3074 /* SystemConfiguration.framework */,
+				4FEC515A1DACF167003E3074 /* libz.tbd */,
 				4FFB936B1DA13E6F0070B55C /* libelian.a */,
 				0402E4621D9A9DDE001CF8CE /* libXMOpenPlatform.a */,
 				4F3054671D96D56A00FBF809 /* libiosbaseDemo.a */,
@@ -645,6 +657,8 @@
 				4F3054561D96C26E00FBF809 /* AppDelegate.m */,
 				4F30543C1D96BF3200FBF809 /* WSBaseViewController.h */,
 				4F30543D1D96BF3200FBF809 /* WSBaseViewController.m */,
+				4FCA041C1DA89B8800E7BB74 /* WSTabBarController.h */,
+				4FCA041D1DA89B8800E7BB74 /* WSTabBarController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1090,6 +1104,8 @@
 				4F677B7B1DA62A490086582D /* LeftViewController.m */,
 				4FFB933C1DA0E6020070B55C /* MainViewController.h */,
 				4FFB933D1DA0E6020070B55C /* MainViewController.m */,
+				4F6788FF1DB5143200094582 /* MianLeftViewCell.h */,
+				4F6789001DB5143200094582 /* MianLeftViewCell.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1375,6 +1391,7 @@
 				4F3053E41D96B70E00FBF809 /* AFURLConnectionOperation.m in Sources */,
 				4F3053EB1D96B70E00FBF809 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				4F3053E91D96B70E00FBF809 /* README.md in Sources */,
+				4F6789011DB5143200094582 /* MianLeftViewCell.m in Sources */,
 				4F3053EA1D96B70E00FBF809 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				4F3053FA1D96B70E00FBF809 /* JSONKeyMapper.m in Sources */,
 				4F3053F91D96B70E00FBF809 /* JSONModel+networking.m in Sources */,
@@ -1444,6 +1461,7 @@
 				4F3054101D96B70E00FBF809 /* MJRefreshAutoNormalFooter.m in Sources */,
 				4F677B901DA62E1C0086582D /* UIImageView+SlideMenuControllerOC.m in Sources */,
 				4F3355821DA39B5A00480AD6 /* RemarksCellHeightModel.m in Sources */,
+				4FCA041E1DA89B8800E7BB74 /* WSTabBarController.m in Sources */,
 				4F33557C1DA38EE400480AD6 /* RecommHeadImageVTableViewCell.m in Sources */,
 				4F30540C1D96B70E00FBF809 /* MJRefreshComponent.m in Sources */,
 				4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */,
@@ -1636,7 +1654,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.sdkTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

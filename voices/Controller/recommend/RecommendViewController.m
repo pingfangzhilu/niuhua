@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor =[UIColor redColor];
+    self.view.backgroundColor =[UIColor clearColor];
     
  
     
@@ -208,7 +208,7 @@
     
     [self.MainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
-         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+         make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 49, 0));
         
     }];
 

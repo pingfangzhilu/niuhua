@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "Masonry.h"
 #import "LeftViewController.h"
+#import "WSTabBarController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,19 +26,24 @@
     [[XMReqMgr sharedInstance] registerXMReqInfoWithKey:@"b617866c20482d133d5de66fceb37da3" appSecret:@"4d8e605fa7ed546c4bcb33dee1381179"] ;
     
    
-    MainViewController *sdkDemoViewController = [[MainViewController alloc]init];
-    UINavigationController *navConttroller = [[UINavigationController alloc] initWithRootViewController:sdkDemoViewController];
-   
-    
+    WSTabBarController *sdkDemoViewController =[[WSTabBarController alloc]init];
+//   UINavigationController  *NAV =[[UINavigationController alloc]initWithRootViewController:sdkDemoViewController];
+//    self.window.rootViewController =sdkDemoViewController;
+//
+   MainViewController *sdkDemo = [[MainViewController alloc]init];
+//    
+//    UINavigationController *navConttroller = [[UINavigationController alloc] initWithRootViewController:sdkDemoViewController];
+//   
+//    
    LeftViewController  *leftViewController =[[LeftViewController alloc]init];
     
- leftViewController.mainViewControler = navConttroller;
-    ExSlideMenuController *slideMenuController = [[ExSlideMenuController alloc] initWithMainViewController:navConttroller leftMenuViewController:leftViewController rightMenuViewController:nil];
+ leftViewController.mainViewControler = sdkDemoViewController;
+    ExSlideMenuController *slideMenuController = [[ExSlideMenuController alloc] initWithMainViewController:sdkDemoViewController leftMenuViewController:leftViewController rightMenuViewController:nil];
     slideMenuController.automaticallyAdjustsScrollViewInsets = YES;
-    slideMenuController.delegate = sdkDemoViewController;
-    self.window.backgroundColor = [UIColor colorWithRed:236.0 green:238.0 blue:241.0 alpha:1.0];
+    slideMenuController.delegate = sdkDemo;
+    self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = slideMenuController;
-    
+////
 //   self.window.rootViewController = navConttroller;
     
   

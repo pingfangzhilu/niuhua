@@ -26,11 +26,10 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets =NO;
+    self.view.backgroundColor =[UIColor whiteColor];
     [self CreteUI];
-//    NSString *ss =@"222";
-//    const char * filePathChar = [filePath UTF8String];
-     InitSmartConnection("",1, 1);
-     StartSmartConnection("JYHL_24G", "asdfghjkl", "");
+//   
+    
     
     // Do any additional setup after loading the view.
 }
