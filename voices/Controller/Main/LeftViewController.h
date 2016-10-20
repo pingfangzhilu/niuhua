@@ -12,6 +12,8 @@
 #import "smartconfig.hpp"
 #import "MianLeftViewCell.h"
 #import "XMSDK.h"
+#import "DetailsRecommendViewController.h"
+
 typedef enum : NSInteger{
     LeftMenuMain = 0,
     LeftMenuSwift,

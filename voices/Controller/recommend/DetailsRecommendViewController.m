@@ -201,17 +201,20 @@
                 //            [self.navigationController pushViewController:playingViewController animated:YES];
                 [self.BottomHeadImageV  sd_setImageWithURL:[NSURL URLWithString:XMbum.coverUrlLarge] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
                 
+////                [self Playing];
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"dataArray" object:self.DataArray];
+//                
+//                [[NSNotificationCenter defaultCenter]postNotificationName:@"indexPathRow" object:[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+                //添加 字典，将label的值通过key值设置传递
+//                NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:self.DataArray,@"textOne",indexPath.row,@"textTwo", nil];
+                //创建通知
                 
+                NSDictionary *dict = @{@"textOne":self.DataArray,@"textTwo":[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"textSan":self.nameStr};
                 
+                NSNotification *notification =[NSNotification notificationWithName:@"dataArray" object:nil userInfo:dict];
+                //通过通知中心发送通知
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
                 
-                
-                //         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                //            [userDefaults setObject:self.DataArray forKey:@"AllDataArray"];
-                
-                
-                [self Playing];
-                
-//                [self palyISPaly];
                 
                 NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
                 [self.MainTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -429,6 +432,15 @@
     
     
   
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+
+    [super viewWillDisappear:animated];
+
+     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"dataArray" object:nil];
+    
 }
 
 - (void)TAppp:(UITapGestureRecognizer *)tap

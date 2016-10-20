@@ -715,9 +715,9 @@ static UIGestureRecognizerState RPSLastState = UIGestureRecognizerStateEnded;
 }
 
 -(void)changeMainViewController:(UIViewController *)newMainController close:(BOOL)close {
-    [self removeViewController:_mainViewController];
-    _mainViewController = newMainController;
-    [self setUpViewController:_mainContainerView targetViewController:_mainViewController];
+//    [self removeViewController:_mainViewController];
+//    _mainViewController = newMainController;
+//    [self setUpViewController:_mainContainerView targetViewController:_mainViewController];
     if (close) {
         [self closeLeft];
         [self closeRight];

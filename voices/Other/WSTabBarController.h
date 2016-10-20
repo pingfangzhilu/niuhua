@@ -12,12 +12,19 @@
 #import "Masonry.h"
 #import "DisplayUtil.h"
 #import "MainListTabBarViewcell.h"
-@interface WSTabBarController : UITabBarController<UITableViewDelegate,UITableViewDataSource>
 
+#import "WSPlayTabViewController.h"
+@interface WSTabBarController : UITabBarController<UITableViewDelegate,UITableViewDataSource,XMTrackPlayerDelegate>
+
+{
+
+
+   int indecxxx;
+}
 @property (nonatomic,strong)UIView *myView ;
 @property (nonatomic,strong)UIImageView *HeadImageView;
 
-
+@property (nonatomic,strong)XMTrack *track;
 
 
 @property (nonatomic,strong)UIButton *NextBtn;
@@ -26,17 +33,26 @@
 
 @property (nonatomic,strong)UIButton *ListBtn;
 
-
+@property (nonatomic,strong)UIProgressView *ProgressView;
 
 @property (nonatomic,strong)UILabel *NameLabel;
 
 @property (nonatomic,strong)UILabel *zhuanjiLabel;
 
-@property (nonatomic,strong)NSMutableArray *AllDataArray;
+@property (nonatomic,strong)NSArray *AllDataArray;
 
 
 @property (nonatomic,strong)UIView *BackView;
 
 @property (nonatomic,strong)UITableView *MianTableView;
+
+@property (nonatomic,strong)NSString *nameStr;
+
+@property (nonatomic,strong)NSString *MarkStr;
+
+@property (nonatomic,strong)NSMutableArray *UpdateArray;
+
+@property (nonatomic,strong)NSMutableArray *currentArray;
+
 
 @end

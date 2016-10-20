@@ -398,6 +398,23 @@ void ocCallBack(int type,char *msg,int size)
             
         }
              break;
+            
+            case 8:
+        {
+         
+            
+//            DetailsRecommendViewController *details =[[DetailsRecommendViewController alloc]init];
+//            details.tagName =@"257813";
+//
+            
+          [self.slideMenuController changeMainViewController:nil close:YES];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"PushDetailView" object:nil];
+//            [self.navigationController pushViewController:details animated:YES];
+                  
+            
+        }
+             break;
         default:
             break;
     }

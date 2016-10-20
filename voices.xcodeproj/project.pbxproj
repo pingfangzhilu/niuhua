@@ -19,6 +19,10 @@
 		04E0DE311D942A7900EE92F8 /* voicesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E0DE301D942A7900EE92F8 /* voicesUITests.m */; };
 		4F1B6E8E1DA6AD810050C016 /* smartconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B6E8C1DA6AD810050C016 /* smartconfig.cpp */; };
 		4F2D95C31DB658A300698526 /* MainListTabBarViewcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D95C21DB658A300698526 /* MainListTabBarViewcell.m */; };
+		4F2D95C61DB66CF500698526 /* UIViewController+SlideMenuControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D95C51DB66CF500698526 /* UIViewController+SlideMenuControllerOC.m */; };
+		4F2D95CC1DB765E300698526 /* TTTTTTTTTTTTT.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D95CB1DB765E300698526 /* TTTTTTTTTTTTT.m */; };
+		4F2D95D11DB7796200698526 /* VoicesStting.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D95D01DB7796200698526 /* VoicesStting.m */; };
+		4F2D95D41DB8F78800698526 /* WSPlayTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D95D31DB8F78800698526 /* WSPlayTabViewController.m */; };
 		4F3053DF1D96B70E00FBF809 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */; };
 		4F3053E01D96B70E00FBF809 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053261D96B70E00FBF809 /* AFHTTPRequestOperationManager.m */; };
 		4F3053E11D96B70E00FBF809 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3053281D96B70E00FBF809 /* AFHTTPSessionManager.m */; };
@@ -219,6 +223,14 @@
 		4F1B6E8D1DA6AD810050C016 /* smartconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = smartconfig.hpp; sourceTree = "<group>"; };
 		4F2D95C11DB658A300698526 /* MainListTabBarViewcell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainListTabBarViewcell.h; sourceTree = "<group>"; };
 		4F2D95C21DB658A300698526 /* MainListTabBarViewcell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainListTabBarViewcell.m; sourceTree = "<group>"; };
+		4F2D95C41DB66CF500698526 /* UIViewController+SlideMenuControllerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SlideMenuControllerOC.h"; sourceTree = "<group>"; };
+		4F2D95C51DB66CF500698526 /* UIViewController+SlideMenuControllerOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SlideMenuControllerOC.m"; sourceTree = "<group>"; };
+		4F2D95CA1DB765E300698526 /* TTTTTTTTTTTTT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTTTTTTTTTTT.h; sourceTree = "<group>"; };
+		4F2D95CB1DB765E300698526 /* TTTTTTTTTTTTT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTTTTTTTTTTT.m; sourceTree = "<group>"; };
+		4F2D95CF1DB7796200698526 /* VoicesStting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicesStting.h; sourceTree = "<group>"; };
+		4F2D95D01DB7796200698526 /* VoicesStting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicesStting.m; sourceTree = "<group>"; };
+		4F2D95D21DB8F78800698526 /* WSPlayTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPlayTabViewController.h; sourceTree = "<group>"; };
+		4F2D95D31DB8F78800698526 /* WSPlayTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPlayTabViewController.m; sourceTree = "<group>"; };
 		4F3053131D967DCD00FBF809 /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		4F3053231D96B70E00FBF809 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		4F3053241D96B70E00FBF809 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
@@ -649,6 +661,8 @@
 			isa = PBXGroup;
 			children = (
 				4F3054381D96BA6300FBF809 /* NPrefixHeader.pch */,
+				4F2D95CF1DB7796200698526 /* VoicesStting.h */,
+				4F2D95D01DB7796200698526 /* VoicesStting.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -664,6 +678,8 @@
 				4FCA041D1DA89B8800E7BB74 /* WSTabBarController.m */,
 				4F2D95C11DB658A300698526 /* MainListTabBarViewcell.h */,
 				4F2D95C21DB658A300698526 /* MainListTabBarViewcell.m */,
+				4F2D95D21DB8F78800698526 /* WSPlayTabViewController.h */,
+				4F2D95D31DB8F78800698526 /* WSPlayTabViewController.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -1046,6 +1062,8 @@
 		4F677B8B1DA62E1C0086582D /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				4F2D95C41DB66CF500698526 /* UIViewController+SlideMenuControllerOC.h */,
+				4F2D95C51DB66CF500698526 /* UIViewController+SlideMenuControllerOC.m */,
 				4F677B7D1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.h */,
 				4F677B7E1DA62E1C0086582D /* UIApplication+SlideMenuControllerOC.m */,
 				4F677B7F1DA62E1C0086582D /* UITableView+SlideMenuControllerOC.h */,
@@ -1111,6 +1129,8 @@
 				4FFB933D1DA0E6020070B55C /* MainViewController.m */,
 				4F6788FF1DB5143200094582 /* MianLeftViewCell.h */,
 				4F6789001DB5143200094582 /* MianLeftViewCell.m */,
+				4F2D95CA1DB765E300698526 /* TTTTTTTTTTTTT.h */,
+				4F2D95CB1DB765E300698526 /* TTTTTTTTTTTTT.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1398,6 +1418,7 @@
 				4F3053E91D96B70E00FBF809 /* README.md in Sources */,
 				4F6789011DB5143200094582 /* MianLeftViewCell.m in Sources */,
 				4F3053EA1D96B70E00FBF809 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				4F2D95CC1DB765E300698526 /* TTTTTTTTTTTTT.m in Sources */,
 				4F3053FA1D96B70E00FBF809 /* JSONKeyMapper.m in Sources */,
 				4F3053F91D96B70E00FBF809 /* JSONModel+networking.m in Sources */,
 				4FFB93761DA234D70070B55C /* ClassListViewController.m in Sources */,
@@ -1426,12 +1447,14 @@
 				4F3054281D96B70E00FBF809 /* SDWebImageManager.m in Sources */,
 				4F3355701DA2AD7C00480AD6 /* MeSecondTableViewCell.m in Sources */,
 				4F3053F81D96B70E00FBF809 /* JSONHTTPClient.m in Sources */,
+				4F2D95D11DB7796200698526 /* VoicesStting.m in Sources */,
 				04E0DE0D1D942A7900EE92F8 /* main.m in Sources */,
 				4F3355761DA381FB00480AD6 /* IntervalSinceNow.m in Sources */,
 				4F30541C1D96B70E00FBF809 /* UIView+MJExtension.m in Sources */,
 				4F677B8F1DA62E1C0086582D /* UIImage+SlideMenuController.m in Sources */,
 				4F3054531D96C25A00FBF809 /* Interface.c in Sources */,
 				0402E4B61D9AA0F1001CF8CE /* PlayingViewController.m in Sources */,
+				4F2D95C61DB66CF500698526 /* UIViewController+SlideMenuControllerOC.m in Sources */,
 				4F3053F61D96B70E00FBF809 /* NSArray+JSONModel.m in Sources */,
 				4F3053E01D96B70E00FBF809 /* AFHTTPRequestOperationManager.m in Sources */,
 				4F3053F21D96B70E00FBF809 /* JSONModel.m in Sources */,
@@ -1443,6 +1466,7 @@
 				4F677B671DA4D7970086582D /* RecommSecondTableViewCell.m in Sources */,
 				4F3054041D96B70E00FBF809 /* MASViewConstraint.m in Sources */,
 				4F3053E31D96B70E00FBF809 /* AFSecurityPolicy.m in Sources */,
+				4F2D95D41DB8F78800698526 /* WSPlayTabViewController.m in Sources */,
 				4FFB933E1DA0E6020070B55C /* MainViewController.m in Sources */,
 				4F3054251D96B70E00FBF809 /* SDWebImageDecoder.m in Sources */,
 				4F3054161D96B70E00FBF809 /* MJRefreshNormalHeader.m in Sources */,

@@ -27,12 +27,35 @@
     
     self.automaticallyAdjustsScrollViewInsets =NO;
     self.view.backgroundColor =[UIColor whiteColor];
+    
+    UIImage *selectedImage=[UIImage imageNamed: @"ic_menu_black_24dp"];
+    selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:selectedImage style:UIBarButtonItemStyleDone target:self action:@selector(buttonClick:)];
+    self.navigationItem.leftBarButtonItem = leftItem;
+//
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushDetailView) name:@"PushDetailView" object:nil];
+    
+    
+   
     [self CreteUI];
 //   
     
     
     // Do any additional setup after loading the view.
 }
+
+
+- (void)buttonClick:(id)sender{
+    
+   [self.slideMenuController toggleLeft];
+    
+    NSLog(@"左边");
+    
+}
+
 
 - (void)CreteUI
 {
@@ -74,7 +97,15 @@
     
 }
 
-
+- (void)PushDetailView
+{
+    TTTTTTTTTTTTT *tttt =[[TTTTTTTTTTTTT alloc]init];
+    
+    [self.navigationController pushViewController:tttt animated:YES];
+    
+    
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
