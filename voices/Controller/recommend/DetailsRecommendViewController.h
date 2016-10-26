@@ -71,4 +71,8 @@
 
 @property (nonatomic,strong)NSString *DeataiString;
 
+
+
+
+
 @end

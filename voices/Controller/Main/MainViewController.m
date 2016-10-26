@@ -38,7 +38,7 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(PushDetailView) name:@"PushDetailView" object:nil];
     
-    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(DetailsRecommendData:) name:@"DetailsRecommendData" object:nil];
    
     [self CreteUI];
 //   
@@ -46,6 +46,24 @@
     
     // Do any additional setup after loading the view.
 }
+
+- (void)DetailsRecommendData:(NSNotification *)notif
+{
+//    self.AllDataArray = (NSArray *)notif.userInfo[@"textOne"];
+    self.tagName = (NSString *)notif.userInfo[@"tagName"];
+  self.BigHeadURL = (NSString *)notif.userInfo[@"BigHeadURL"];
+      self.ZhuantiName = (NSString *)notif.userInfo[@"ZhuantiName"];
+      self.headImageVUrl = (NSString *)notif.userInfo[@"headImageVUrl"];
+      self.nameStr = (NSString *)notif.userInfo[@"nameStr"];
+      self.palyCount = (NSString *)notif.userInfo[@"palyCount"];
+      self.genxinCount = (NSString *)notif.userInfo[@"genxinCount"];
+      self.ContString = (NSString *)notif.userInfo[@"ContString"];
+    
+
+
+
+}
+
 
 
 - (void)buttonClick:(id)sender{
@@ -107,12 +125,37 @@
 
 - (void)PushDetailView
 {
-    TTTTTTTTTTTTT *tttt =[[TTTTTTTTTTTTT alloc]init];
-    
-    [self.navigationController pushViewController:tttt animated:YES];
+
     
     
+    if (self.headImageVUrl==nil && self.nameStr==nil &&self.BigHeadURL ==nil&&self.genxinCount ==nil) {
+        
+        return;
+    }
+    else
+    {
     
+    
+    DetailsRecommendViewController *Detais =[[DetailsRecommendViewController alloc]init];
+    
+        Detais.tagName=self.tagName;
+        
+    
+     
+        Detais.BigHeadURL=     self.BigHeadURL;
+    Detais.ZhuantiName=    self.ZhuantiName;
+  Detais.headImageVUrl=      self.headImageVUrl;
+ Detais.nameStr=       self.nameStr;
+Detais.palyCount=        self.palyCount;
+ Detais.genxinCount=       self.genxinCount;
+Detais.ContString=        self.ContString;
+
+    
+    
+    
+    
+    [self.navigationController pushViewController:Detais animated:YES];
+    }
 }
 
 

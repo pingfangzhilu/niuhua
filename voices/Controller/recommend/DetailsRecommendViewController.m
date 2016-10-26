@@ -27,6 +27,16 @@
     [self CreateNav];
     [self CreateUI];
     [self LoadData:3];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -264,6 +274,13 @@
 //                NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:self.DataArray,@"textOne",indexPath.row,@"textTwo", nil];
                 //创建通知
                 
+                
+                
+                
+                
+                
+                
+                
                 NSDictionary *dict = @{@"textOne":self.DataArray,@"textTwo":[NSString stringWithFormat:@"%ld",(long)indexPath.row],@"textSan":self.nameStr};
                 
                 NSNotification *notification =[NSNotification notificationWithName:@"dataArray" object:nil userInfo:dict];
@@ -273,6 +290,11 @@
                 
                 NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:3];
                 [self.MainTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
+                
+                
+                [self POstNotif];
+                
+                
                 
             }
                 break;
@@ -328,6 +350,21 @@
     
 
 }
+
+-(void)POstNotif
+{
+    
+    NSDictionary *dict = @{@"tagName":self.tagName,@"BigHeadURL":self.BigHeadURL,@"ZhuantiName":self.ZhuantiName,@"nameStr":self.nameStr,@"headImageVUrl":self.headImageVUrl,@"palyCount":self.palyCount,@"genxinCount":self.genxinCount,@"ContString":self.ContString};
+    
+    NSNotification *notification =[NSNotification notificationWithName:@"DetailsRecommendData" object:nil userInfo:dict];
+    //通过通知中心发送通知
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+
+
+
+
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
