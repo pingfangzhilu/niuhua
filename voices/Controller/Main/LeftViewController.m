@@ -123,18 +123,26 @@ LeftViewController *OCP=nil ;
 
 void ocCallBack(int type,char *msg,int size)
 {
-    //    printf("msg = %s\n",msg);
+        printf("type = %d\n",type);
     
-    [OCP ocCallMsg:msg];
+    [OCP ocCallMsg:type];
 }
 
-- (void)ocCallMsg:(char *)msg
+- (void)ocCallMsg:(int)type
 {
-    Player_t * play = GetPlayer();
-    printf("play->playState = %d\n",play->playState);
-    Sysdata_t * sdata = GetSysdata();
-    NSLog(@"%d",sdata->lockState);
+    if (type==SYS_EVENT) {
+        Sysdata_t *sys = nativeGetSysdata();
+    }else if(type==PLAY_EVENT){
+        Mplayer_t * play = nativeGetPlayer();
+        printf("play->playState = %d\n",play->playState);
+        printf("play->name = %s\n",play->musicName);
+    }else{      //NETWORK_EVENT
     
+    }
+    
+    
+
+//    sys->
 }
 
 - (void)CreteUI
@@ -267,9 +275,10 @@ void ocCallBack(int type,char *msg,int size)
 //        self.slider.minimumValue =0;
 //        self.slider.maximumValue =1;
         [ self.slider  addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-        
-         self.slider.value = 0.5;
-        [[XMSDKPlayer sharedPlayer] setVolume:0.5];
+        self.slider.minimumValue=0;
+        self.slider.maximumValue =99;
+         self.slider.value = 50;
+//        [[XMSDKPlayer sharedPlayer] setVolume:0.5];
         
         [cell addSubview:self.slider];
         [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -342,12 +351,17 @@ void ocCallBack(int type,char *msg,int size)
   }
 -(void)sliderValueChanged:(id)sender
 {
-
- [[XMSDKPlayer sharedPlayer] setVolume:self.slider.value];
+    nativeSetVol_Data(self.slider.value);
+    
+// [[XMSDKPlayer sharedPlayer] setVolume:self.slider.value];
 
 }
 -(void)switchIsChanged:(UISwitch *)paramSender{
    
+    
+    
+//    nativeLockHost();
+    
     
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:5 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];

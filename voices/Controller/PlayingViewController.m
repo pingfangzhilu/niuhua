@@ -279,7 +279,9 @@
 {
     //NSString转char * /const char *
     const char * playurl = [self.track.playUrl32 UTF8String];
-    int ret =nativeMplayer((char *)playurl);
+     const char * name = [self.track.trackTitle UTF8String];
+    
+    int ret =nativeMplayer((char *)playurl,name,self.track.duration/1000);
     printf("ret = %d playurl = %s\n ",ret,playurl);
     return ;
 }

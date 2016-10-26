@@ -8,6 +8,7 @@
 
 #import "WSBaseViewController.h"
 #import "XMSDK.h"
+#import "EFCircularSlider.h"
 @interface WSPlayTabViewController : WSBaseViewController<XMTrackPlayerDelegate>
 
 
@@ -19,7 +20,7 @@
 
 @property (nonatomic,strong)NSString *NmaeStr;
 
-
+@property (nonatomic,strong)EFCircularSlider* circularSlider;
 @property (nonatomic,strong)UILabel *TimeLabel;
 
 @end

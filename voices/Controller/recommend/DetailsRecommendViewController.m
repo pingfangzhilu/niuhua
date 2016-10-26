@@ -24,12 +24,67 @@
     
     self.ArrayDataBottom = @[@"设备播放",@"设备下一首播放",@"加入设备播放列表",@"收藏",@"下载",self.ContString];
     self.ArrAyImagVBottom =@[@"bottom_menu_dev_playlist",@"bottom_menu_dev_next",@"menu_add2dev_playlist",@"bottom_menu_collect",@"bottom_menu_download",@"bottom_menu_info"];
-    
+    [self CreateNav];
     [self CreateUI];
     [self LoadData:3];
 }
 
 
+
+- (void)CreateNav
+{
+
+    UIView *whiteView =[[UIView alloc]init];
+    whiteView.backgroundColor =[UIColor colorWithRed:248/255.0 green:248/255.0 blue:248/255.0 alpha:1.0];
+    
+    [self.view addSubview:whiteView];
+    
+    [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view.mas_top);
+        make.height.equalTo(@64);
+        
+        
+    }];
+    
+    
+    UIButton *left =[[UIButton alloc]init];
+    //    [left setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
+    [left setImage:[UIImage imageNamed:@"taobao_xp_hl_ewall_back_normal"] forState:UIControlStateNormal];
+    
+    [left addTarget:self action:@selector(backUp:) forControlEvents:UIControlEventTouchUpInside];
+    left.imageEdgeInsets = UIEdgeInsetsMake(5,-5,7,17);
+    
+    [whiteView addSubview:left];
+    
+    [left mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.width.equalTo(@50);
+        make.height.equalTo(@30);
+        make.bottom.equalTo(whiteView.mas_bottom).with.offset(-5);
+        make.left.equalTo(self.view.mas_left).with.offset(10);
+        
+    }];
+    
+
+    
+    
+    
+
+
+
+
+}
+
+
+
+- (void)backUp:(UIButton *)Btn
+{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 - (void)LoadData:(NSInteger)tag
 {
@@ -151,7 +206,7 @@
     [self.MainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
        
         
-        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        make.edges.equalTo(self.view).with.insets(UIEdgeInsetsMake(64, 0, 0, 0));
         
         
     }];
@@ -438,9 +493,18 @@
 {
 
     [super viewWillDisappear:animated];
-
+  
      [[NSNotificationCenter defaultCenter]removeObserver:self name:@"dataArray" object:nil];
     
+}
+
+
+ - (void)viewWillAppear:(BOOL)animated
+{
+
+    [super viewWillAppear:animated];
+       [self.navigationController setNavigationBarHidden:YES animated:animated];
+
 }
 
 - (void)TAppp:(UITapGestureRecognizer *)tap
@@ -639,9 +703,12 @@
 {
     //NSString转char * /const char *
     const char * playurl = [self.track.playUrl32 UTF8String];
-    int ret =nativeMplayer((char *)playurl);
+    const char * name = [self.track.trackTitle UTF8String];
+    
+    int ret =nativeMplayer((char *)playurl,name,self.track.duration/1000);
     printf("ret = %d playurl = %s\n ",ret,playurl);
-    return;
+    return ;
+
 }
 
 - (void)didReceiveMemoryWarning {

@@ -9,12 +9,16 @@
 #import "WSTabBarController.h"
 #import "MainViewController.h"
 @implementation WSTabBarController
+{
 
+ BOOL isOpen;
 
+}
+#define currentWindow  [UIApplication sharedApplication].keyWindow
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+  
     self.UpdateArray  =[[NSMutableArray alloc]init];
     self.currentArray =[[NSMutableArray alloc]init];
     //删除现有的tabBar
@@ -29,6 +33,15 @@
     
     
     [self.view addSubview:self.myView];
+    
+    
+      isOpen = NO;
+    
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGesture:)];
+    
+    swipeGesture.direction =UISwipeGestureRecognizerDirectionUp;
+    
+    [self.myView addGestureRecognizer:swipeGesture];
     
     UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(MyvIEWtAP:)];
     
@@ -59,6 +72,16 @@
 
 }
 
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [XMSDKPlayer sharedPlayer].trackPlayDelegate=self;
+
+
+}
 
 - (void)MyvIEWtAP:(UITapGestureRecognizer *)tap
 {
@@ -133,15 +156,18 @@
 
  - (void)plying
 {
-
+    
+    self.PlayBtn.selected = NO;
+    [self PlayBtn:self.PlayBtn];
    
     
-    [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
-    
-    [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeEnd];
-    [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.AllDataArray];
-
-    self.PlayBtn.selected =YES;
+//    [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
+//    
+//    [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeEnd];
+//    [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.AllDataArray];
+//
+//    self.PlayBtn.selected =YES;
+//    self.PlayBtn.selected = !self.PlayBtn.selected;
 
 }
 - (void)CreateUI
@@ -219,8 +245,10 @@
     self.NameLabel =[[UILabel alloc]init];
     self.NameLabel.font= [UIFont systemFontOfSize:16];
     self.NameLabel.textColor =[UIColor blackColor];
-    self.NameLabel.text =@"糍粑糖";
-   
+ //  self.NameLabel.text =@"糍粑糖";
+    
+    
+//    self.NameLabel.center =self.myView.center;
     [self.myView addSubview:self.NameLabel];
     
     [self.NameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -267,7 +295,171 @@
 }
 
 
-#define currentWindow  [UIApplication sharedApplication].keyWindow
+
+
+
+- (void)swipeGesture:(UISwipeGestureRecognizer *)tap
+{
+    
+//    UIView *view =[[UIView alloc]init];
+//    view.backgroundColor =[UIColor redColor];
+//    
+//    [currentWindow addSubview:view];
+//    
+//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(currentWindow.mas_bottom);
+//        make.left.equalTo(currentWindow.mas_left);
+//        make.right.equalTo(currentWindow.mas_right);
+//        make.height.equalTo(@200);
+//        
+//    }];
+    
+//   CGPoint point = [tap translationInView:self.BottomView];
+    //移动结束
+    [self BottomView];
+    self.BottomBackView.hidden =NO;
+    [UIView animateWithDuration:0.5 animations:^{
+       self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height-200, currentWindow.frame.size.width, 200);    }];
+    
+}
+
+- (void)swipeGestureBottom:(UISwipeGestureRecognizer *)tap
+{
+
+    [UIView animateWithDuration:0.5 animations:^{
+        
+//        [self.BottomBackView removeFromSuperview];
+        self.BottomBackView.hidden =YES;
+        self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);    }];
+
+
+}
+
+- (UIView *)BottomBackView
+{
+    if (!_BottomBackView) {
+        
+        self.BottomBackView =[[UIView alloc]init];
+        
+        self.BottomBackView.backgroundColor =[UIColor blackColor];
+        
+        self.BottomBackView.alpha =0.6;
+        
+        self.BottomBackView.hidden =YES;
+        
+        [currentWindow addSubview:self.BottomBackView];
+        [self.BottomBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            
+            make.edges.equalTo(currentWindow).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+            
+            
+        }];
+
+        
+        
+        
+        
+    }
+
+
+
+    return _BottomBackView;
+
+}
+
+
+- (UIView *)BottomView
+{
+    [self BottomBackView];
+    
+    if (!_BottomView) {
+        
+        self.BottomView =[[UIView alloc]init];
+        self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);
+        
+        self.BottomView.backgroundColor =[UIColor grayColor];
+        [currentWindow addSubview:self.BottomView];
+        UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureBottom:)];
+        
+        swipeGesture.direction =UISwipeGestureRecognizerDirectionDown;
+        
+        [self.BottomView addGestureRecognizer:swipeGesture];
+        
+        self.BottomLabel =[[UILabel alloc]init];
+        
+        self.BottomLabel.font =[UIFont systemFontOfSize:15];
+        self.BottomLabel.text = @"jkfhqjwef";
+        
+        self.BottomLabel.textAlignment =NSTextAlignmentCenter;
+        
+        self.BottomLabel.textColor =[UIColor whiteColor];
+        
+        [self.BottomView addSubview:self.BottomLabel];
+        
+        [self.BottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@20);
+            make.left.equalTo(self.BottomView.mas_left).with.offset(10);
+            make.right.equalTo(self.BottomView.mas_right).with.offset(-10);
+            make.top.equalTo(self.BottomView.mas_top).with.offset(5);
+            
+            
+            
+        }];
+        
+        self.BottomImageV =[[UIImageView alloc]init];
+        
+        self.BottomImageV.layer.masksToBounds =YES;
+        
+        self.BottomImageV.layer.cornerRadius =55;
+        
+        self.BottomImageV.image =[UIImage imageNamed:@"placeholder_disk"];
+        
+        
+        [self.BottomView addSubview:self.BottomImageV];
+        
+        [self.BottomImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.top.equalTo(self.BottomLabel.mas_bottom).with.offset(10);
+            make.width.and.height.equalTo(@110);
+            make.centerX.equalTo(self.BottomView.mas_centerX);
+            
+            
+        }];
+        
+        
+        self.BottomBtn =[[UIButton alloc]init];
+        
+        [self.BottomBtn setImage:[UIImage imageNamed:@"ic_notify_play_normal"] forState:UIControlStateNormal];
+        [self.BottomBtn setImage:[UIImage imageNamed:@"ic_notify_pause_normal"] forState:UIControlStateSelected];
+        [self.BottomBtn addTarget:self action:@selector(BottomBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.BottomView addSubview:self.BottomBtn];
+        [self.BottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.centerX.equalTo(self.BottomView.mas_centerX);
+            make.top.equalTo(self.BottomImageV.mas_bottom).with.offset(10);
+            make.width.and.height.equalTo(@40);
+      
+        }];
+        
+        
+        
+    }
+    return _BottomView;
+
+
+}
+
+- (void)BottomBtn:(UIButton *)Btn
+{
+
+    NSLog(@"按下");
+
+    self.BottomBtn.selected =!self.BottomBtn.selected;
+}
+
+
 - (void)NextBtn:(UIButton *)Btn
 {
 
@@ -337,8 +529,9 @@
 
 - (void)XMTrackPlayerDidStart
 {
-       self.NameLabel.text = [[XMSDKPlayer sharedPlayer] currentTrack].trackTitle;
     
+       self.NameLabel.text = [[XMSDKPlayer sharedPlayer] currentTrack].trackTitle;
+//    [self.NameLabel setText:[[XMSDKPlayer sharedPlayer] currentTrack].trackTitle];
     [self.HeadImageView sd_setImageWithURL:[NSURL URLWithString:[[XMSDKPlayer sharedPlayer] currentTrack].coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
     
     

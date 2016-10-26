@@ -29,7 +29,7 @@
  - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+     [self.navigationController setNavigationBarHidden:NO animated:animated];
    self.ALLArray =@[@"新妈听听看",@"爱听故事",@"英文磨耳朵",@"儿歌大全",@"科普涨知识",@"国学启蒙",@"亲子学堂",@"口袋故事集",@"宝贝SHOW",@"卡通动画片",@"中小学必备"];
 
     [self tuijianLaod];

@@ -12,7 +12,7 @@
 #import "Masonry.h"
 #import "DisplayUtil.h"
 #import "MainListTabBarViewcell.h"
-
+#import "AutoScrollLabel.h"
 #import "WSPlayTabViewController.h"
 @interface WSTabBarController : UITabBarController<UITableViewDelegate,UITableViewDataSource,XMTrackPlayerDelegate>
 
@@ -53,6 +53,19 @@
 @property (nonatomic,strong)NSMutableArray *UpdateArray;
 
 @property (nonatomic,strong)NSMutableArray *currentArray;
+
+
+@property (nonatomic,strong)UIView *BottomView;
+
+@property (nonatomic,strong)UIView *BottomBackView;
+
+
+@property (nonatomic,strong)UILabel *BottomLabel;
+
+@property (nonatomic,strong)UIButton *BottomBtn;
+
+@property (nonatomic,strong)UIImageView *BottomImageV;
+
 
 
 @end

@@ -8,11 +8,11 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
 #include "Interface.h"
 #include "netInter.h"
 #include "cJSON.h"
-
+#include "elian.h"
+#include <string.h>
 /*
  char * /const char *和NSString之间的转化
  
@@ -25,17 +25,17 @@
 
 static SysCall_t *sys=NULL;
 
-Player_t *GetPlayer(void)
-{
-    return &sys->player;
-}
-Sysdata_t *GetSysdata(void)
-{
+Sysdata_t *nativeGetSysdata(void){
     return &sys->sysdata;
 }
+Mplayer_t *nativeGetPlayer(void){
+    return sys->player;
+}
+
 static void parseNetworkdData(int type,char *msg,int size)
 {
-    printf("recv msg =%s\n",msg);
+//    printf("recv msg =%s\n",msg);
+    int event_type=0;
     cJSON * pJson = cJSON_Parse(msg);
     if(NULL == pJson){
         return ;
@@ -45,17 +45,19 @@ static void parseNetworkdData(int type,char *msg,int size)
         printf("get json data  failed\n");
         goto exit ;
     }
-    if(!strcmp((const char *)pSub->valuestring,(const char *)"host")){
+    if(!strcmp(pSub->valuestring,"host")){
         pSub= cJSON_GetObjectItem(pJson, "type");
         if(!strcmp(pSub->valuestring,"open")){
-            pSub=cJSON_GetObjectItem(pJson, "time ");
+            pSub=cJSON_GetObjectItem(pJson, "time");
             snprintf(sys->sysdata.opentime, 64, "%s",pSub->valuestring);
         }else if(!strcmp(pSub->valuestring,"close")){
             pSub=cJSON_GetObjectItem(pJson, "time ");
             snprintf(sys->sysdata.closetime, 64, "%s",pSub->valuestring);
         }
+        event_type =SYS_EVENT;
     }else if(!strcmp(pSub->valuestring,"vol")){
-        sys->player.voldata=cJSON_GetObjectItem(pJson, "data")->valueint;
+        sys->player->voldata=cJSON_GetObjectItem(pJson, "data")->valueint;
+        event_type =SYS_EVENT;
     }else if(!strcmp(pSub->valuestring,"lock")){
         int state= cJSON_GetObjectItem(pJson, "state")->valueint;
         if(state==0){
@@ -63,40 +65,23 @@ static void parseNetworkdData(int type,char *msg,int size)
         }else if(state==1){
             sys->sysdata.lockState=1;
         }
+        event_type =SYS_EVENT;
     }else if(!strcmp(pSub->valuestring,"mplayer")){
-        pSub= cJSON_GetObjectItem(pJson, "state");
-        if(!strcmp(pSub->valuestring,"pause")){
-            sys->player.playState=1;
-        }else if(!strcmp(pSub->valuestring,"play")){
-            sys->player.playState=0;
-        }else if(!strcmp(pSub->valuestring,"stop")){
-            sys->player.playState=2;
-        }else if(!strcmp(pSub->valuestring,"switch")){
-            sys->player.playState=0;
-        }
-        sys->player.progress=cJSON_GetObjectItem(pJson, "progress")->valueint;
-        if(strstr(msg,"lock")){
-            sys->sysdata.lockState =cJSON_GetObjectItem(pJson, "lock")->valueint;
-        }
-        if(strstr(msg,"vol")){
-            sys->player.voldata=cJSON_GetObjectItem(pJson, "vol")->valueint;
-        }
-        if(strstr(msg,"url")){
-            pSub=cJSON_GetObjectItem(pJson, "url");
-            snprintf(sys->player.playUrl, 128, "%s",pSub->valuestring);
-        }
+        event_type =PLAY_EVENT;
     }else if(!strcmp(pSub->valuestring,"sys")){
         sys->sysdata.powerData =cJSON_GetObjectItem(pJson,"state")->valueint;
-        sys->sysdata.power =cJSON_GetObjectItem(pJson,"power")->valueint;
+        sys->sysdata.power =(int)cJSON_GetObjectItem(pJson,"power")->valueint;
         pSub =cJSON_GetObjectItem(pJson,"openTime");
         snprintf(sys->sysdata.closetime, 64, "%s",pSub->valuestring);
         pSub =cJSON_GetObjectItem(pJson,"closeTime");
         snprintf(sys->sysdata.closetime, 64, "%s",pSub->valuestring);
+        event_type =SYS_EVENT;
     }else if(!strcmp(pSub->valuestring,"battery")){
         sys->sysdata.powerData =cJSON_GetObjectItem(pJson,"state")->valueint;
         sys->sysdata.power =cJSON_GetObjectItem(pJson,"power")->valueint;
+        event_type =SYS_EVENT;
     }else if(!strcmp(pSub->valuestring,"newImage")){
-        int version =cJSON_GetObjectItem(pJson,"version")->valueint;
+        int version =(int)cJSON_GetObjectItem(pJson,"version")->valueint;
         char *status =cJSON_GetObjectItem(pJson,"status")->valuestring;
         if(!strcmp(status, "unkown")){//接收到新的更新设备版本请求
         }else if(!strcmp(status, "start")){//开始下载
@@ -108,8 +93,16 @@ static void parseNetworkdData(int type,char *msg,int size)
         if(!strcmp(status, "timeout")){
         }else if(!strcmp(status, "ok")){
         }
+    }else if(!strcmp(pSub->valuestring,"devState")){
+        char *status =cJSON_GetObjectItem(pJson,"status")->valuestring;
+        if(!strcmp(status, "failed")){
+            sys->sysdata.netState=0;
+        }else if(!strcmp(status, "ok")){
+            sys->sysdata.netState=1;
+        }
+        event_type=NETWORK_EVENT;
     }
-    sys->networkEvent(1,"",10);
+    sys->networkEvent(event_type,"",10);
 exit:
     cJSON_Delete(pJson);
     return ;
@@ -121,10 +114,9 @@ exit:
 //初始化网络
 int nativeInitSystem(void networkEvent(int type,char *msg,int size))
 {
-//    int protoVersion;
-//    int libVersion;
-//    elianGetVersion(&protoVersion,&libVersion);
-//    printf("%d %d\n",protoVersion,libVersion);
+    int protoVersion;
+    int libVersion;
+    //elianGetVersion(&protoVersion,&libVersion);
     sys = (SysCall_t *)calloc(1, sizeof(SysCall_t));
     if(sys==NULL){
         perror("calloc sys failed \n");
@@ -132,6 +124,7 @@ int nativeInitSystem(void networkEvent(int type,char *msg,int size))
     }
     sys->networkEvent =networkEvent;
     initSystem(parseNetworkdData);
+    sys->player =GetMplayer_t();
     return 0;
 }
 //退出清理后台网络线程
@@ -187,8 +180,8 @@ int nativeSetVol_Data(int vol){
     return SetVol_Data(vol);
 }
 //推送url到设备
-int nativeMplayer(char * url){
-    return mplayerPlayUrl(url);
+int nativeMplayer(const char * url,const char *name,int muisctime){
+    return mplayerPlayUrl(url,name,muisctime);
 }
 //播放进度 0-99
 int nativeSeekTo(int progress){
@@ -232,5 +225,4 @@ void initNet(void call(int type,char *msg,int size))
     net->call =call;
     pthread_create(&tid,NULL,runSystem,NULL);
 }
-
 

@@ -63,6 +63,7 @@
     self.TimeLabel.font =[UIFont systemFontOfSize:28];
     self.TimeLabel.textAlignment =NSTextAlignmentCenter;
     self.TimeLabel.textColor =[UIColor whiteColor];
+    
     [headImageV addSubview:self.TimeLabel];
     
     [self.TimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,48 +72,82 @@
         
         
     }];
+    CGFloat HHHHH =self.view.frame.size.height *0.5 -(WhithWide +60)*0.5 -50;
+    
+    self.circularSlider =[[EFCircularSlider alloc]initWithFrame:CGRectMake(20,HHHHH, WhithWide+60, WhithWide+60)];
+//    self.circularSlider.handleType = bigCircle;
+    self.circularSlider.handleColor = [UIColor redColor];
+    
+    [self.circularSlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:self.circularSlider];
     
     
-//    UIButton *StopBtn =[[UIButton alloc]init];
-//    
-//    [StopBtn setTitle:@"暂停" forState:UIControlStateNormal];
-//    
-//    [StopBtn addTarget:self action:@selector(StopBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.view addSubview:StopBtn];
-//    
-//    [StopBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+//    [self.circularSlider mas_makeConstraints:^(MASConstraintMaker *make) {
 //       
-//        make.width.and.height.equalTo(@50);
-//        make.left.equalTo(self.view.mas_left).with.offset(50);
-//        make.centerY.equalTo(self.view.mas_centerY);
+//        make.width.and.height.equalTo(@(280));
+//        make.centerX.equalTo(headImageV.mas_centerX);
+//        make.centerY.equalTo(headImageV.mas_centerY);
+//        
 //        
 //        
 //    }];
+    //将时间戳转为正常时间
+    
+    ;
+    NSString *theDate =[NSString stringWithFormat:@"%ld", (long)[[XMSDKPlayer sharedPlayer]currentTrack].duration];
 //    
-//    
-//    UIButton *NextBtn =[[UIButton alloc]init];
-//    
-//    [NextBtn setTitle:@"下一首" forState:UIControlStateNormal];
-//    
-//    [NextBtn addTarget:self action:@selector(nextBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    
-//    [self.view addSubview:NextBtn];
-//    
-//    [NextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//       
-//        make.width.and.height.equalTo(@50);
-//        make.left.equalTo(StopBtn.mas_right).with.offset(10);
-//        make.centerY.equalTo(self.view.mas_centerY);
-//        
-//        
-//    }];
+    NSTimeInterval time=[theDate doubleValue];
+    //+28800;//因为时差问题要加8小时 == 28800 sec
+    //  NSTimeInterval time=[theDate doubleValue];
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
+//    //    NSLog(@"date:%@",[detaildate description]);
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"mm:ss"];
+    
+    NSString *currentDateStr = [dateFormatter stringFromDate:detaildate];
+    UILabel *TimeAllLabel =[[UILabel alloc]init];
+    TimeAllLabel.textColor =[UIColor whiteColor];
+    TimeAllLabel.font =[UIFont systemFontOfSize:14];
+    TimeAllLabel.textAlignment =NSTextAlignmentCenter;
+    TimeAllLabel.text =currentDateStr;
+    
+    [self.view addSubview:TimeAllLabel];
+    [TimeAllLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.equalTo(@15);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.circularSlider.mas_top).with.offset(-5);
+        
+    }];
+    
+    
+    
+
     
 }
+
+
+-(void)valueChanged:(EFCircularSlider*)slider {
+   
+    NSInteger second = [XMSDKPlayer sharedPlayer].currentTrack.duration*slider.currentValue;
+    //            NSLog(@"seek to %ld   total : %ld",(long)second,(long)[XMSDKPlayer sharedPlayer].currentTrack.duration);
+    [[XMSDKPlayer sharedPlayer] seekToTime:second];
+    
+//    [[XMSDKPlayer sharedPlayer]playNextTrack];
+    
+}
+
+
+
 - (void)XMTrackPlayNotifyProcess:(CGFloat)percent currentSecond:(NSUInteger)currentSecond
 {
 
+    
+    self.circularSlider.currentValue = percent;
     
     NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:currentSecond];
     //    NSLog(@"date:%@",[detaildate description]);
@@ -127,6 +162,32 @@
     self.TimeLabel.text = [NSString stringWithFormat:@"%@",currentDateStr];
 
 }
+- (void)XMTrackPlayerDidPaused
+{
+
+    ;
+    NSString *theDate =[NSString stringWithFormat:@"%ld", (long)[[XMSDKPlayer sharedPlayer]currentTrack].duration];
+    //
+    NSTimeInterval time=[theDate doubleValue];
+    //+28800;//因为时差问题要加8小时 == 28800 sec
+    //  NSTimeInterval time=[theDate doubleValue];
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
+    //    //    NSLog(@"date:%@",[detaildate description]);
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"mm:ss"];
+    
+    NSString *currentDateStr = [dateFormatter stringFromDate:detaildate];
+    
+    
+    self.TimeLabel.text = [NSString stringWithFormat:@"%@",currentDateStr];
+
+
+
+}
+
+
 //- (void)StopBtn:(UIButton *)Btn
 //{
 //
@@ -212,6 +273,7 @@
     
     
     
+    
 
 
 }
@@ -220,7 +282,8 @@
 - (void)black:(UIButton *)Btn
 {
 
-
+   // [XMSDKPlayer sharedPlayer].trackPlayDelegate =nil;
+    
 [self dismissViewControllerAnimated:YES completion:^{
     
 }];
