@@ -294,7 +294,7 @@
                 
                 [self POstNotif];
                 
-                
+          
                 
             }
                 break;
@@ -742,7 +742,11 @@
     const char * playurl = [self.track.playUrl32 UTF8String];
     const char * name = [self.track.trackTitle UTF8String];
     
-    int ret =nativeMplayer((char *)playurl,name,self.track.duration/1000);
+    
+    int ret =nativeMplayer((char *)playurl,name,(int)self.track.duration);
+    
+    NSLog(@"时间啊啊%ld",self.track.duration);
+    
     printf("ret = %d playurl = %s\n ",ret,playurl);
     return ;
 

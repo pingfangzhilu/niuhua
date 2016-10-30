@@ -9,7 +9,7 @@
 #import "LeftViewController.h"
 #import <SystemConfiguration/CaptiveNetwork.h>
 #import "Interface.h"
-LeftViewController *OCP=nil ;
+//LeftViewController *OCP=nil ;
 
 @implementation LeftViewController
 
@@ -19,10 +19,10 @@ LeftViewController *OCP=nil ;
     
     [super viewDidLoad];
     
-      OCP =self;
+//      OCP =self;
 //    static dispatch_once_t onceToken;
 //    dispatch_once(&onceToken, ^{
-        nativeInitSystem(ocCallBack);
+//        nativeInitSystem(ocCallBack);
 //    });
     //注册键盘出现的通知
     
@@ -39,14 +39,33 @@ LeftViewController *OCP=nil ;
                                              selector:@selector(keyboardWillBeHidden:)
      
                                                  name:UIKeyboardWillHideNotification object:nil];
-      [self wifiNmane];
+    
     
     [self CreteUI];
 
-  
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(leftVIEWUI:) name:@"leftVIEWUI" object:nil];
     
  
 }
+
+- (void)leftVIEWUI:(NSNotification *)notif
+{
+
+
+
+
+}
+
+
+
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//
+//    [super viewWillAppear:animated];
+//    
+//
+//}
 
 
 - (void)wifiNmane
@@ -121,29 +140,29 @@ LeftViewController *OCP=nil ;
 
 
 
-void ocCallBack(int type,char *msg,int size)
-{
-        printf("type = %d\n",type);
-    
-    [OCP ocCallMsg:type];
-}
-
-- (void)ocCallMsg:(int)type
-{
-    if (type==SYS_EVENT) {
-        Sysdata_t *sys = nativeGetSysdata();
-    }else if(type==PLAY_EVENT){
-        Mplayer_t * play = nativeGetPlayer();
-        printf("play->playState = %d\n",play->playState);
-        printf("play->name = %s\n",play->musicName);
-    }else{      //NETWORK_EVENT
-    
-    }
-    
-    
-
-//    sys->
-}
+//void ocCallBack(int type,char *msg,int size)
+//{
+//        printf("type = %d\n",type);
+//    
+//    [OCP ocCallMsg:type];
+//}
+//
+//- (void)ocCallMsg:(int)type
+//{
+//    if (type==SYS_EVENT) {
+//        Sysdata_t *sys = nativeGetSysdata();
+//    }else if(type==PLAY_EVENT){
+//        Mplayer_t * play = nativeGetPlayer();
+//        printf("play->playState = %d\n",play->playState);
+//        printf("play->name = %s\n",play->musicName);
+//    }else{      //NETWORK_EVENT
+//    
+//    }
+//    
+//    
+//
+////    sys->
+//}
 
 - (void)CreteUI
 {
@@ -197,6 +216,7 @@ void ocCallBack(int type,char *msg,int size)
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+     [self wifiNmane];
 }
 
 -(void)viewDidLayoutSubviews {
@@ -274,10 +294,11 @@ void ocCallBack(int type,char *msg,int size)
         self.slider =[[UISlider alloc]init];
 //        self.slider.minimumValue =0;
 //        self.slider.maximumValue =1;
+           self.slider.continuous =NO;
         [ self.slider  addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         self.slider.minimumValue=0;
         self.slider.maximumValue =99;
-         self.slider.value = 50;
+        self.slider.value = 50;
 //        [[XMSDKPlayer sharedPlayer] setVolume:0.5];
         
         [cell addSubview:self.slider];

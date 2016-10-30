@@ -17,7 +17,7 @@
 @interface WSTabBarController : UITabBarController<UITableViewDelegate,UITableViewDataSource,XMTrackPlayerDelegate>
 
 {
-
+    int VVVVVVV ;
 
    int indecxxx;
 }
@@ -54,11 +54,13 @@
 
 @property (nonatomic,strong)NSMutableArray *currentArray;
 
+@property (nonatomic,strong)UILabel *BottomName;
 
 @property (nonatomic,strong)UIView *BottomView;
 
 @property (nonatomic,strong)UIView *BottomBackView;
 
+@property (nonatomic,strong)UISlider *BottomSlider;
 
 @property (nonatomic,strong)UILabel *BottomLabel;
 
@@ -66,6 +68,6 @@
 
 @property (nonatomic,strong)UIImageView *BottomImageV;
 
-
+@property(nonatomic,strong)UIButton *markStringSele;
 
 @end

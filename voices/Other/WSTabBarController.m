@@ -8,17 +8,140 @@
 
 #import "WSTabBarController.h"
 #import "MainViewController.h"
+
+
+WSTabBarController *OCP=nil ;
 @implementation WSTabBarController
 {
 
  BOOL isOpen;
 
 }
+
+
+void ocCallBack(int type,char *msg,int size)
+{
+    printf("type = %d\n",type);
+    
+    [OCP ocCallMsg:type];
+}
+/**char * /const char *和NSString之间的转化
+ 
+ //char * /const char * 转NSString
+ NSString * strPath = [NSString stringWithUTF8String:filename];
+ 
+ //NSString转char * /const char *
+ const char * filePathChar = [filePath UTF8String];*/
+
+
+- (void)text:(NSString *)textString Time:(int )TimeBase  playState:(int)State
+{
+//self.markStringSele = @"yes";
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+         _BottomLabel.text =[NSString stringWithFormat:@"%@",textString];
+        _BottomSlider.value = TimeBase;
+        
+        if (State==1) {
+            NSLog(@"开始");
+//
+//              self.markStringSele.selected =_BottomBtn.selected;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                [self BottomBtn:_BottomBtn];
+            });
+             _BottomBtn.selected=YES;
+        }
+        else
+        {
+            NSLog(@"暂停");
+            _BottomBtn.selected =NO;
+//               self.markStringSele.selected =_BottomBtn.selected;
+            
+        }
+      
+        
+//
+//       [self BottomBtn:_BottomBtn];
+        
+//      self.BottomBtn.selected =!self.BottomBtn.selected;
+    });
+    NSLog(@"777------888888%@",textString);
+}
+
+
+
+
+
+- (void)ocCallMsg:(int)type
+{
+     [self BottomView];
+    
+    if (type==SYS_EVENT) {
+        Sysdata_t *sys = nativeGetSysdata();
+        
+    }else if(type==PLAY_EVENT){
+        Mplayer_t * play = nativeGetPlayer();
+        printf("play->playState = %d\n",play->playState);
+        printf("名字歌啊。。。。＝－－－－－play->name = %s\n",play->musicName);
+        printf("时间：：：：%d",play->progress);
+        
+
+//        self.BottomSlider.value  =play->progress;
+        NSString * strPath = [NSString stringWithUTF8String:play->musicName];
+
+        
+        [OCP text:strPath Time:(int)play->progress playState:(int)play->playState];
+        
+        
+    }else{      //NETWORK_EVENT
+        
+         Sysdata_t *sys = nativeGetSysdata();
+        switch (sys->netState) {
+            case 0:
+            {
+             
+                [OCP shuanxinBottomLabel];
+                
+            
+               
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    
+    
+    //    sys->
+}
+
+
+- (void)shuanxinBottomLabel
+{
+dispatch_async(dispatch_get_main_queue(), ^{
+      _BottomLabel.text = @"设备未连接";
+});
+//    [self BottomView];
+  
+//    [self.BottomLabel setText:@"设备未设备"];
+}
+
+
+
+
+
 #define currentWindow  [UIApplication sharedApplication].keyWindow
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  
+   [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(BottomLabelUI:) name:@"BottomLabel" object:nil];
+    VVVVVVV=0;
+    OCP =self;
+   
     self.UpdateArray  =[[NSMutableArray alloc]init];
     self.currentArray =[[NSMutableArray alloc]init];
     //删除现有的tabBar
@@ -69,7 +192,7 @@
     
     [self CreateUI];
     
-
+nativeInitSystem(ocCallBack);
 }
 
 
@@ -288,14 +411,11 @@
     
     
     
-    
+  
     
     
     
 }
-
-
-
 
 
 - (void)swipeGesture:(UISwipeGestureRecognizer *)tap
@@ -317,9 +437,10 @@
 //   CGPoint point = [tap translationInView:self.BottomView];
     //移动结束
     [self BottomView];
-    self.BottomBackView.hidden =NO;
+  
+    _BottomBackView.hidden =NO;
     [UIView animateWithDuration:0.5 animations:^{
-       self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height-200, currentWindow.frame.size.width, 200);    }];
+       _BottomView.frame =CGRectMake(0, currentWindow.frame.size.height-200, currentWindow.frame.size.width, 200);    }];
     
 }
 
@@ -329,26 +450,68 @@
     [UIView animateWithDuration:0.5 animations:^{
         
 //        [self.BottomBackView removeFromSuperview];
-        self.BottomBackView.hidden =YES;
-        self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);    }];
+       _BottomBackView.hidden =YES;
+        _BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);    }];
 
 
 }
+
+
+ - (void)BottomViewUIV
+{
+    self.BottomBackView =[[UIView alloc]init];
+    
+    self.BottomBackView.backgroundColor =[UIColor blackColor];
+    
+    self.BottomBackView.alpha =0.6;
+    
+    self.BottomBackView.hidden =YES;
+    
+    [currentWindow addSubview:self.BottomBackView];
+    [self.BottomBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        
+        make.edges.equalTo(currentWindow).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
+        
+        
+    }];
+    
+    self.BottomView =[[UIView alloc]init];
+    self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);
+    
+    self.BottomView.backgroundColor =[UIColor grayColor];
+    [currentWindow addSubview:self.BottomView];
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureBottom:)];
+    
+    swipeGesture.direction =UISwipeGestureRecognizerDirectionDown;
+    
+    [self.BottomView addGestureRecognizer:swipeGesture];
+    
+
+
+
+
+}
+
+
+
+
+
 
 - (UIView *)BottomBackView
 {
     if (!_BottomBackView) {
         
-        self.BottomBackView =[[UIView alloc]init];
+       _BottomBackView =[[UIView alloc]init];
         
-        self.BottomBackView.backgroundColor =[UIColor blackColor];
+        _BottomBackView.backgroundColor =[UIColor blackColor];
         
-        self.BottomBackView.alpha =0.6;
+        _BottomBackView.alpha =0.6;
         
-        self.BottomBackView.hidden =YES;
+        _BottomBackView.hidden =YES;
         
         [currentWindow addSubview:self.BottomBackView];
-        [self.BottomBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_BottomBackView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             
             make.edges.equalTo(currentWindow).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
@@ -375,73 +538,23 @@
     
     if (!_BottomView) {
         
-        self.BottomView =[[UIView alloc]init];
-        self.BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);
+        _BottomView =[[UIView alloc]init];
+        _BottomView.frame =CGRectMake(0, currentWindow.frame.size.height, currentWindow.frame.size.width, 200);
         
-        self.BottomView.backgroundColor =[UIColor grayColor];
-        [currentWindow addSubview:self.BottomView];
+        _BottomView.backgroundColor =[UIColor grayColor];
+        [currentWindow addSubview:_BottomView];
         UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeGestureBottom:)];
         
         swipeGesture.direction =UISwipeGestureRecognizerDirectionDown;
         
-        [self.BottomView addGestureRecognizer:swipeGesture];
-        
-        self.BottomLabel =[[UILabel alloc]init];
-        
-        self.BottomLabel.font =[UIFont systemFontOfSize:15];
-        self.BottomLabel.text = @"jkfhqjwef";
-        
-        self.BottomLabel.textAlignment =NSTextAlignmentCenter;
-        
-        self.BottomLabel.textColor =[UIColor whiteColor];
-        
-        [self.BottomView addSubview:self.BottomLabel];
-        
-        [self.BottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@20);
-            make.left.equalTo(self.BottomView.mas_left).with.offset(10);
-            make.right.equalTo(self.BottomView.mas_right).with.offset(-10);
-            make.top.equalTo(self.BottomView.mas_top).with.offset(5);
-            
-            
-            
-        }];
-        
-        self.BottomImageV =[[UIImageView alloc]init];
-        
-        self.BottomImageV.layer.masksToBounds =YES;
-        
-        self.BottomImageV.layer.cornerRadius =55;
-        
-        self.BottomImageV.image =[UIImage imageNamed:@"placeholder_disk"];
+        [_BottomView addGestureRecognizer:swipeGesture];
         
         
-        [self.BottomView addSubview:self.BottomImageV];
-        
-        [self.BottomImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.top.equalTo(self.BottomLabel.mas_bottom).with.offset(10);
-            make.width.and.height.equalTo(@110);
-            make.centerX.equalTo(self.BottomView.mas_centerX);
-            
-            
-        }];
-        
-        
-        self.BottomBtn =[[UIButton alloc]init];
-        
-        [self.BottomBtn setImage:[UIImage imageNamed:@"ic_notify_play_normal"] forState:UIControlStateNormal];
-        [self.BottomBtn setImage:[UIImage imageNamed:@"ic_notify_pause_normal"] forState:UIControlStateSelected];
-        [self.BottomBtn addTarget:self action:@selector(BottomBtn:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.BottomView addSubview:self.BottomBtn];
-        [self.BottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.centerX.equalTo(self.BottomView.mas_centerX);
-            make.top.equalTo(self.BottomImageV.mas_bottom).with.offset(10);
-            make.width.and.height.equalTo(@40);
       
-        }];
+        [self BottomLabel];
+        [self BottomName];
+        [self BottomSlider];
+        [self BottomBtn];
         
         
         
@@ -451,12 +564,158 @@
 
 }
 
+- (UILabel *)BottomLabel
+{
+    if (!_BottomLabel) {
+        _BottomLabel =[[UILabel alloc]init];
+        
+        _BottomLabel.font =[UIFont systemFontOfSize:15];
+//             self.BottomLabel.text = @"设备未连接";
+        
+        _BottomLabel.textAlignment =NSTextAlignmentCenter;
+        
+       _BottomLabel.textColor =[UIColor whiteColor];
+        
+        [self.BottomView addSubview:_BottomLabel];
+        
+        [_BottomLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@20);
+            make.left.equalTo(self.BottomView.mas_left).with.offset(10);
+            make.right.equalTo(self.BottomView.mas_right).with.offset(-10);
+            make.top.equalTo(self.BottomView.mas_top).with.offset(5);
+            
+            
+            
+        }];
+
+    }
+
+
+    return _BottomLabel;
+
+}
+
+- (UISlider *)BottomSlider
+{
+    if (!_BottomSlider) {
+
+        
+        _BottomSlider =[[UISlider alloc]init];
+       _BottomSlider.thumbTintColor = [UIColor redColor];
+        _BottomSlider.continuous =NO;
+        _BottomSlider.minimumValue =0;
+        _BottomSlider.maximumValue=99;
+        
+//        _BottomSlider.value =80;
+        [self.BottomView addSubview:_BottomSlider];
+       
+        
+        [_BottomSlider addTarget:self action:@selector(updateValue) forControlEvents:UIControlEventValueChanged];
+        [_BottomSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+            make.left.equalTo(self.BottomView.mas_left).with.offset(20);
+            make.right.equalTo(self.BottomView.mas_right).with.offset(-20);
+            make.height.equalTo(@20);
+            make.top.equalTo(self.BottomName.mas_bottom).with.offset(20);
+            
+            
+        }];
+        
+          
+        
+    }
+
+    return _BottomSlider;
+
+}
+
+
+- (void)updateValue
+{
+
+    NSLog(@"-----------%f",_BottomSlider.value);
+
+    
+    nativeSeekTo((int)_BottomSlider.value);
+    
+}
+
+
+- (UILabel *)BottomName
+{
+    if (!_BottomName) {
+        _BottomName =[[UILabel alloc]init];
+      _BottomName.textColor =[UIColor whiteColor];
+       _BottomName.text =@"糍粑糖";
+        _BottomName.textAlignment=NSTextAlignmentCenter;
+        [_BottomView addSubview:_BottomName];
+        
+        [_BottomName mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.equalTo(_BottomView.mas_left).with.offset(10);
+            make.right.equalTo(_BottomView.mas_right).with.offset(-10);
+            make.height.equalTo(@20);
+            make.top.equalTo(_BottomLabel.mas_bottom).with.offset(15);
+            
+        }];
+        
+        
+        
+        
+    }
+    return _BottomName;
+
+
+
+}
+- (UIButton *)BottomBtn
+{
+    if (!_BottomBtn) {
+        
+        _BottomBtn =[[UIButton alloc]init];
+        
+        [_BottomBtn setImage:[UIImage imageNamed:@"ic_notify_play_normal"] forState:UIControlStateNormal];
+        [_BottomBtn setImage:[UIImage imageNamed:@"ic_notify_pause_normal"] forState:UIControlStateSelected];
+        [_BottomBtn addTarget:self action:@selector(BottomBtn:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_BottomView addSubview:_BottomBtn];
+        
+        [_BottomBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.centerX.equalTo(_BottomView.mas_centerX);
+            make.top.equalTo(_BottomSlider.mas_bottom).with.offset(30);
+            make.width.and.height.equalTo(@40);
+            
+        }];
+        
+
+        
+        
+    }
+
+    return _BottomBtn;
+
+}
+
 - (void)BottomBtn:(UIButton *)Btn
 {
 
     NSLog(@"按下");
 
+    if (!self.BottomBtn.selected) {
+         nativeIsPlay();			//切换到播放状态
+        
+        
+    }
+    else
+    {
+   
+    nativeIsPause();
+        
+    }
+    
     self.BottomBtn.selected =!self.BottomBtn.selected;
+   
 }
 
 

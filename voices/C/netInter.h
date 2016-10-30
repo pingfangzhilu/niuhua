@@ -28,6 +28,7 @@ typedef struct{
     int musicTime;
     char url[128];
     char musicName[64];
+    int progress;
 }Mplayer_t;
 //兼容IOS 获取状态
 Mplayer_t *	GetMplayer_t(void);

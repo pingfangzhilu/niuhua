@@ -422,6 +422,7 @@ static void progressTimer(void) {
                 	player->curTime=0;
                     player->playState=MEDIA_STOP;
                 }
+                player->progress =progress;
                 PLAY_DBG(" ...... report progress:%d\n",progress);
             }else{
                 NET_DBG_WARN(" warning message ......musicTime :%d ......\n",player->musicTime);
