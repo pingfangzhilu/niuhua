@@ -41,7 +41,7 @@ void ocCallBack(int type,char *msg,int size)
     dispatch_async(dispatch_get_main_queue(), ^{
          _BottomLabel.text =[NSString stringWithFormat:@"%@",textString];
         _BottomSlider.value = TimeBase;
-        
+        //  1  是开始    2 是暂停        3 停止 （timebase大于95 ）切换下一首
         if (State==1) {
             NSLog(@"开始");
 //
@@ -80,12 +80,20 @@ void ocCallBack(int type,char *msg,int size)
     if (type==SYS_EVENT) {
         Sysdata_t *sys = nativeGetSysdata();
         
+        NSDictionary *dict = @{@"leftpower":[NSString stringWithFormat:@"%d",sys->power],@"leftpowerData":[NSString stringWithFormat:@"%d",sys->powerData],@"leftlockState":[NSString stringWithFormat:@"%d",sys->lockState]};
+        
+        NSNotification *notification =[NSNotification notificationWithName:@"leftUIredata" object:nil userInfo:dict];
+        //通过通知中心发送通知
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+//        sys->power;
+//        printf("电量。。。。＝－－－－－play->name = %d\n",sys->powerData);
+        
     }else if(type==PLAY_EVENT){
         Mplayer_t * play = nativeGetPlayer();
         printf("play->playState = %d\n",play->playState);
         printf("名字歌啊。。。。＝－－－－－play->name = %s\n",play->musicName);
         printf("时间：：：：%d",play->progress);
-        
+//        play->voldata;
 
 //        self.BottomSlider.value  =play->progress;
         NSString * strPath = [NSString stringWithUTF8String:play->musicName];
@@ -193,6 +201,34 @@ dispatch_async(dispatch_get_main_queue(), ^{
     [self CreateUI];
     
 nativeInitSystem(ocCallBack);
+    
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shebiUrl:) name:@"shebiUrl" object:nil];
+    
+}
+
+- (void)shebiUrl:(NSNotification *)notif
+{
+
+//    _PlayUrlData 
+    self.PlayUrlData = (NSMutableArray *)notif.userInfo[@"shebiData"];
+    
+   
+    self.PlayURLindex = [(NSString *)notif.userInfo[@"shebiTwo"]  integerValue];
+    
+  
+
+}
+
+- (NSMutableArray *)PlayUrlData
+{
+    if (!_PlayUrlData) {
+        _PlayUrlData =[NSMutableArray array];
+    }
+
+    return _PlayUrlData;
+
 }
 
 
@@ -224,14 +260,11 @@ nativeInitSystem(ocCallBack);
         
     }
     
-    
-  
-    
-    
-    
-
-
 }
+
+
+
+
 
 - (void)indexPathRow:(NSNotification *)notif
 {
@@ -368,7 +401,7 @@ nativeInitSystem(ocCallBack);
     self.NameLabel =[[UILabel alloc]init];
     self.NameLabel.font= [UIFont systemFontOfSize:16];
     self.NameLabel.textColor =[UIColor blackColor];
- //  self.NameLabel.text =@"糍粑糖";
+   self.NameLabel.text =@"糍粑糖";
     
     
 //    self.NameLabel.center =self.myView.center;
@@ -556,13 +589,17 @@ nativeInitSystem(ocCallBack);
         [self BottomSlider];
         [self BottomBtn];
         
-        
-        
+        [self BottomNextBtn];
+        [self BottomUpBtn];
     }
     return _BottomView;
 
 
 }
+
+
+
+
 
 - (UILabel *)BottomLabel
 {
@@ -696,6 +733,124 @@ nativeInitSystem(ocCallBack);
     return _BottomBtn;
 
 }
+- (UIButton *)BottomNextBtn
+{
+    if (!_BottomNextBtn) {
+        _BottomNextBtn =[[UIButton alloc]init];
+        
+        
+         [_BottomNextBtn setImage:[UIImage imageNamed:@"next_icon_transparent_pressed"] forState:UIControlStateNormal];
+        [_BottomNextBtn addTarget:self action:@selector(ShebiNext) forControlEvents:UIControlEventTouchUpInside];
+        //next_icon_transparent_pressed
+         [_BottomView addSubview:_BottomNextBtn];
+        
+        [_BottomNextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+           
+            make.left.equalTo(_BottomBtn.mas_right).with.offset(40);
+            make.top.equalTo(_BottomSlider.mas_bottom).with.offset(30);
+            make.width.and.height.equalTo(@40);
+            
+        }];
+        
+        
+    }
+    
+    return _BottomNextBtn;
+    
+}
+- (void)ShebiNext
+{
+    
+    if (_PlayURLindex  <self.PlayUrlData.count ){
+        
+        _PlayURLindex = _PlayURLindex+1;
+        
+        self.track = self.PlayUrlData[_PlayURLindex];
+        
+        const char * playurl = [self.track.playUrl32 UTF8String];
+        const char * name = [self.track.trackTitle UTF8String];
+        
+        
+        int ret =nativeMplayer((char *)playurl,name,(int)self.track.duration);
+        
+        NSLog(@"推送下一首名字%@",self.track.trackTitle);
+        
+        printf("ret = %d playurl = %s\n ",ret,playurl);
+        return ;
+
+        
+    }
+    
+   
+    
+    
+    
+
+}
+
+
+- (void)shebiShangyishou
+{
+
+    if (_PlayURLindex  >0 ){
+        _PlayURLindex = _PlayURLindex-1;
+        self.track = self.PlayUrlData[_PlayURLindex ];
+        
+        const char * playurl = [self.track.playUrl32 UTF8String];
+        const char * name = [self.track.trackTitle UTF8String];
+        
+        
+        int ret =nativeMplayer((char *)playurl,name,(int)self.track.duration);
+        
+        NSLog(@"推送上一首名字%@",self.track.trackTitle);
+        
+        printf("ret = %d playurl = %s\n ",ret,playurl);
+        return ;
+        
+        
+    }
+
+
+}
+
+
+
+- (UIButton *)BottomUpBtn
+{
+
+    if (!_BottomUpBtn) {
+        
+        _BottomUpBtn =[[UIButton alloc]init];
+        
+        
+        [_BottomUpBtn setImage:[UIImage imageNamed:@"pre_icon_transparent_pressed"] forState:UIControlStateNormal];
+        [_BottomUpBtn addTarget:self action:@selector(shebiShangyishou) forControlEvents:UIControlEventTouchUpInside];
+        //next_icon_transparent_pressed
+        [_BottomView addSubview:_BottomUpBtn];
+        
+        [_BottomUpBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.right.equalTo(_BottomBtn.mas_left).with.offset(-40);
+            make.top.equalTo(_BottomSlider.mas_bottom).with.offset(30);
+            make.width.and.height.equalTo(@40);
+            
+        }];
+
+        
+        
+    }
+    return _BottomUpBtn;
+
+
+}
+
+
+
+
+
+
+
+
 
 - (void)BottomBtn:(UIButton *)Btn
 {
@@ -1043,6 +1198,53 @@ static NSString *iden =@"hefiuq";
 
 
 }
+
+
+
+
+//-(UIView *)PLayBigView
+//{
+//    if (!_PLayBigView) {
+//        
+//        _PLayBigView =[[UIView alloc]init];
+//        _PLayBigView.backgroundColor =[UIColor grayColor];
+//        _PLayBigView.frame =CGRectMake(0, 0, -self.view.frame.size.height, self.view.frame.size.width);
+//        
+//        [currentWindow addSubview:_PLayBigView];
+//        
+//        
+//    }
+//    
+//    return _PLayBigView;
+//    
+//    
+//    
+//}
+//
+//- (UIButton *)playViewBackBtn
+//{
+//    if (!_playViewBackBtn) {
+//        
+//        _playViewBackBtn =[[UIButton alloc]init];
+//        [_playViewBackBtn addTarget:self action:@selector(playViewBackBtn) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        [_playViewBackBtn setImage:[UIImage imageNamed:@"taobao_xp_hl_ewall_back_normal副本"] forState:UIControlStateNormal];
+//        [_PLayBigView addSubview:_playViewBackBtn];
+//        [_playViewBackBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(_PLayBigView.mas_left).with.offset(5);
+//            make.top.equalTo(self.view.mas_top).with.offset(20);
+//            make.width.equalTo(@50);
+//            make.height.equalTo(@40);
+//        }];
+//        
+//        
+//        
+//    }
+//
+//    return _playViewBackBtn;
+//
+//}
+
 
 
 

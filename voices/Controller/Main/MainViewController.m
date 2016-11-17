@@ -104,7 +104,7 @@
     
     
     SCNavTabBarController *scnav = [[SCNavTabBarController alloc]init];
-    scnav.subViewControllers = @[me,Recommend,Class];
+    scnav.subViewControllers = @[Recommend,Class,me];
     scnav.scrollAnimation = YES;
     [scnav addParentController:self];
      isOpen = NO;

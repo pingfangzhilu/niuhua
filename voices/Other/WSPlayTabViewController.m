@@ -126,6 +126,22 @@
     
     
     
+    
+    UIImageView *BottomImageV =[[UIImageView alloc]init];
+    BottomImageV.image =[UIImage imageNamed:@"Xalayajishu"];
+    [self.view addSubview:BottomImageV];
+    [BottomImageV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@30);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(-10);
+        make.width.equalTo(@220);
+        make.centerX.equalTo(self.view.mas_centerX);
+        
+        
+        
+    }];
+    
+    
+    
 
     
 }

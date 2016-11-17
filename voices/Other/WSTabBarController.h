@@ -70,4 +70,23 @@
 
 @property(nonatomic,strong)UIButton *markStringSele;
 
+@property (nonatomic,strong)UIButton *BottomNextBtn;
+
+@property(nonatomic,strong)UIButton *BottomUpBtn;
+
+@property (nonatomic,assign)NSInteger PlayURLindex;
+
+
+
+
+@property (nonatomic,strong)NSMutableArray *PlayUrlData;
+
+
+
+
+
+
+
+
+
 @end

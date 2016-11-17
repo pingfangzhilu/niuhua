@@ -22,7 +22,7 @@
      [XMReqMgr sharedInstance].delegate = self;
   
     [self CreateUI];
-    
+     [self LoadData];
     
 }
 
@@ -30,7 +30,7 @@
 {
     [super viewWillAppear:animated];
  [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [self LoadData];
+   
 
 }
 
@@ -57,7 +57,38 @@
         
     }];
 
-
+    UIView *foodView =[[UIView alloc]init];
+    foodView.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    foodView.backgroundColor =[UIColor whiteColor];
+    self.MianTableView.tableFooterView =foodView;
+    
+    UIImageView *foodimagv =[[UIImageView alloc]init];
+    foodimagv.image =[UIImage imageNamed:@"ximalayalogo"];
+    [foodView addSubview:foodimagv];
+    [foodimagv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@13);
+        
+        make.width.equalTo(@90);
+        make.centerX.equalTo(foodView.mas_centerX);
+        make.top.equalTo(foodView.mas_top).with.offset(10);
+        
+    }];
+    
+    UILabel *ximalayaLabel =[[UILabel alloc]init];
+    ximalayaLabel.text =@"由喜马拉雅开放平台提供技术支持";
+    ximalayaLabel.textAlignment = NSTextAlignmentCenter;
+    ximalayaLabel.font =[UIFont systemFontOfSize:16];
+    ximalayaLabel.textColor =[UIColor blackColor];
+    [foodView addSubview:ximalayaLabel];
+    
+    [ximalayaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(foodView.mas_left);
+        make.right.equalTo(foodView.mas_right);
+        make.height.equalTo(@20);
+        make.top.equalTo(foodimagv.mas_bottom).with.offset(10);
+        
+    }];
 
 }
 
@@ -216,6 +247,19 @@ static NSString *iden =@"iden";
             NSLog(@"[%d]:%@",count++,album.albumTitle);
         }
     }
+//    NSMutableArray *DataArry = [NSMutableArray array];
+//    [DataArry addObjectsFromArray:models];
+    
+    
+    NSMutableIndexSet *set=[NSMutableIndexSet indexSet];
+    [ set addIndex:4];
+//    [set addIndex:14];
+    if (models.count>13) {
+         [models removeLastObject];
+        
+    }
+    [models removeObjectsAtIndexes:set];
+//
     self.array = models;
     self.titleWillShow =title;
     

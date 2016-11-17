@@ -62,6 +62,11 @@ typedef enum : NSInteger{
 //@property (retain, nonatomic) UIViewController *nonMenuViewController;
 //@property (retain, nonatomic) ImageHeaderView *imageHeaderView;
 
+@property (nonatomic,strong)NSString *power;
+
+@property (nonatomic,strong)NSString *powerData;
+
+@property (nonatomic,strong)NSString *lockState;
 
 
 @end

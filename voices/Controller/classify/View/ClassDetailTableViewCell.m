@@ -106,7 +106,7 @@ self.PassImagv.image = [UIImage imageNamed:@"album_play_count"];
         make.left.equalTo(self.PassImagv.mas_right).with.offset(5);
         make.centerY.equalTo(self.PassImagv.mas_centerY);
         make.height.equalTo(@15);
-        make.width.equalTo(@80);
+        make.width.equalTo(@90);
         
     }];
     
@@ -141,6 +141,7 @@ self.PassImagv.image = [UIImage imageNamed:@"album_play_count"];
     
     self.TimeLabel =[[UILabel alloc]init];
     self.TimeLabel.font =[UIFont systemFontOfSize:12];
+   
     [self.contentView addSubview:self.TimeLabel];
     
     [self.TimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -148,7 +149,7 @@ self.PassImagv.image = [UIImage imageNamed:@"album_play_count"];
         make.right.equalTo(self.LookImagv.mas_left).with.offset(-5);
         make.height.equalTo(@15);
         make.centerY.equalTo(self.PassImagv.mas_centerY);
-        make.width.equalTo(@35);
+        make.width.equalTo(@25);
         
         
     }];
@@ -156,7 +157,7 @@ self.PassImagv.image = [UIImage imageNamed:@"album_play_count"];
     self.TimeImagv =[[UIImageView alloc]init];
     self.TimeImagv.image =[UIImage imageNamed:@"bg_myitem_alltime_new"];
     [self.contentView addSubview:self.TimeImagv];
-    
+     self.TimeImagv.hidden =YES;
     [self.TimeImagv mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@10);
         make.width.equalTo(@10);

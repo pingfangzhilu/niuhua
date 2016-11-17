@@ -45,8 +45,59 @@
 
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(leftVIEWUI:) name:@"leftVIEWUI" object:nil];
     
- 
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(leftUI:) name:@"leftUIredata" object:nil];
 }
+
+- (void)leftUI:(NSNotification *)notif
+{
+
+    self.power = (NSString *)notif.userInfo[@"leftpower"];
+    
+    self.powerData =(NSString *)notif.userInfo[@"leftpowerData"];
+
+   self.lockState=(NSString *)notif.userInfo[@"leftlockState"];
+    
+    if ([self.powerData intValue]>0 &&[self.powerData intValue]<10) {
+         _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_0_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+        
+    }
+    else if ([self.powerData intValue]>10 &&[self.powerData intValue]<25)
+    {
+      _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_10_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+    
+    
+    }else if ([self.powerData intValue]>25 &&[self.powerData intValue]<50)
+    {
+     _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_25_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+    
+    
+    }else if ([self.powerData intValue]>50 &&[self.powerData intValue]<75)
+    {
+     _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_50_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+    }
+    else if([self.powerData intValue]>75 &&[self.powerData intValue]<99)
+    {
+      _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_75_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+    
+    
+    
+    }else
+    {
+    
+      _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_100_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+    
+    
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+         [self.tableView reloadData];
+    });
+    
+   
+    
+
+}
+
 
 - (void)leftVIEWUI:(NSNotification *)notif
 {
@@ -56,7 +107,15 @@
 
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"leftUIredata" object:nil];
 
+
+
+}
 
 
 //- (void)viewWillAppear:(BOOL)animated
@@ -169,10 +228,10 @@
 
 
     self.automaticallyAdjustsScrollViewInsets =NO;
-    _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"nav_menu_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_send_void_msg",@"nav_menu_play_album",@"nav_menu_play_list",@"nav_menu_help_circle"];
+    _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"nav_menu_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
     
     
-   self.AllDataArray = @[@"我的消息",@"搜索设备",@"2",@"机器人电量",@"设备运行正常",@"5",@"设备播放列表",@"发送文字发音",@"声音所在专辑",@"播放列表",@"帮助与反馈"];
+   self.AllDataArray = @[@"我的消息",@"搜索设备",@"2",@"机器人电量",@"设备运行正常",@"5",@"设备播放列表",@"声音所在专辑",@"帮助与反馈"];
     
     CGFloat ImavHeight = self.view.frame.size.width*2/3;
     self.tableView =[[UITableView alloc]init];
@@ -184,6 +243,7 @@
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.separatorStyle =UITableViewCellSeparatorStyleNone;
+    self.tableView.bounces =NO;
     [self.view addSubview:self.tableView];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -251,7 +311,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 11;
+    return 9;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -266,6 +326,7 @@
         }
         //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.headImageV.image =[UIImage imageNamed:_menus[indexPath.row]] ;
+        
         cell.CentLabel.text =self.AllDataArray[indexPath.row];
 //        [NSString stringWithFormat:@"%ld",(long)indexPath.row];
         
@@ -434,7 +495,7 @@
         }
              break;
             
-            case 8:
+            case 7:
         {
          
             
@@ -628,8 +689,9 @@
         
         self.tishiLabel.hidden =NO;
         
-       
+        self.WifiBtn.backgroundColor =[UIColor grayColor];
         self.WifiBtn.userInteractionEnabled =NO;
+        
         
     }else
     {
@@ -638,7 +700,7 @@
         
         self.WifiBtn.userInteractionEnabled =YES;
         
-       
+        self.WifiBtn.backgroundColor =[UIColor yellowColor];
         
 //        [self searchLoad];
         

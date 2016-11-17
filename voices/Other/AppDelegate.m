@@ -23,7 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
-    [[XMReqMgr sharedInstance] registerXMReqInfoWithKey:@"b617866c20482d133d5de66fceb37da3" appSecret:@"4d8e605fa7ed546c4bcb33dee1381179"] ;
+    [[XMReqMgr sharedInstance] registerXMReqInfoWithKey:@"aa92815ea48d7f6658b0d8225d20e7c4" appSecret:@"249bcd84bce6d1b16218b0c92e34b6b8"] ;
     
    
     WSTabBarController *sdkDemoViewController =[[WSTabBarController alloc]init];

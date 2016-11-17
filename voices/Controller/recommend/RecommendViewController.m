@@ -213,10 +213,38 @@
     }];
 
 
-    
+    UIView *foodView =[[UIView alloc]init];
+    foodView.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    foodView.backgroundColor =[UIColor whiteColor];
+    self.MainTableView.tableFooterView =foodView;
   
+    UIImageView *foodimagv =[[UIImageView alloc]init];
+    foodimagv.image =[UIImage imageNamed:@"ximalayalogo"];
+    [foodView addSubview:foodimagv];
+    [foodimagv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@13);
+        
+        make.width.equalTo(@90);
+        make.centerX.equalTo(foodView.mas_centerX);
+        make.top.equalTo(foodView.mas_top).with.offset(10);
+        
+    }];
     
-
+    UILabel *ximalayaLabel =[[UILabel alloc]init];
+    ximalayaLabel.text =@"由喜马拉雅开放平台提供技术支持";
+    ximalayaLabel.textAlignment = NSTextAlignmentCenter;
+    ximalayaLabel.font =[UIFont systemFontOfSize:16];
+    ximalayaLabel.textColor =[UIColor blackColor];
+    [foodView addSubview:ximalayaLabel];
+    
+    [ximalayaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(foodView.mas_left);
+        make.right.equalTo(foodView.mas_right);
+        make.height.equalTo(@20);
+        make.top.equalTo(foodimagv.mas_bottom).with.offset(10);
+        
+    }];
 }
 
 
@@ -446,8 +474,72 @@ static NSString *iden =@"iden";
 {
 
 
-    return 6;
+//    return 6;
 
+    
+    switch (section) {
+        case 0:
+           return  self.TuijianArray.count;
+            break;
+        case 1:
+//            XMbum =self.xinMamaArray[indexPath.row];
+             return  self.xinMamaArray.count;
+            break;
+        case 2:
+//            XMbum =self.GushiArray[indexPath.row];
+              return  self.GushiArray.count;
+            break;
+        case 3:
+//            XMbum =self.YwenArray[indexPath.row];
+            return  self.YwenArray.count;
+            break;
+        case 4:
+//            XMbum =self.ErgeArray[indexPath.row];
+              return  self.ErgeArray.count;
+            break;
+        case 5:
+//            XMbum =self.KepuArray[indexPath.row];
+            return  self.KepuArray.count;
+            break;
+        case 6:
+//            XMbum =self.GuoxueArray[indexPath.row];
+             return  self.GuoxueArray.count;
+            break;
+        case 7:
+//            XMbum =self.QinziArray[indexPath.row];
+             return  self.QinziArray.count;
+            break;
+        case 8:
+//            XMbum =self.KedaiArray[indexPath.row];
+             return  self.KedaiArray.count;
+            break;
+        case 9:
+//            XMbum =self.ShowArray[indexPath.row];
+             return  self.ShowArray.count;
+            break;
+        case 10:
+//            XMbum =self.KatongArray[indexPath.row];
+               return  self.KatongArray.count;
+            break;
+        case 11:
+//            XMbum =self.ZhongxiaoArray[indexPath.row];
+             return  self.ZhongxiaoArray.count;
+            break;
+            
+            
+            
+            
+            
+        default:
+            break;
+    }
+    
+
+    
+    
+    return 0;
+    
+    
 }
 
 

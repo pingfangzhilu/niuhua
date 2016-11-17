@@ -226,7 +226,39 @@
         [self.MainTableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     
-   
+    UIView *foodView =[[UIView alloc]init];
+    foodView.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
+    foodView.backgroundColor =[UIColor whiteColor];
+    self.MainTableView.tableFooterView =foodView;
+    
+    UIImageView *foodimagv =[[UIImageView alloc]init];
+    foodimagv.image =[UIImage imageNamed:@"ximalayalogo"];
+    [foodView addSubview:foodimagv];
+    [foodimagv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@13);
+        
+        make.width.equalTo(@90);
+        make.centerX.equalTo(foodView.mas_centerX);
+        make.top.equalTo(foodView.mas_top).with.offset(10);
+        
+    }];
+    
+    UILabel *ximalayaLabel =[[UILabel alloc]init];
+    ximalayaLabel.text =@"由喜马拉雅开放平台提供技术支持";
+    ximalayaLabel.textAlignment = NSTextAlignmentCenter;
+    ximalayaLabel.font =[UIFont systemFontOfSize:16];
+    ximalayaLabel.textColor =[UIColor blackColor];
+    [foodView addSubview:ximalayaLabel];
+    
+    [ximalayaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(foodView.mas_left);
+        make.right.equalTo(foodView.mas_right);
+        make.height.equalTo(@20);
+        make.top.equalTo(foodimagv.mas_bottom).with.offset(10);
+        
+    }];
+
 
 }
 
@@ -314,7 +346,11 @@
             switch (indexPath.row) {
                 case 0:
                 {
-                
+                    NSDictionary *dict = @{@"shebiData":self.DataArray,@"shebiTwo":[NSString stringWithFormat:@"%ld",(long)indexPath.row]};
+                    
+                    NSNotification *notification =[NSNotification notificationWithName:@"shebiUrl" object:nil userInfo:dict];
+                    //通过通知中心发送通知
+                    [[NSNotificationCenter defaultCenter] postNotification:notification];
                     [self devplayTrack];
                     
                     
@@ -437,9 +473,13 @@
                 cell.LookLabel.text= [inter intervalSinceNow:[NSString stringWithFormat:@"%f",XMbum.updatedAt/1000]];
                 
                 
-                
-                
+                if (XMbum.playCount >10000) {
+                      cell.PassLabel.text =[NSString stringWithFormat:@"播放%.2f万次",XMbum.playCount/10000.0 ];
+                }
+                else
+                {
                 cell.PassLabel.text =[NSString stringWithFormat:@"播放%ld次",XMbum.playCount ];
+                }
                 [cell.HeaadImagv sd_setImageWithURL:[NSURL URLWithString:XMbum.coverUrlLarge] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
                 
                 [cell.ArrowImgv addTarget:self  action:@selector(cellbutton:) forControlEvents:UIControlEventTouchUpInside];
@@ -738,7 +778,10 @@
 
 - (void)devplayTrack
 {
-    //NSString转char * /const char *
+    
+    
+    
+       //NSString转char * /const char *
     const char * playurl = [self.track.playUrl32 UTF8String];
     const char * name = [self.track.trackTitle UTF8String];
     
@@ -751,6 +794,11 @@
     return ;
 
 }
+
+
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
