@@ -37,7 +37,7 @@ void ocCallBack(int type,char *msg,int size)
 - (void)text:(NSString *)textString Time:(int )TimeBase  playState:(int)State
 {
 //self.markStringSele = @"yes";
-
+ NSLog(@"valuevaluevaluevaluevaluevalue%d",TimeBase);
     dispatch_async(dispatch_get_main_queue(), ^{
          _BottomLabel.text =[NSString stringWithFormat:@"%@",textString];
         _BottomSlider.value = TimeBase;
@@ -52,14 +52,29 @@ void ocCallBack(int type,char *msg,int size)
             });
              _BottomBtn.selected=YES;
         }
-        else
+        else if(State==2)
         {
             NSLog(@"暂停");
             _BottomBtn.selected =NO;
 //               self.markStringSele.selected =_BottomBtn.selected;
             
+        }else if (State==0)
+        {
+         _BottomBtn.selected =NO;
+            if (TimeBase>95) {
+                
+                [self ShebiNext];
+                
+                
+            }
+            
         }
+      else
+      {
       
+      
+      
+      }
         
 //
 //       [self BottomBtn:_BottomBtn];
@@ -75,7 +90,7 @@ void ocCallBack(int type,char *msg,int size)
 
 - (void)ocCallMsg:(int)type
 {
-     [self BottomView];
+//     [self BottomView];
     
     if (type==SYS_EVENT) {
         Sysdata_t *sys = nativeGetSysdata();
@@ -86,35 +101,48 @@ void ocCallBack(int type,char *msg,int size)
         //通过通知中心发送通知
         [[NSNotificationCenter defaultCenter] postNotification:notification];
 //        sys->power;
-//        printf("电量。。。。＝－－－－－play->name = %d\n",sys->powerData);
+        printf("电量。。。。＝－－－－－play->name = %d\n",sys->powerData);
         
     }else if(type==PLAY_EVENT){
         Mplayer_t * play = nativeGetPlayer();
         printf("play->playState = %d\n",play->playState);
         printf("名字歌啊。。。。＝－－－－－play->name = %s\n",play->musicName);
-        printf("时间：：：：%d",play->progress);
+        printf("时间：：：：%d\n",play->snycSeekBar);
 //        play->voldata;
 
 //        self.BottomSlider.value  =play->progress;
         NSString * strPath = [NSString stringWithUTF8String:play->musicName];
 
         
-        [OCP text:strPath Time:(int)play->progress playState:(int)play->playState];
+        [OCP text:strPath Time:play->snycSeekBar playState:(int)play->playState];
         
         
     }else{      //NETWORK_EVENT
         
          Sysdata_t *sys = nativeGetSysdata();
-        switch (sys->netState) {
+       
+        printf("%d\n",sys->netState);
+        NSString *StrShebi = [NSString stringWithFormat:@"%d",sys->netState];
+        
+        NSLog(@"=====================================%@",StrShebi);
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"shebiyunxing" object:StrShebi];
+           switch (sys->netState) {
             case 0:
             {
-             
+                
                 [OCP shuanxinBottomLabel];
                 
-            
-               
             }
+                
                 break;
+                  case 1:
+               {
+               
+                 [OCP BottomUIData];
+               
+               }
+                   
+                    break;
                 
             default:
                 break;
@@ -133,11 +161,18 @@ void ocCallBack(int type,char *msg,int size)
 dispatch_async(dispatch_get_main_queue(), ^{
       _BottomLabel.text = @"设备未连接";
 });
-//    [self BottomView];
-  
-//    [self.BottomLabel setText:@"设备未设备"];
+
 }
 
+
+- (void)BottomUIData
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _BottomLabel.text = @"设备连接正常";
+    });
+
+
+}
 
 
 
@@ -454,21 +489,9 @@ nativeInitSystem(ocCallBack);
 - (void)swipeGesture:(UISwipeGestureRecognizer *)tap
 {
     
-//    UIView *view =[[UIView alloc]init];
-//    view.backgroundColor =[UIColor redColor];
-//    
-//    [currentWindow addSubview:view];
-//    
-//    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(currentWindow.mas_bottom);
-//        make.left.equalTo(currentWindow.mas_left);
-//        make.right.equalTo(currentWindow.mas_right);
-//        make.height.equalTo(@200);
-//        
-//    }];
-    
-//   CGPoint point = [tap translationInView:self.BottomView];
+    NSLog(@"滑动");
     //移动结束
+    
     [self BottomView];
   
     _BottomBackView.hidden =NO;

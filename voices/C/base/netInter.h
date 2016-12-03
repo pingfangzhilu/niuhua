@@ -18,7 +18,7 @@
 #define SYNC_MENU_OK		0
 #define SYNC_MENU_FAILED	1
 
-#define VERSION		"v-2016-10-21.19:24"
+#define VERSION		"v-2016-12-3.19:52"
 
 typedef struct{
     unsigned char playState;
@@ -28,7 +28,7 @@ typedef struct{
     int musicTime;
     char url[128];
     char musicName[64];
-    int progress;
+    int progress_t;
 }Mplayer_t;
 //兼容IOS 获取状态
 Mplayer_t *	GetMplayer_t(void);

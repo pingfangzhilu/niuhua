@@ -52,8 +52,8 @@
     
     self.mySwitch =[[UISwitch alloc]init];
     
-            [self.mySwitch setOn:NO];
-    
+//            [self.mySwitch setOn:NO];
+//    [self.mySwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
     [self.contentView addSubview:self.mySwitch];
     
     [self.mySwitch mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +91,19 @@
 
 
 
-
+//-(void)switchAction:(id)sender
+//{
+//    UISwitch *switchButton = (UISwitch*)sender;
+//    BOOL isButtonOn = [switchButton isOn];
+//    if (isButtonOn) {
+////        showSwitchValue.text = @"是";
+//        NSLog(@"shi");
+//        
+//    }else {
+////        showSwitchValue.text = @"否";
+//        NSLog(@"no");
+//    }
+//}
 
 
 

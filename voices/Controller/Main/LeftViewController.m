@@ -46,7 +46,35 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(leftVIEWUI:) name:@"leftVIEWUI" object:nil];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(leftUI:) name:@"leftUIredata" object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shebiUI:) name:@"shebiyunxing" object:nil];
+    
 }
+ - (void)shebiUI:(NSNotification *)notif
+{
+
+    NSString *Str  = (NSString *)[notif object];
+    if ([Str isEqualToString:@"0"]) {
+         [self.AllDataArray replaceObjectAtIndex:4 withObject:@"设备未连接"];
+    }
+    else
+    {
+    
+     [self.AllDataArray replaceObjectAtIndex:4 withObject:@"设备运行正常"];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+ 
+        
+        [self.tableView reloadData];
+    });
+    
+    
+
+
+}
+
 
 - (void)leftUI:(NSNotification *)notif
 {
@@ -56,40 +84,61 @@
     self.powerData =(NSString *)notif.userInfo[@"leftpowerData"];
 
    self.lockState=(NSString *)notif.userInfo[@"leftlockState"];
-    
-    if ([self.powerData intValue]>0 &&[self.powerData intValue]<10) {
-         _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_0_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+   
+
+//
+
+    switch ([self.power intValue]) {
+        case 0:
+        {
+            if ([self.powerData intValue]==25 )
+            {
+                _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_25_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+                
+                
+            }else if ([self.powerData intValue]==50 )
+            {
+                _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_50_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+            }
+            else if([self.powerData intValue]==75)
+            {
+                _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_75_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+                
+                
+                
+            }else
+            {
+                
+                _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_100_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+                
+                
+            }
+        }
+            break;
+            case 1:
+        {
         
+             _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_charge_lightning", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+            
+            
+        }
+            break;
+        default:
+            break;
     }
-    else if ([self.powerData intValue]>10 &&[self.powerData intValue]<25)
-    {
-      _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_10_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
     
-    
-    }else if ([self.powerData intValue]>25 &&[self.powerData intValue]<50)
-    {
-     _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_25_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
-    
-    
-    }else if ([self.powerData intValue]>50 &&[self.powerData intValue]<75)
-    {
-     _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_50_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
-    }
-    else if([self.powerData intValue]>75 &&[self.powerData intValue]<99)
-    {
-      _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_75_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
+
+   
     
     
     
-    }else
-    {
-    
-      _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"ic_100_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
     
     
-    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        
          [self.tableView reloadData];
     });
     
@@ -111,7 +160,7 @@
 {
     [super viewDidDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"leftUIredata" object:nil];
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"leftUIredata" object:nil];
 
 
 
@@ -231,7 +280,8 @@
     _menus = @[@"nav_menu_msg", @"nav_menu_search_device", @"navigation_sound", @"nav_menu_battery", @"nav_menu_network_ok",@"nav_menu_unlock",@"nav_menu_dev_playlist",@"nav_menu_play_album",@"nav_menu_help_circle"];
     
     
-   self.AllDataArray = @[@"我的消息",@"搜索设备",@"2",@"机器人电量",@"设备运行正常",@"5",@"设备播放列表",@"声音所在专辑",@"帮助与反馈"];
+   NSArray *AAAA = @[@"我的消息",@"搜索设备",@"2",@"机器人电量",@"设备未连接",@"5",@"设备播放列表",@"声音所在专辑",@"帮助与反馈"];
+    [self.AllDataArray addObjectsFromArray:AAAA];
     
     CGFloat ImavHeight = self.view.frame.size.width*2/3;
     self.tableView =[[UITableView alloc]init];
@@ -403,8 +453,28 @@
         cell.selectionStyle =UITableViewCellSelectionStyleNone;
       
           [cell.mySwitch addTarget:self action:@selector(switchIsChanged:) forControlEvents:UIControlEventValueChanged];
-        if ([cell.mySwitch isOn]) {
+        
+
+        if ([self.lockState isEqualToString:@"0"]) {
+            [cell.mySwitch setOn:NO];
+//            cell.headimge.image =[UIImage imageNamed:@"nav_menu_lock"];
+//            cell.centLabel.text =@"设备已锁";
+        }else if ([self.lockState isEqualToString:@"1"])
+        {
+            [cell.mySwitch setOn:YES];
+//            cell.headimge.image =[UIImage imageNamed:@"nav_menu_unlock"];
+//            cell.centLabel.text =@"设备已解锁";
             
+        }
+        else
+        {
+        [cell.mySwitch setOn:NO];
+        
+        }
+
+        
+        
+     if ([cell.mySwitch isOn]) {
             
            cell.headimge.image =[UIImage imageNamed:@"nav_menu_unlock"];
            cell.centLabel.text =@"设备已解锁";
@@ -417,7 +487,16 @@
            cell.centLabel.text =@"设备已锁";
         }
 //
-        
+//        for (id obj in cell.subviews)
+//        {
+//            if ([NSStringFromClass([obj class])isEqualToString:@"MianLeftViewCell"])
+//            {
+//                UIScrollView *scroll = (UIScrollView *) obj;
+//                scroll.delaysContentTouches =NO;
+//                break;
+//            }
+//        }
+
         
         
         
@@ -440,9 +519,20 @@
 }
 -(void)switchIsChanged:(UISwitch *)paramSender{
    
+   UISwitch *switchButton = (UISwitch*)paramSender;
+    BOOL isButtonOn = [switchButton isOn];
+    if (isButtonOn) {
+        NSLog(@"YES");
+//         self.lockState =@"1";
+        nativeUnlockHost();
+       
+   }else {
+       NSLog(@"No");
+//         self.lockState =@"0";
+        nativeLockHost();
+   }
     
-    
-//    nativeLockHost();
+//
     
     
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:5 inSection:0];
@@ -477,18 +567,20 @@
        MianLeftViewCell  *cell =[tableView cellForRowAtIndexPath:indexPath];
         
             if ([cell.mySwitch isOn]) {
+                [self switchIsChanged:cell.mySwitch];
                 
-                [cell.mySwitch setOn:NO];
-                cell.headimge.image =[UIImage imageNamed:@"nav_menu_lock"];
-                cell.centLabel.text =@"设备已锁";
+//               [cell.mySwitch setOn:NO];
+//                cell.headimge.image =[UIImage imageNamed:@"nav_menu_lock"];
+//                cell.centLabel.text =@"设备已锁";
                 
             }else
             {
-              
-                [cell.mySwitch setOn:YES];
+                [self switchIsChanged:cell.mySwitch];
                 
-                cell.headimge.image =[UIImage imageNamed:@"nav_menu_unlock"];
-                cell.centLabel.text =@"设备已解锁";
+//                [cell.mySwitch setOn:YES];
+//                
+//                cell.headimge.image =[UIImage imageNamed:@"nav_menu_unlock"];
+//                cell.centLabel.text =@"设备已解锁";
             }
             
             
@@ -738,5 +830,16 @@
 
 }
 
+
+- (NSMutableArray *)AllDataArray
+{
+
+
+    if (!_AllDataArray) {
+        
+        _AllDataArray = [[NSMutableArray alloc]init];
+    }
+    return _AllDataArray;
+}
 
 @end

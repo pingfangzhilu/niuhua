@@ -7,8 +7,12 @@
 //
 
 #import "WSPlayTabViewController.h"
-
+//#import "JXCircleSlider.h"
 @implementation WSPlayTabViewController
+{
+
+ UISlider *proView;
+}
  - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,26 +76,68 @@
         
         
     }];
-    CGFloat HHHHH =self.view.frame.size.height *0.5 -(WhithWide +60)*0.5 -50;
+//    CGFloat HHHHH =self.view.frame.size.height *0.5 -(WhithWide +60)*0.5 -50;
+////    
+//    self.circularSlider =[[EFCircularSlider alloc]initWithFrame:CGRectMake(20,HHHHH, WhithWide+60, WhithWide+60)];
+////    self.circularSlider.handleType = bigCircle;
+//    self.circularSlider.handleColor = [UIColor redColor];
+//    
+//    
+//     self.circularSlider.maximumValue = 1;
+//    
+//    [self.circularSlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+//    [self.view addSubview:self.circularSlider];
+//
+//    
+//    
+//        [self.circularSlider mas_makeConstraints:^(MASConstraintMaker *make) {
+//    
+//            make.width.and.height.equalTo(@(280));
+//            make.centerX.equalTo(headImageV.mas_centerX);
+//            make.centerY.equalTo(headImageV.mas_centerY);
+//    
+//    
+//            
+//        }];
     
-    self.circularSlider =[[EFCircularSlider alloc]initWithFrame:CGRectMake(20,HHHHH, WhithWide+60, WhithWide+60)];
-//    self.circularSlider.handleType = bigCircle;
-    self.circularSlider.handleColor = [UIColor redColor];
+    proView = [[UISlider alloc] initWithFrame:CGRectZero];
+    //[proView setProgressViewStyle:UIProgressViewStyleDefault]; //设置进度条类型
+    proView.backgroundColor = [UIColor clearColor];
+    proView.thumbTintColor = [UIColor redColor];
+    proView.continuous = NO;
+    [proView setThumbImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
+     [proView addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+//    proView.layer.cornerRadius  = (WhithWide+20)*0.5 ;
+//    proView.layer.masksToBounds = YES;
     
-    [self.circularSlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:self.circularSlider];
+    [self.view addSubview:proView];
+[proView mas_makeConstraints:^(MASConstraintMaker *make) {
+   
+    make.height.and.width.equalTo(@(WhithWide+20));
+    
+//    make.centerX.equalTo(self.view.mas_centerX);
+    
+    make.top.equalTo(headImageV.mas_bottom).with.offset(20);
+    make.centerX.equalTo(self.view.mas_centerX);
     
     
+//    make.centerY.equalTo(self.view.mas_centerY).with.offset(-50);
     
-//    [self.circularSlider mas_makeConstraints:^(MASConstraintMaker *make) {
-//       
-//        make.width.and.height.equalTo(@(280));
-//        make.centerX.equalTo(headImageV.mas_centerX);
-//        make.centerY.equalTo(headImageV.mas_centerY);
-//        
-//        
-//        
-//    }];
+    
+}];
+    
+//   self.Circleslider = [[JXCircleSlider alloc] initWithFrame:CGRectMake(0, 0, WhithWide+50, WhithWide+50)];
+//    
+//    self.Circleslider.center = self.view.center ;
+//    
+//    self.Circleslider.transform = CGAffineTransformMakeRotation(-M_PI/2);
+//    [self.Circleslider addTarget:self action:@selector(newValue:) forControlEvents:UIControlEventValueChanged];
+//    
+//    [self.Circleslider changeAngle:0];
+//    [self.view addSubview:self.Circleslider];
+//
+
+    
     //将时间戳转为正常时间
     
     ;
@@ -120,7 +166,7 @@
         make.height.equalTo(@15);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.circularSlider.mas_top).with.offset(-5);
+        make.bottom.equalTo(headImageV.mas_top).with.offset(-5);
         
     }];
     
@@ -145,6 +191,17 @@
 
     
 }
+-(void)sliderValueChanged:(id)sender
+{
+    NSInteger second = [XMSDKPlayer sharedPlayer].currentTrack.duration*proView.value;
+    //            NSLog(@"seek to %ld   total : %ld",(long)second,(long)[XMSDKPlayer sharedPlayer].currentTrack.duration);
+    [[XMSDKPlayer sharedPlayer] seekToTime:second];
+
+}
+
+-(void)newValue:(JXCircleSlider*)slider{
+    NSLog(@"newValue:%d",slider.angle);
+}
 
 
 -(void)valueChanged:(EFCircularSlider*)slider {
@@ -161,13 +218,22 @@
 
 - (void)XMTrackPlayNotifyProcess:(CGFloat)percent currentSecond:(NSUInteger)currentSecond
 {
-
-    
-    self.circularSlider.currentValue = percent;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        
+      self.circularSlider.currentValue = percent;
+//
+//    });
+     proView.value = percent;
+//     [self.Circleslider changeAngle:(int)percent];
+//    NSLog(@"yuanhuan%lu",(unsigned long)currentSecond);
     
     NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:currentSecond];
     //    NSLog(@"date:%@",[detaildate description]);
     //实例化一个NSDateFormatter对象
+    
+    
+    NSLog(@"yuanhuan%f",percent);
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"mm:ss"];

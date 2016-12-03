@@ -70,6 +70,7 @@ static void parseNetworkdData(int type,char *msg,int size)
         event_type =PLAY_EVENT;
     }else if(!strcmp(pSub->valuestring,"sys")){
         sys->sysdata.powerData =cJSON_GetObjectItem(pJson,"state")->valueint;
+      
         sys->sysdata.power =(int)cJSON_GetObjectItem(pJson,"power")->valueint;
         pSub =cJSON_GetObjectItem(pJson,"openTime");
         snprintf(sys->sysdata.closetime, 64, "%s",pSub->valuestring);

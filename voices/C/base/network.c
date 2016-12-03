@@ -35,6 +35,7 @@
 typedef struct{
     unsigned char quit;
     unsigned char menusync;
+    unsigned char workState;
     char serverip[16];
     int port;
     int sockfd;
@@ -51,6 +52,9 @@ typedef struct{
     char buf[1500];
     int sockfd;
 }NetMsg_t;
+
+#define REPORT_PROGRESS 1   //上报进度条
+#define SYNC_DEVICES    2   //同步设备状态
 
 static NetServer_t *Net=NULL;
 Mplayer_t *player=NULL;
@@ -141,6 +145,38 @@ static int SetTcpNoDelay(int sockfd) {
     }
     return 0;
 }
+#ifndef IOS
+//fd:网络连接描述符
+//start:首次心跳侦测包发送之间的空闲时间
+ //interval:两次心跳侦测包之间的间隔时间
+//count:探测次数，即将几次探测失败判定为TCP断开
+int set_tcp_keepAlive(int fd, int start, int interval, int count){
+    int keepAlive = 1;
+    if (fd < 0 || start < 0 || interval < 0 || count < 0)
+    	return -1;
+    //启用心跳机制，如果您想关闭，将keepAlive置零即可
+    if(setsockopt(fd,SOL_SOCKET,SO_KEEPALIVE,(void*)&keepAlive,sizeof(keepAlive)) == -1){
+        perror("setsockopt");
+        return -1;
+    }
+    //启用心跳机制开始到首次心跳侦测包发送之间的空闲时间
+    if(setsockopt(fd,SOL_TCP,TCP_KEEPIDLE,(void *)&start,sizeof(start)) == -1){
+        perror("setsockopt");
+        return -1;
+    }
+    //两次心跳侦测包之间的间隔时间
+    if(setsockopt(fd,SOL_TCP,TCP_KEEPINTVL,(void *)&interval,sizeof(interval)) == -1){
+        perror("setsockopt");
+        return -1;
+    }
+    //探测次数，即将几次探测失败判定为TCP断开
+    if(setsockopt(fd,SOL_TCP,TCP_KEEPCNT,(void *)&count,sizeof(count)) == -1){
+        perror("setsockopt");
+        return -1;
+    }
+    return 0;
+}
+#endif
 static void checkNetworkState(void){
     if(Net->sockfd<=0){
         if(Net->port!=0){
@@ -157,8 +193,12 @@ static void checkNetworkState(void){
             intnet_timeout(INTNET_OK);
             setnoblock(Net->sockfd,0);
             SetTcpNoDelay(Net->sockfd);
+#ifndef IOS
+            set_tcp_keepAlive(Net->sockfd, 5, 3, 3);
+#endif
             Net->menusync=SYNC_MENU_FAILED;
-            pool_add_task(requestSyncState, NULL) ;
+            //pool_add_task(requestSyncState, NULL) ;
+            Net->workState=SYNC_DEVICES;
         }else{
             intnet_timeout(INTNET_FAILED);
             getServerIp();
@@ -273,7 +313,7 @@ void pasredata(int sockfd,char *data,int size){
         }
         if((pos+len+16)>size){
             memcpy(cacheBuf,recvdata+pos,size-pos);
-            NET_DBG("pos+len > size\n");
+//            NET_DBG("pos+len > size\n");
             free(msg);
             break;
         }
@@ -282,7 +322,7 @@ void pasredata(int sockfd,char *data,int size){
         free(msg);
         pos+=len+16;
         if(pos==size){
-            NET_DBG("pos+len = size\n");
+//            NET_DBG("pos+len = size\n");
             break;
         }
     }
@@ -307,7 +347,6 @@ static void handleMsg(const char * msg,int msgSize){
 #endif
     free((void *)rMsg);
 }
-
 static void *Client(void *arg){
     NetServer_t *Net = (NetServer_t *)arg;
     struct timeval tv;
@@ -422,7 +461,6 @@ static void progressTimer(void) {
                 	player->curTime=0;
                     player->playState=MEDIA_STOP;
                 }
-                player->progress =progress;
                 PLAY_DBG(" ...... report progress:%d\n",progress);
             }else{
                 NET_DBG_WARN(" warning message ......musicTime :%d ......\n",player->musicTime);
@@ -441,8 +479,23 @@ static void progressTimer(void) {
     return ;
 }
 static void *RunProgress(void){
+    Net->workState=REPORT_PROGRESS;
     while(Net->quit){
-        progressTimer();
+        switch(Net->workState){
+            case REPORT_PROGRESS:
+                progressTimer();
+                break;
+            case SYNC_DEVICES:
+                if(Net->menusync==SYNC_MENU_OK){
+                    //已经连接上设备，切换工作状态，上报进度条信息
+                    Net->workState=REPORT_PROGRESS;
+                }else{  //获取设备状态
+                    mplayerGetState();
+                }
+                break;
+            default:
+                break;
+           }
         sleep(1);
     }
     return NULL;
@@ -486,7 +539,7 @@ int initSystem(void networkEvent(int type,char *msg,int size)){
     action.sa_flags = 0;
     sigaction(SIGPIPE,&action,NULL); //信号类型
 
-    pool_init(1);
+//    pool_init(1);
     
     player  = (Mplayer_t *)calloc(1,sizeof(Mplayer_t));
     if(player==NULL){
@@ -541,7 +594,7 @@ void cleanSystem(void){
         free(Net);
         Net=NULL;
     }
-    pool_destroy();
+//    pool_destroy();
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -558,6 +611,9 @@ static void getServerIp(void){
     szJSON = cJSON_Print(pItem);
     wsize = strlen(szJSON);
     SendBro(szJSON,wsize);
+    usleep(1000);
+    SendBro(szJSON,wsize);
+    NET_DBG("getServerIp :%s \nwsize =%d\n",szJSON,wsize);
     cJSON_Delete(pItem);
 }
 

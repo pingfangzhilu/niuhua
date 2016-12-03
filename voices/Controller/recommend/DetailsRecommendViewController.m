@@ -28,13 +28,7 @@
     [self CreateUI];
     [self LoadData:3];
     
-    
-    
-    
-    
-    
-    
-    
+   
     
     
 }

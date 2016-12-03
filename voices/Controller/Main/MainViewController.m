@@ -40,8 +40,8 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(DetailsRecommendData:) name:@"DetailsRecommendData" object:nil];
    
-    [self CreteUI];
-//   
+   [self CreteUI];
+//
     
     
     // Do any additional setup after loading the view.

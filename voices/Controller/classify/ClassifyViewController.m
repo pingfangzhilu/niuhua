@@ -22,8 +22,9 @@
      [XMReqMgr sharedInstance].delegate = self;
   
     [self CreateUI];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
      [self LoadData];
-    
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -179,7 +180,7 @@ static NSString *iden =@"iden";
 - (void)LoadData
 {
 
-    [self showHUB];
+//    [self showHUB];
     
     NSDictionary *params = @{@"category_id":@(6),@"type":@(0)};
     //            [params setObject:@6 forKey:@"category_id"];
@@ -193,7 +194,7 @@ static NSString *iden =@"iden";
         else
         {
             NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
-        [self hideHUB];
+//        [self hideHUB];
         [self LoadData];
         }
     }];
@@ -203,7 +204,7 @@ static NSString *iden =@"iden";
 }
 - (void)showReceivedData:(id)result className:(NSString*)className valuePath:(NSString *)path titleNeedShow:(NSString*)title
 {
-    [self hideHUB];
+//    [self hideHUB];
     NSMutableArray *models = [NSMutableArray array];
     Class dataClass = NSClassFromString(className);
     if([result isKindOfClass:[NSArray class]]){
@@ -263,7 +264,15 @@ static NSString *iden =@"iden";
     self.array = models;
     self.titleWillShow =title;
     
-    [self.MianTableView reloadData];
+    
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [self.MianTableView reloadData];
+    });
+    
+    
+   
 //    GerneralTableViewController *vc = [[GerneralTableViewController alloc] init];
 //    vc.array = models;
 //    vc.titleWillShow = title;

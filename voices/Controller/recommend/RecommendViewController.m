@@ -32,8 +32,20 @@
      [self.navigationController setNavigationBarHidden:NO animated:animated];
    self.ALLArray =@[@"新妈听听看",@"爱听故事",@"英文磨耳朵",@"儿歌大全",@"科普涨知识",@"国学启蒙",@"亲子学堂",@"口袋故事集",@"宝贝SHOW",@"卡通动画片",@"中小学必备"];
 
-    [self tuijianLaod];
-    [self LoadData];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    // 2.将任务加入队列
+    dispatch_async(queue, ^{
+        [self tuijianLaod];
+        [self LoadData];
+    
+    });
+
+    
+  
+    
+    
 }
 
 
@@ -44,7 +56,7 @@
 
 - (void)tuijianLaod
 {
-    [self showHUB];
+//    [self showHUB];
     NSDictionary *params=@{@"category_id":@(6),@"calc_dimension":@(1),@"count":@(6),@"page":@(1)};
     [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
         if(!error)
@@ -54,7 +66,7 @@
         else
         {
             NSLog(@"%@   %@",error.description,result);
-        [self hideHUB];
+//        [self hideHUB];
         [self tuijianLaod];
         }
     }];
@@ -66,7 +78,7 @@
 
 - (void)LoadData
 {
-    [self showHUB];
+//    [self showHUB];
     for (int XXX=0; XXX<self.ALLArray.count; XXX++) {
         NSDictionary *params=@{@"category_id":@(6),@"tag_name":self.ALLArray[XXX],@"calc_dimension":@(1),@"count":@(6),@"page":@(1)};
         [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
@@ -78,7 +90,7 @@
             {
                 NSLog(@"%@   %@",error.description,result);
             
-            [self hideHUB];
+//            [self hideHUB];
             [self LoadData];
             }
         }];
@@ -91,7 +103,7 @@
 - (void)showReceivedData:(id)result className:(NSString*)className valuePath:(NSString *)path titleNeedShow:(NSString *)title:(NSInteger)tag
 {
     
-    [self hideHUB];
+//    [self hideHUB];
        NSMutableArray *models = [NSMutableArray array];
     Class dataClass = NSClassFromString(className);
     if([result isKindOfClass:[NSArray class]]){
@@ -119,6 +131,14 @@
     }
      NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:tag];
      [self.MainTableView.mj_header endRefreshing];
+    
+    // 回到主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+   
+
+    
+    
     switch (tag) {
         case 0:
             self.TuijianArray =models;
@@ -179,7 +199,7 @@
             break;
     }
     
-    
+     });
    
    
    

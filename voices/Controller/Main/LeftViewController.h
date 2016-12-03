@@ -50,7 +50,7 @@ typedef enum : NSInteger{
 
 @property(nonatomic,strong) UISlider *slider;
 
-@property (nonatomic,strong)NSArray *AllDataArray;
+@property (nonatomic,strong)NSMutableArray *AllDataArray;
 
 
 @property (nonatomic,strong)NSString *wifiName;
