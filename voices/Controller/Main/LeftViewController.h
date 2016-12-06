@@ -69,4 +69,6 @@ typedef enum : NSInteger{
 @property (nonatomic,strong)NSString *lockState;
 
 
+@property (nonatomic,strong)NSString *VoldataStr;
+
 @end

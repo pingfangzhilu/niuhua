@@ -13,7 +13,7 @@
 //WSBaseViewController *OCP=nil ;
 @interface WSBaseViewController ()
 {
-   MBProgressHUD* HUD;
+//   MBProgressHUD* HUD;
     int staticHUBCounter;
     UIView *loadPageView;
     UIImageView *netImg;
@@ -308,20 +308,21 @@ NSLog(@"323333kkkkkk");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(void)showHUB
-{
-    if(staticHUBCounter == 0)
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    staticHUBCounter ++;
-}
-
--(void)hideHUB
-{
-    staticHUBCounter --;
-    if(staticHUBCounter == 0)
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
+//-(void)showHUB
+//{
+//    if(staticHUBCounter == 0)
+////        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    
+//    staticHUBCounter ++;
+//}
+//
+//-(void)hideHUB
+//{
+//    staticHUBCounter --;
+//    if(staticHUBCounter == 0)
+////        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//        
+//}
 
 -(void)setupReloadPage
 {

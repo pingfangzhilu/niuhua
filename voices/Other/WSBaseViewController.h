@@ -12,12 +12,12 @@
 #define KBackBtn         @"backBtn"
 #import "BMDefine.h"
 #import "SDImageCache.h"
-#import "MBProgressHUD.h"
+//#import "MBProgressHUD.h"
 #import "DisplayUtil.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
-
+#import <SVProgressHUD.h>
 #import "XMSDK.h"
 @protocol ReloadxDelegate <NSObject>
 

@@ -85,7 +85,7 @@
 
 - (void)backUp:(UIButton *)Btn
 {
-    
+    [SVProgressHUD dismiss];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -93,7 +93,7 @@
 - (void)LoadData:(NSInteger)tag
 {
     
-    [self showHUB];
+    [SVProgressHUD showWithStatus:@"数据加载中"];
     
     
 //    XMAlbum *album = self.array[indexPath.row];
@@ -117,12 +117,16 @@
     //    [params setObject:@20 forKey:@"count"];
     //    [params setObject:@1 forKey:@"page"];
     [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsBrowse params:params withCompletionHander:^(id result, XMErrorModel *error) {
-        if(!error)
+        if(!error){
+            [SVProgressHUD dismiss];
             [self showReceivedData:result className:@"XMTrack" valuePath:@"tracks" titleNeedShow:@"trackTitle" tag:tag];
 //            [self showReceivedData:result className:@"XMAlbum" valuePath:@"albums" titleNeedShow:@"albumTitle":tag];
-        else
+        }  else
+        {
+            [SVProgressHUD showErrorWithStatus:@"请求失败"];
             NSLog(@"%@   %@",error.description,result);
-        [self hideHUB];
+        }
+//        [self hideHUB];
     }];
     
     
@@ -179,7 +183,7 @@
     }
     
     
-    [self hideHUB];
+//    [self hideHUB];
     
     [self.MainTableView reloadData];
     //    self.array = models;

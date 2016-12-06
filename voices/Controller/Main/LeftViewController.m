@@ -49,8 +49,32 @@
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shebiUI:) name:@"shebiyunxing" object:nil];
+//      [[NSNotificationCenter defaultCenter]postNotificationName:@"VoldataStr" object:VoldataStr];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(VoldataStr:) name:@"VoldataStr" object:nil];
     
 }
+
+- (void)VoldataStr:(NSNotification *)Notif
+{
+
+    self.VoldataStr = (NSString *)[Notif object];
+   
+    
+   dispatch_async(dispatch_get_main_queue(), ^{
+       
+       NSIndexPath *indexPath=[NSIndexPath indexPathForRow:2 inSection:0];
+       [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+       
+       
+   });
+
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"VoldataStr" object:nil];
+    
+
+}
+
+
  - (void)shebiUI:(NSNotification *)notif
 {
 
@@ -66,8 +90,9 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
  
-        
-        [self.tableView reloadData];
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:4 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//        [self.tableView reloadData];
     });
     
     
@@ -138,8 +163,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         
-        
-         [self.tableView reloadData];
+        NSIndexPath *indexPath=[NSIndexPath indexPathForRow:3 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+//         [self.tableView reloadData];
     });
     
    
@@ -409,7 +435,7 @@
         [ self.slider  addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         self.slider.minimumValue=0;
         self.slider.maximumValue =99;
-        self.slider.value = 50;
+       self.slider.value = [self.VoldataStr intValue];
 //        [[XMSDKPlayer sharedPlayer] setVolume:0.5];
         
         [cell addSubview:self.slider];

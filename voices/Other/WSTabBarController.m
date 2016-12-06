@@ -39,6 +39,7 @@ void ocCallBack(int type,char *msg,int size)
 //self.markStringSele = @"yes";
  NSLog(@"valuevaluevaluevaluevaluevalue%d",TimeBase);
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self BottomView];
          _BottomLabel.text =[NSString stringWithFormat:@"%@",textString];
         _BottomSlider.value = TimeBase;
         //  1  是开始    2 是暂停        3 停止 （timebase大于95 ）切换下一首
@@ -107,12 +108,22 @@ void ocCallBack(int type,char *msg,int size)
         Mplayer_t * play = nativeGetPlayer();
         printf("play->playState = %d\n",play->playState);
         printf("名字歌啊。。。。＝－－－－－play->name = %s\n",play->musicName);
-        printf("时间：：：：%d\n",play->snycSeekBar);
+        printf("时间：：：：%d\n",play->voldata);
+        
+        NSString *VoldataStr = [NSString stringWithFormat:@"%d",play->voldata];
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"VoldataStr" object:VoldataStr];
+        
+        
+        
 //        play->voldata;
-
+//[returnData bytes]
 //        self.BottomSlider.value  =play->progress;
-        NSString * strPath = [NSString stringWithUTF8String:play->musicName];
-
+//        NSString * strPath = [NSString stringWithUTF8String:play->musicName];
+           NSString *strPath = [[NSString alloc]initWithBytes:play->musicName length:64 encoding:NSUTF8StringEncoding];
+//        NSString *stringGGG = [NSString stringWithFormat:@"%s",play->musicName];
+//   NSString  * strPath= [NSString  stringWithFormat:@"%@", [NSString stringWithCString:play->musicName  encoding:NSUTF8StringEncoding] ];
+        NSLog(@"strPathstrPathstrPath%@",strPath);
         
         [OCP text:strPath Time:play->snycSeekBar playState:(int)play->playState];
         
