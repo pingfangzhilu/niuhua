@@ -26,7 +26,8 @@
 
 - (void)LoadData:(NSInteger)tag
 {
-    [self showHUB];
+//    [self showHUB];
+    [SVProgressHUD showWithStatus:@"正在下载数据"];
     NSDictionary *params=@{@"category_id":@(6),@"tag_name":self.tagName,@"calc_dimension":@(1),@"count":@(20),@"page":@(pagenum)};
     
     
@@ -38,10 +39,16 @@
 //    [params setObject:@1 forKey:@"page"];
     [[XMReqMgr sharedInstance] requestXMData:XMReqType_AlbumsList params:params withCompletionHander:^(id result, XMErrorModel *error) {
         if(!error)
+        {
+            [SVProgressHUD dismiss];
             [self showReceivedData:result className:@"XMAlbum" valuePath:@"albums" titleNeedShow:@"albumTitle":tag];
+        }
         else
+        {
             NSLog(@"%@   %@",error.description,result);
-        [self hideHUB];
+            [SVProgressHUD showErrorWithStatus:@"获取数据失败"];
+        }
+//        [self hideHUB];
     }];
 
 
@@ -97,7 +104,7 @@
 }
 - (void)backUp:(UIButton *)Btn
 {
-    
+    [SVProgressHUD dismiss];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -163,7 +170,7 @@
     
     
     
-    [self hideHUB];
+//    [self hideHUB];
 //    self.array = models;
     //    vc.titleWillShow = title;
     [self.MainTableView reloadData];

@@ -14,6 +14,8 @@
 #import "MainListTabBarViewcell.h"
 #import "AutoScrollLabel.h"
 #import "WSPlayTabViewController.h"
+#import "IntervalSinceNow.h"
+
 @interface WSTabBarController : UITabBarController<UITableViewDelegate,UITableViewDataSource,XMTrackPlayerDelegate>
 
 {
@@ -82,9 +84,9 @@
 @property (nonatomic,strong)NSMutableArray *PlayUrlData;
 
 
+@property (nonatomic,strong)UILabel *CurTimeLabel;
 
-
-
+@property (nonatomic,strong)UILabel *MusicTimeLabel;
 
 
 

@@ -302,9 +302,15 @@ static NSString *head =@"headd";
 #pragma mark  查看更多
 - (void)MOredata:(UIButton *)Btn
 {
-    ClassListViewController *list =[[ClassListViewController alloc]init];
-    list.tagName = self.ALLArray[Btn.tag];
-    [self.navigationController pushViewController:list animated:YES];
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ClassListViewController *list =[[ClassListViewController alloc]init];
+        list.tagName = self.ALLArray[Btn.tag];
+        [self.navigationController pushViewController:list animated:YES];
+    });
+    
+  
     
 
 

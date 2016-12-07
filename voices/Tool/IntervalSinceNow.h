@@ -12,4 +12,9 @@
 - (NSString *)intervalSinceNow: (NSString *) theDate;
 
 - (NSString *)TimeSinceNow: (NSString *) theDateTime;
+
+
+
+
+-(NSString*)TimeformatFromSeconds:(NSInteger)seconds;
 @end

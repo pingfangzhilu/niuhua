@@ -26,4 +26,14 @@
 
 @property (nonatomic,strong) JXCircleSlider *Circleslider;
 
+
+
+
+
+@property (nonatomic,strong)UIButton *NextBtn;
+
+@property (nonatomic,strong)UIButton *UPButton;
+
+@property (nonatomic,strong)UIButton *PauseBtn;
+
 @end

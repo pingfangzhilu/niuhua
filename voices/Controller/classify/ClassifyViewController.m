@@ -143,15 +143,22 @@ static NSString *iden =@"iden";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    XMTag *xmtag = self.array[indexPath.row];
     
-    ClassListViewController *list =[[ClassListViewController alloc]init];
-    list.tagName =xmtag.tagName;
     
-    [self.navigationController pushViewController:list animated:YES];
-    NSIndexPath *indexPathXXXX=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
-    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathXXXX,nil] withRowAnimation:UITableViewRowAnimationNone];
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        XMTag *xmtag = self.array[indexPath.row];
+        
+        ClassListViewController *list =[[ClassListViewController alloc]init];
+        list.tagName =xmtag.tagName;
+        
+        [self.navigationController pushViewController:list animated:YES];
+        NSIndexPath *indexPathXXXX=[NSIndexPath indexPathForRow:indexPath.row inSection:0];
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPathXXXX,nil] withRowAnimation:UITableViewRowAnimationNone];
+
+    });
+    
+    
+  //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 //    [params setObject:@6 forKey:@"category_id"];
 //    [params setObject:xmtag.tagName forKey:@"tag_name"];
 //    [params setObject:@1 forKey:@"calc_dimension"];  //设置值为1、2、3

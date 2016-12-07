@@ -34,7 +34,7 @@ void ocCallBack(int type,char *msg,int size)
  const char * filePathChar = [filePath UTF8String];*/
 
 
-- (void)text:(NSString *)textString Time:(int )TimeBase  playState:(int)State
+- (void)text:(NSString *)textString Time:(int )TimeBase  playState:(int)State  curTime:(NSString *)curTime  musicTime:(NSString *)musicTime
 {
 //self.markStringSele = @"yes";
  NSLog(@"valuevaluevaluevaluevaluevalue%d",TimeBase);
@@ -42,6 +42,9 @@ void ocCallBack(int type,char *msg,int size)
         [self BottomView];
          _BottomLabel.text =[NSString stringWithFormat:@"%@",textString];
         _BottomSlider.value = TimeBase;
+        
+        _CurTimeLabel.text =[NSString stringWithFormat:@"%@",curTime];
+        _MusicTimeLabel.text = [NSString stringWithFormat:@"%@",musicTime];
         //  1  是开始    2 是暂停        3 停止 （timebase大于95 ）切换下一首
         if (State==1) {
             NSLog(@"开始");
@@ -114,7 +117,10 @@ void ocCallBack(int type,char *msg,int size)
         
         [[NSNotificationCenter defaultCenter]postNotificationName:@"VoldataStr" object:VoldataStr];
         
+//        play->curTime;
+//        play->musicTime;
         
+        printf("%d",play->musicTime);
         
 //        play->voldata;
 //[returnData bytes]
@@ -124,9 +130,19 @@ void ocCallBack(int type,char *msg,int size)
 //        NSString *stringGGG = [NSString stringWithFormat:@"%s",play->musicName];
 //   NSString  * strPath= [NSString  stringWithFormat:@"%@", [NSString stringWithCString:play->musicName  encoding:NSUTF8StringEncoding] ];
         NSLog(@"strPathstrPathstrPath%@",strPath);
+        if (strPath == nil || [strPath isEqualToString:@"(null)"]  ){
+            
+            strPath = @"";
+            
+        }
+        IntervalSinceNow *TimeNow =[[IntervalSinceNow alloc]init];
+        NSString *curtime = [TimeNow TimeformatFromSeconds:play->curTime];
+        NSString *musicTime = [TimeNow TimeformatFromSeconds:play->musicTime];
         
-        [OCP text:strPath Time:play->snycSeekBar playState:(int)play->playState];
         
+        
+//        [OCP text:strPath Time:play->snycSeekBar playState:(int)play->playState];
+        [OCP text:strPath Time:play->snycSeekBar playState:(int)play->playState curTime:curtime musicTime:musicTime];
         
     }else{      //NETWORK_EVENT
         
@@ -328,6 +344,7 @@ nativeInitSystem(ocCallBack);
     [self.UpdateArray removeAllObjects];
 
     self.AllDataArray = (NSArray *)notif.userInfo[@"textOne"];
+    [[self.AllDataArray reverseObjectEnumerator] allObjects];
     
     [self.UpdateArray addObjectsFromArray:self.AllDataArray];
     self.MarkStr = (NSString *)notif.userInfo[@"textTwo"];
@@ -359,10 +376,13 @@ nativeInitSystem(ocCallBack);
  - (void)plying
 {
     
-    self.PlayBtn.selected = NO;
-    [self PlayBtn:self.PlayBtn];
+    self.PlayBtn.selected = YES;
+//    [self PlayBtn:self.PlayBtn];
    
+    [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
     
+    [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeEnd];
+    [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.AllDataArray];
 //    [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
 //    
 //    [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeEnd];
@@ -394,7 +414,7 @@ nativeInitSystem(ocCallBack);
     
     [self.NextBtn setImage:[UIImage imageNamed:@"playbar_btn_next"] forState:UIControlStateNormal];
     
-    [self.NextBtn addTarget:self action:@selector(NextBtn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.NextBtn addTarget:self action:@selector(NextBtton) forControlEvents:UIControlEventTouchUpInside];
     
     [self.myView addSubview:self.NextBtn];
     
@@ -621,6 +641,8 @@ nativeInitSystem(ocCallBack);
         [self BottomLabel];
         [self BottomName];
         [self BottomSlider];
+        [self CurTimeLabel];
+        [self MusicTimeLabel];
         [self BottomBtn];
         
         [self BottomNextBtn];
@@ -684,8 +706,8 @@ nativeInitSystem(ocCallBack);
         [_BottomSlider addTarget:self action:@selector(updateValue) forControlEvents:UIControlEventValueChanged];
         [_BottomSlider mas_makeConstraints:^(MASConstraintMaker *make) {
         
-            make.left.equalTo(self.BottomView.mas_left).with.offset(20);
-            make.right.equalTo(self.BottomView.mas_right).with.offset(-20);
+            make.left.equalTo(self.BottomView.mas_left).with.offset(60);
+            make.right.equalTo(self.BottomView.mas_right).with.offset(-60);
             make.height.equalTo(@20);
             make.top.equalTo(self.BottomName.mas_bottom).with.offset(20);
             
@@ -697,6 +719,61 @@ nativeInitSystem(ocCallBack);
     }
 
     return _BottomSlider;
+
+}
+
+
+
+- (UILabel *)CurTimeLabel
+{
+    if (!_CurTimeLabel) {
+        _CurTimeLabel = [[UILabel alloc]init];
+        _CurTimeLabel.textColor =[UIColor whiteColor];
+        _CurTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _CurTimeLabel.font =[UIFont systemFontOfSize:12];
+        [self.BottomView addSubview:_CurTimeLabel];
+        [_CurTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.BottomView.mas_left).with.offset(0);
+            make.right.equalTo(self.BottomSlider.mas_left).with.offset(0);
+            make.height.equalTo(@20);
+            make.top.equalTo(self.BottomName.mas_bottom).with.offset(20);
+            
+
+            
+            
+        }];
+        
+        
+    }
+    return _CurTimeLabel;
+}
+
+
+
+- (UILabel *)MusicTimeLabel
+{
+    if (!_MusicTimeLabel) {
+        _MusicTimeLabel = [[UILabel alloc]init];
+        _MusicTimeLabel.textAlignment = NSTextAlignmentCenter;
+        _MusicTimeLabel.font =[UIFont systemFontOfSize:12];
+        _MusicTimeLabel.textColor =[UIColor whiteColor];
+        [self.BottomView addSubview:_MusicTimeLabel];
+        [_MusicTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.BottomSlider.mas_right).with.offset(0);
+            make.right.equalTo(self.BottomView.mas_right).with.offset(0);
+            make.height.equalTo(@20);
+            make.top.equalTo(self.BottomName.mas_bottom).with.offset(20);
+
+            
+            
+            
+        }];
+        
+        
+        
+    }
+
+    return _MusicTimeLabel;
 
 }
 
@@ -908,7 +985,7 @@ nativeInitSystem(ocCallBack);
 }
 
 
-- (void)NextBtn:(UIButton *)Btn
+- (void)NextBtton
 {
 
     if (self.UpdateArray.count>0) {
@@ -931,6 +1008,19 @@ nativeInitSystem(ocCallBack);
 }
 
 
+- (void)UPButton
+{
+
+
+ [[XMSDKPlayer sharedPlayer] playPrevTrack];
+
+
+}
+
+
+
+
+
 - (void)PlayBtn:(UIButton *)Btn
 {
 
@@ -938,11 +1028,11 @@ nativeInitSystem(ocCallBack);
         
         if (self.PlayBtn.selected == NO) {
             
-            
-            [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
-            
-            [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeEnd];
-            [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.AllDataArray];
+              [[XMSDKPlayer sharedPlayer] resumeTrackPlay];
+//            [[XMSDKPlayer sharedPlayer] setPlayMode:XMSDKPlayModeTrack];
+//            
+//            [[XMSDKPlayer sharedPlayer] setTrackPlayMode:XMTrackPlayerModeEnd];
+//            [[XMSDKPlayer sharedPlayer] playWithTrack:self.track playlist:self.AllDataArray];
             
         }else
         {
@@ -970,6 +1060,21 @@ nativeInitSystem(ocCallBack);
 {
     
     [self.ProgressView setProgress:percent animated:YES];
+    self.NameLabel.text = [[XMSDKPlayer sharedPlayer] currentTrack].trackTitle;
+    //    [self.NameLabel setText:[[XMSDKPlayer sharedPlayer] currentTrack].trackTitle];
+    [self.HeadImageView sd_setImageWithURL:[NSURL URLWithString:[[XMSDKPlayer sharedPlayer] currentTrack].coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
+    if ([[XMSDKPlayer sharedPlayer] playerState]==0) {
+        
+        
+        self.PlayBtn.selected = YES;
+        
+        
+    }else
+    {
+        
+        self.PlayBtn.selected =NO;
+    }
+
     //        LOGCA(@"percent: %f, second: %d", percent, currentSecond);
 //    proView.value = percent;
     //    NSLog(@"percent: %f, second: %lu", percent, (unsigned long)currentSecond);
@@ -977,10 +1082,6 @@ nativeInitSystem(ocCallBack);
 
 - (void)XMTrackPlayerDidStart
 {
-    
-       self.NameLabel.text = [[XMSDKPlayer sharedPlayer] currentTrack].trackTitle;
-//    [self.NameLabel setText:[[XMSDKPlayer sharedPlayer] currentTrack].trackTitle];
-    [self.HeadImageView sd_setImageWithURL:[NSURL URLWithString:[[XMSDKPlayer sharedPlayer] currentTrack].coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
     
     
 //    NSInteger selectedIndex = 0;
@@ -991,6 +1092,10 @@ nativeInitSystem(ocCallBack);
     //    NSLog(@"volume didstart---%f", [XMPlayer sharedPlayer].volume);
     //    NSLog(@"sdkplayervolume didstart---%f", [XMSDKPlayer sharedPlayer].sdkPlayerVolume);
     NSLog(@"是什么%ld", (long)[[XMSDKPlayer sharedPlayer] getTrackPlayMode]);
+    
+    
+    
+    
     
 }
 
