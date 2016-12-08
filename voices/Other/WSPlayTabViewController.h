@@ -36,4 +36,8 @@
 
 @property (nonatomic,strong)UIButton *PauseBtn;
 
+
+@property (nonatomic,strong)  NSString *currentDateStr;
+
+
 @end

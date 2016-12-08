@@ -311,7 +311,7 @@ nativeInitSystem(ocCallBack);
     
     if (self.UpdateArray.count>0) {
          ttttt.NmaeStr =self.nameStr;
-        
+        ttttt.currentDateStr = self.playCurtime;
         [self  presentViewController:ttttt animated:YES completion:^{
             
 //            ttttt.currChooseIndex = [[XMSDKPlayer sharedPlayer]currentTrack].orderNum;
@@ -1074,7 +1074,14 @@ nativeInitSystem(ocCallBack);
         
         self.PlayBtn.selected =NO;
     }
-
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:currentSecond];
+    NSLog(@"yuanhuan%f",percent);
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"mm:ss"];
+    
+    self.playCurtime = [dateFormatter stringFromDate: detaildate];
     //        LOGCA(@"percent: %f, second: %d", percent, currentSecond);
 //    proView.value = percent;
     //    NSLog(@"percent: %f, second: %lu", percent, (unsigned long)currentSecond);

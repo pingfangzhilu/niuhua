@@ -101,7 +101,7 @@
     ClassifyViewController *Class =[[ClassifyViewController alloc]init ];
     Class.title =@"分类";
     
-    
+   
     
     SCNavTabBarController *scnav = [[SCNavTabBarController alloc]init];
     scnav.subViewControllers = @[Recommend,Class,me];

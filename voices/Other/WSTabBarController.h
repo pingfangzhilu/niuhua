@@ -89,6 +89,6 @@
 @property (nonatomic,strong)UILabel *MusicTimeLabel;
 
 
-
+@property (nonatomic,strong)NSString *playCurtime;
 
 @end

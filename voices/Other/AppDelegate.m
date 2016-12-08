@@ -46,7 +46,25 @@
 ////
 //   self.window.rootViewController = navConttroller;
     
-  
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+    [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        //        self.internetstatus  = status;
+        
+        if (status == 0) {
+            
+            [SVProgressHUD showErrorWithStatus:@"无网咯,请检查网咯"];
+        }
+        else
+        {
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"wangloLoadDta" object:nil];
+            
+//            [self tuijianLaod];
+//            [self LoadData];
+        }
+        
+    }];
     
 //    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -77,6 +95,25 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+    [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        //        self.internetstatus  = status;
+        
+        if (status == 0) {
+            
+            [SVProgressHUD showErrorWithStatus:@"无网咯,请检查网咯"];
+        }
+        else
+        {
+            
+              [[NSNotificationCenter defaultCenter]postNotificationName:@"wangloLoadDta" object:nil];
+            //            [self tuijianLaod];
+            //            [self LoadData];
+        }
+        
+    }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

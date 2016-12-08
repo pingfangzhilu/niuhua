@@ -22,16 +22,23 @@
      [XMReqMgr sharedInstance].delegate = self;
   
     [self CreateUI];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-     [self LoadData];
-    });
+   
+}
+- (void)wangloLaoda
+{
+    
+   [self LoadData];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"wangloLoadDta" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
  [self.navigationController setNavigationBarHidden:NO animated:animated];
-   
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wangloLaoda) name:@"wangloLoadDta" object:nil];
+
+    
 
 }
 
@@ -202,7 +209,7 @@ static NSString *iden =@"iden";
         {
             NSLog(@"Error: error_no:%ld, error_code:%@, error_desc:%@",(long)error.error_no, error.error_code, error.error_desc);
 //        [self hideHUB];
-        [self LoadData];
+//        [self LoadData];
         }
     }];
 

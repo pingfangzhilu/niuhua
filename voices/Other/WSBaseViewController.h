@@ -16,7 +16,7 @@
 #import "DisplayUtil.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
-#import "AFNetworking.h"
+#import <AFNetworking.h>
 #import <SVProgressHUD.h>
 #import "XMSDK.h"
 @protocol ReloadxDelegate <NSObject>
@@ -59,6 +59,10 @@
 
 - (void)palyISPaly;
 
+
+
+/** 网咯状态 */
+@property (nonatomic,assign)NSInteger internetstatus;
 
 
 @end

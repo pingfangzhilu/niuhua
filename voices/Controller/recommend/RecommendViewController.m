@@ -25,25 +25,23 @@
    
     
 }
+- (void)wangloLaoda
+{
+
+    [self tuijianLaod];
+          [self LoadData];
+    
+//   [[NSNotificationCenter defaultCenter]removeObserver:self name:@"wangloLoadDta" object:nil];
+}
 
  - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
      [self.navigationController setNavigationBarHidden:NO animated:animated];
    self.ALLArray =@[@"新妈听听看",@"爱听故事",@"英文磨耳朵",@"儿歌大全",@"科普涨知识",@"国学启蒙",@"亲子学堂",@"口袋故事集",@"宝贝SHOW",@"卡通动画片",@"中小学必备"];
+  [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wangloLaoda) name:@"wangloLoadDta" object:nil];
+    
 
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    
-    // 2.将任务加入队列
-    dispatch_async(queue, ^{
-        [self tuijianLaod];
-        [self LoadData];
-    
-    });
-
-    
-  
     
     
 }
@@ -65,9 +63,9 @@
         }
         else
         {
-            NSLog(@"%@   %@",error.description,result);
+            NSLog(@"错了啊啊%@   %@",error.description,result);
 //        [self hideHUB];
-        [self tuijianLaod];
+//        [self tuijianLaod];
         }
     }];
 
@@ -88,10 +86,10 @@
             }
             else
             {
-                NSLog(@"%@   %@",error.description,result);
+                NSLog(@"错误%@   %@",error.description,result);
             
 //            [self hideHUB];
-            [self LoadData];
+//            [self LoadData];
             }
         }];
     }

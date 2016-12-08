@@ -12,6 +12,9 @@
 #import "XMSDK.h"
 #import "ClassListViewController.h"
 #import "DetailsRecommendViewController.h"
+//#import <AFNetworkReachabilityManager.h>
+//#import "AFNetworking.h"
+
 @interface RecommendViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 {

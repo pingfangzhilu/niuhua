@@ -13,6 +13,7 @@
 #include "Interface.h"
 #import "ClassListViewController.h"
 #include "cJSON.h"
+//#import "AFNetworking.h"
 @interface ClassifyViewController : WSBaseViewController<UITableViewDelegate,UITableViewDataSource,XMReqDelegate>
 @property (nonatomic,strong) NSArray *array;
 @property (nonatomic,strong) NSString *titleWillShow;

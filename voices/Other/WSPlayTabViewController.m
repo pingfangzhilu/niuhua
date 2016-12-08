@@ -66,48 +66,8 @@
     }];
     
     
-    self.TimeLabel =[[UILabel alloc]init];
-    
-    self.TimeLabel.font =[UIFont systemFontOfSize:28];
-    self.TimeLabel.textAlignment =NSTextAlignmentCenter;
-    self.TimeLabel.textColor =[UIColor whiteColor];
-    
-    [headImageV addSubview:self.TimeLabel];
-    
-    [self.TimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
-        make.edges.equalTo(headImageV).with.insets(UIEdgeInsetsMake(0, 0, 0, 0));
-        
-        
-    }];
-//    CGFloat HHHHH =self.view.frame.size.height *0.5 -(WhithWide +60)*0.5 -50;
-////    
-//    self.circularSlider =[[EFCircularSlider alloc]initWithFrame:CGRectMake(20,HHHHH, WhithWide+60, WhithWide+60)];
-////    self.circularSlider.handleType = bigCircle;
-//    self.circularSlider.handleColor = [UIColor redColor];
-//    
-//    
-//     self.circularSlider.maximumValue = 1;
-//    
-//    [self.circularSlider addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-//    [self.view addSubview:self.circularSlider];
-//
-//    
-//    
-//        [self.circularSlider mas_makeConstraints:^(MASConstraintMaker *make) {
-//    
-//            make.width.and.height.equalTo(@(280));
-//            make.centerX.equalTo(headImageV.mas_centerX);
-//            make.centerY.equalTo(headImageV.mas_centerY);
-//    
-//    
-//            
-//        }];
-    
   
-    
-    
-    
+
     
     proView = [[UISlider alloc] initWithFrame:CGRectZero];
     //[proView setProgressViewStyle:UIProgressViewStyleDefault]; //设置进度条类型
@@ -124,17 +84,36 @@
    
     make.height.equalTo(@(20));
     
-//    make.centerX.equalTo(self.view.mas_centerX);
     
     make.top.equalTo(headImageV.mas_bottom).with.offset(20);
-//    make.centerX.equalTo(self.view.mas_centerX);
+
     
-    make.left.equalTo(self.view.mas_left).with.offset(20);
-    make.right.equalTo(self.view.mas_right).with.offset(-20);
-//    make.centerY.equalTo(self.view.mas_centerY).with.offset(-50);
+    make.left.equalTo(self.view.mas_left).with.offset(60);
+    make.right.equalTo(self.view.mas_right).with.offset(-60);
+
     
     
 }];
+    
+    self.TimeLabel =[[UILabel alloc]init];
+    
+    self.TimeLabel.font =[UIFont systemFontOfSize:14];
+    self.TimeLabel.textAlignment =NSTextAlignmentCenter;
+    self.TimeLabel.textColor =[UIColor whiteColor];
+//     self.TimeLabel.text = [NSString stringWithFormat:@"00:00"];
+    self.TimeLabel.text = [NSString stringWithFormat:@"%@",self.currentDateStr];
+    [self.view addSubview:self.TimeLabel];
+    
+    [self.TimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+         make.height.equalTo(@(15));
+        make.centerY.equalTo(proView.mas_centerY);
+        make.left.equalTo(self.view.mas_left).with.offset(0);
+        make.right.equalTo(proView.mas_left).with.offset(0);
+        
+    }];
+    
+    
     
     self.PauseBtn = [[UIButton alloc]init];
     
@@ -228,11 +207,16 @@
     [TimeAllLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.height.equalTo(@15);
-        make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(headImageV.mas_top).with.offset(-5);
+        make.centerY.equalTo(proView.mas_centerY);
+        make.left.equalTo(proView.mas_right).with.offset(0);
+        make.right.equalTo(self.view.mas_right).with.offset(0);
         
     }];
+    
+    
+    
+    
+    
     
     
     
@@ -387,32 +371,32 @@
     //设定时间格式,这里可以设置成自己需要的格式
     [dateFormatter setDateFormat:@"mm:ss"];
     
-    NSString *currentDateStr = [dateFormatter stringFromDate: detaildate];
+    self.currentDateStr = [dateFormatter stringFromDate: detaildate];
      [headImageV sd_setImageWithURL:[NSURL URLWithString:[[XMSDKPlayer sharedPlayer]currentTrack ].coverUrlMiddle] placeholderImage:[UIImage imageNamed:@"placeholder_disk"]];
     
-    self.TimeLabel.text = [NSString stringWithFormat:@"%@",currentDateStr];
+    self.TimeLabel.text = [NSString stringWithFormat:@"%@",self.currentDateStr];
 
 }
 - (void)XMTrackPlayerDidPaused
 {
 
-    ;
-    NSString *theDate =[NSString stringWithFormat:@"%ld", (long)[[XMSDKPlayer sharedPlayer]currentTrack].duration];
-    //
-    NSTimeInterval time=[theDate doubleValue];
-    //+28800;//因为时差问题要加8小时 == 28800 sec
-    //  NSTimeInterval time=[theDate doubleValue];
-    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
-    //    //    NSLog(@"date:%@",[detaildate description]);
-    //实例化一个NSDateFormatter对象
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //设定时间格式,这里可以设置成自己需要的格式
-    [dateFormatter setDateFormat:@"mm:ss"];
+//    ;
+//    NSString *theDate =[NSString stringWithFormat:@"%ld", (long)[[XMSDKPlayer sharedPlayer]currentTrack].duration];
+//    //
+//    NSTimeInterval time=[theDate doubleValue];
+//    //+28800;//因为时差问题要加8小时 == 28800 sec
+//    //  NSTimeInterval time=[theDate doubleValue];
+//    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:time];
+//    //    //    NSLog(@"date:%@",[detaildate description]);
+//    //实例化一个NSDateFormatter对象
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    //设定时间格式,这里可以设置成自己需要的格式
+//    [dateFormatter setDateFormat:@"mm:ss"];
+//    
+//    NSString *currentDateStr = [dateFormatter stringFromDate:detaildate];
     
-    NSString *currentDateStr = [dateFormatter stringFromDate:detaildate];
     
-    
-    self.TimeLabel.text = [NSString stringWithFormat:@"%@",currentDateStr];
+    self.TimeLabel.text = [NSString stringWithFormat:@"%@",self.currentDateStr];
 
 
 

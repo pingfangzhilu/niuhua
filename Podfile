@@ -17,4 +17,5 @@ target 'voices' do
     # Pods for testing
   end
 pod 'SVProgressHUD'
+pod 'AFNetworking'
 end

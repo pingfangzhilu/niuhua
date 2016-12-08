@@ -49,7 +49,8 @@
     //[[self navigationController] setNavigationBarHidden:YES animated:NO];
     
     NSLog(@"BottomArray%lu",(unsigned long)self.BottomArray.count);
-    
+   
+
 }
 
 - (void)BottomViewUI
@@ -227,8 +228,8 @@ NSLog(@"323333kkkkkk");
      self.navigationController.navigationBarHidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
    
-    
-    
+   
+
     
 //    static dispatch_once_t onceToken;
 //    dispatch_once(&onceToken, ^{
